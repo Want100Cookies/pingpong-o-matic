@@ -6,6 +6,9 @@
 
 ######### Quartus II source files
 
+.metadata/
+.settings/
+
 .qsys_edit/
 db/
 incremental_db/
