@@ -44,26 +44,26 @@
 
 module DE2_115_QSYS_mm_interconnect_0_router_default_decode
   #(
-     parameter DEFAULT_CHANNEL = 3,
+     parameter DEFAULT_CHANNEL = 7,
                DEFAULT_WR_CHANNEL = -1,
                DEFAULT_RD_CHANNEL = -1,
-               DEFAULT_DESTID = 3 
+               DEFAULT_DESTID = 10 
    )
-  (output [82 - 80 : 0] default_destination_id,
-   output [5-1 : 0] default_wr_channel,
-   output [5-1 : 0] default_rd_channel,
-   output [5-1 : 0] default_src_channel
+  (output [84 - 81 : 0] default_destination_id,
+   output [14-1 : 0] default_wr_channel,
+   output [14-1 : 0] default_rd_channel,
+   output [14-1 : 0] default_src_channel
   );
 
   assign default_destination_id = 
-    DEFAULT_DESTID[82 - 80 : 0];
+    DEFAULT_DESTID[84 - 81 : 0];
 
   generate
     if (DEFAULT_CHANNEL == -1) begin : no_default_channel_assignment
       assign default_src_channel = '0;
     end
     else begin : default_channel_assignment
-      assign default_src_channel = 5'b1 << DEFAULT_CHANNEL;
+      assign default_src_channel = 14'b1 << DEFAULT_CHANNEL;
     end
   endgenerate
 
@@ -73,8 +73,8 @@ module DE2_115_QSYS_mm_interconnect_0_router_default_decode
       assign default_rd_channel = '0;
     end
     else begin : default_rw_channel_assignment
-      assign default_wr_channel = 5'b1 << DEFAULT_WR_CHANNEL;
-      assign default_rd_channel = 5'b1 << DEFAULT_RD_CHANNEL;
+      assign default_wr_channel = 14'b1 << DEFAULT_WR_CHANNEL;
+      assign default_rd_channel = 14'b1 << DEFAULT_RD_CHANNEL;
     end
   endgenerate
 
@@ -93,7 +93,7 @@ module DE2_115_QSYS_mm_interconnect_0_router
     // Command Sink (Input)
     // -------------------
     input                       sink_valid,
-    input  [96-1 : 0]    sink_data,
+    input  [98-1 : 0]    sink_data,
     input                       sink_startofpacket,
     input                       sink_endofpacket,
     output                      sink_ready,
@@ -102,8 +102,8 @@ module DE2_115_QSYS_mm_interconnect_0_router
     // Command Source (Output)
     // -------------------
     output                          src_valid,
-    output reg [96-1    : 0] src_data,
-    output reg [5-1 : 0] src_channel,
+    output reg [98-1    : 0] src_data,
+    output reg [14-1 : 0] src_channel,
     output                          src_startofpacket,
     output                          src_endofpacket,
     input                           src_ready
@@ -114,12 +114,12 @@ module DE2_115_QSYS_mm_interconnect_0_router
     // -------------------------------------------------------
     localparam PKT_ADDR_H = 55;
     localparam PKT_ADDR_L = 36;
-    localparam PKT_DEST_ID_H = 82;
-    localparam PKT_DEST_ID_L = 80;
-    localparam PKT_PROTECTION_H = 86;
-    localparam PKT_PROTECTION_L = 84;
-    localparam ST_DATA_W = 96;
-    localparam ST_CHANNEL_W = 5;
+    localparam PKT_DEST_ID_H = 84;
+    localparam PKT_DEST_ID_L = 81;
+    localparam PKT_PROTECTION_H = 88;
+    localparam PKT_PROTECTION_L = 86;
+    localparam ST_DATA_W = 98;
+    localparam ST_CHANNEL_W = 14;
     localparam DECODER_TYPE = 0;
 
     localparam PKT_TRANS_WRITE = 58;
@@ -134,17 +134,26 @@ module DE2_115_QSYS_mm_interconnect_0_router
     // Figure out the number of bits to mask off for each slave span
     // during address decoding
     // -------------------------------------------------------
-    localparam PAD0 = log2ceil(64'h80000 - 64'h40000); 
-    localparam PAD1 = log2ceil(64'h81000 - 64'h80800); 
-    localparam PAD2 = log2ceil(64'h81010 - 64'h81000); 
-    localparam PAD3 = log2ceil(64'h81018 - 64'h81010); 
-    localparam PAD4 = log2ceil(64'h81020 - 64'h81018); 
+    localparam PAD0 = log2ceil(64'h20 - 64'h0); 
+    localparam PAD1 = log2ceil(64'h40000 - 64'h20000); 
+    localparam PAD2 = log2ceil(64'h41000 - 64'h40800); 
+    localparam PAD3 = log2ceil(64'h41020 - 64'h41000); 
+    localparam PAD4 = log2ceil(64'h41080 - 64'h41060); 
+    localparam PAD5 = log2ceil(64'h410a0 - 64'h41080); 
+    localparam PAD6 = log2ceil(64'h410b0 - 64'h410a0); 
+    localparam PAD7 = log2ceil(64'h410c0 - 64'h410b0); 
+    localparam PAD8 = log2ceil(64'h410d0 - 64'h410c0); 
+    localparam PAD9 = log2ceil(64'h410e0 - 64'h410d0); 
+    localparam PAD10 = log2ceil(64'h410f0 - 64'h410e0); 
+    localparam PAD11 = log2ceil(64'h41100 - 64'h410f0); 
+    localparam PAD12 = log2ceil(64'h41108 - 64'h41100); 
+    localparam PAD13 = log2ceil(64'h81110 - 64'h81108); 
     // -------------------------------------------------------
     // Work out which address bits are significant based on the
     // address range of the slaves. If the required width is too
     // large or too small, we use the address field width instead.
     // -------------------------------------------------------
-    localparam ADDR_RANGE = 64'h81020;
+    localparam ADDR_RANGE = 64'h81110;
     localparam RANGE_ADDR_WIDTH = log2ceil(ADDR_RANGE);
     localparam OPTIMIZED_ADDR_H = (RANGE_ADDR_WIDTH > PKT_ADDR_W) ||
                                   (RANGE_ADDR_WIDTH == 0) ?
@@ -168,7 +177,7 @@ module DE2_115_QSYS_mm_interconnect_0_router
     assign src_startofpacket = sink_startofpacket;
     assign src_endofpacket   = sink_endofpacket;
     wire [PKT_DEST_ID_W-1:0] default_destid;
-    wire [5-1 : 0] default_src_channel;
+    wire [14-1 : 0] default_src_channel;
 
 
 
@@ -197,34 +206,88 @@ module DE2_115_QSYS_mm_interconnect_0_router
         // Sets the channel and destination ID based on the address
         // --------------------------------------------------
 
-    // ( 0x40000 .. 0x80000 )
-    if ( {address[RG:PAD0],{PAD0{1'b0}}} == 20'h40000   ) begin
-            src_channel = 5'b01000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 3;
+    // ( 0x0 .. 0x20 )
+    if ( {address[RG:PAD0],{PAD0{1'b0}}} == 20'h0   ) begin
+            src_channel = 14'b10000000000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 13;
     end
 
-    // ( 0x80800 .. 0x81000 )
-    if ( {address[RG:PAD1],{PAD1{1'b0}}} == 20'h80800   ) begin
-            src_channel = 5'b00100;
+    // ( 0x20000 .. 0x40000 )
+    if ( {address[RG:PAD1],{PAD1{1'b0}}} == 20'h20000   ) begin
+            src_channel = 14'b00000010000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 10;
+    end
+
+    // ( 0x40800 .. 0x41000 )
+    if ( {address[RG:PAD2],{PAD2{1'b0}}} == 20'h40800   ) begin
+            src_channel = 14'b00000000010000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 9;
+    end
+
+    // ( 0x41000 .. 0x41020 )
+    if ( {address[RG:PAD3],{PAD3{1'b0}}} == 20'h41000   ) begin
+            src_channel = 14'b00000000100000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 0;
+    end
+
+    // ( 0x41060 .. 0x41080 )
+    if ( {address[RG:PAD4],{PAD4{1'b0}}} == 20'h41060   ) begin
+            src_channel = 14'b00000000000100;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 2;
     end
 
-    // ( 0x81000 .. 0x81010 )
-    if ( {address[RG:PAD2],{PAD2{1'b0}}} == 20'h81000   ) begin
-            src_channel = 5'b10000;
+    // ( 0x41080 .. 0x410a0 )
+    if ( {address[RG:PAD5],{PAD5{1'b0}}} == 20'h41080   ) begin
+            src_channel = 14'b00000000000010;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 3;
+    end
+
+    // ( 0x410a0 .. 0x410b0 )
+    if ( {address[RG:PAD6],{PAD6{1'b0}}} == 20'h410a0   ) begin
+            src_channel = 14'b01000000000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 7;
+    end
+
+    // ( 0x410b0 .. 0x410c0 )
+    if ( {address[RG:PAD7],{PAD7{1'b0}}} == 20'h410b0   ) begin
+            src_channel = 14'b00100000000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 8;
+    end
+
+    // ( 0x410c0 .. 0x410d0 )
+    if ( {address[RG:PAD8],{PAD8{1'b0}}} == 20'h410c0  && read_transaction  ) begin
+            src_channel = 14'b00010000000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 5;
+    end
+
+    // ( 0x410d0 .. 0x410e0 )
+    if ( {address[RG:PAD9],{PAD9{1'b0}}} == 20'h410d0  && read_transaction  ) begin
+            src_channel = 14'b00001000000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 11;
+    end
+
+    // ( 0x410e0 .. 0x410f0 )
+    if ( {address[RG:PAD10],{PAD10{1'b0}}} == 20'h410e0   ) begin
+            src_channel = 14'b00000100000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 6;
+    end
+
+    // ( 0x410f0 .. 0x41100 )
+    if ( {address[RG:PAD11],{PAD11{1'b0}}} == 20'h410f0   ) begin
+            src_channel = 14'b00000001000000;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 1;
     end
 
-    // ( 0x81010 .. 0x81018 )
-    if ( {address[RG:PAD3],{PAD3{1'b0}}} == 20'h81010  && read_transaction  ) begin
-            src_channel = 5'b00010;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;
+    // ( 0x41100 .. 0x41108 )
+    if ( {address[RG:PAD12],{PAD12{1'b0}}} == 20'h41100  && read_transaction  ) begin
+            src_channel = 14'b00000000001000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 12;
     end
 
-    // ( 0x81018 .. 0x81020 )
-    if ( {address[RG:PAD4],{PAD4{1'b0}}} == 20'h81018   ) begin
-            src_channel = 5'b00001;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 0;
+    // ( 0x81108 .. 0x81110 )
+    if ( {address[RG:PAD13],{PAD13{1'b0}}} == 20'h81108   ) begin
+            src_channel = 14'b00000000000001;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;
     end
 
 end
