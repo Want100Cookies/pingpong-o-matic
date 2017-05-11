@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>9-mei-2017 12:20:53</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1494325253793</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>11-mei-2017 15:14:08</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1494508448632</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\Wisse\Documents\Quartus\pingpong-o-matic\software\pingpong-o-matic_bsp</BspGeneratedLocation>
-        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\DE2_115_QSYS.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>nios2_qsys</Cpu>
@@ -899,26 +899,98 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <MemoryMap>
+                <slaveDescriptor>timer</slaveDescriptor>
+                <addressRange>0x00000000 - 0x0000001F</addressRange>
+                <addressSpan>32</addressSpan>
+                <attributes>timer</attributes>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>onchip_memory2</slaveDescriptor>
-                <addressRange>0x00040000 - 0x00071FFF</addressRange>
-                <addressSpan>204800</addressSpan>
+                <addressRange>0x00020000 - 0x0003869F</addressRange>
+                <addressSpan>100000</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>TERASIC_AUTO_FOCUS_0</slaveDescriptor>
+                <addressRange>0x00041000 - 0x0004103F</addressRange>
+                <addressSpan>64</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>i2c_opencores_camera</slaveDescriptor>
+                <addressRange>0x00041060 - 0x0004107F</addressRange>
+                <addressSpan>32</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>i2c_opencores_mipi</slaveDescriptor>
+                <addressRange>0x00041080 - 0x0004109F</addressRange>
+                <addressSpan>32</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>mipi_pwdn_n</slaveDescriptor>
+                <addressRange>0x000410A0 - 0x000410AF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>mipi_reset_n</slaveDescriptor>
+                <addressRange>0x000410B0 - 0x000410BF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>key</slaveDescriptor>
+                <addressRange>0x000410C0 - 0x000410CF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sw</slaveDescriptor>
+                <addressRange>0x000410D0 - 0x000410DF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>led</slaveDescriptor>
-                <addressRange>0x00081000 - 0x0008100F</addressRange>
+                <addressRange>0x000410E0 - 0x000410EF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>altpll_0</slaveDescriptor>
+                <addressRange>0x000410F0 - 0x000410FF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid_qsys</slaveDescriptor>
-                <addressRange>0x00081010 - 0x00081017</addressRange>
+                <addressRange>0x00041100 - 0x00041107</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>sevseg_0</slaveDescriptor>
+                <addressRange>0x000411A0 - 0x000411AF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sevseg_1</slaveDescriptor>
+                <addressRange>0x000411B0 - 0x000411BF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sevseg_2</slaveDescriptor>
+                <addressRange>0x000411C0 - 0x000411CF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x00081018 - 0x0008101F</addressRange>
+                <addressRange>0x00081108 - 0x0008110F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_qsys' in SOPC Builder design 'DE2_115_QSYS'
  * SOPC Builder design path: ../../DE2_115_QSYS.sopcinfo
  *
- * Generated: Tue May 09 12:20:54 CEST 2017
+ * Generated: Thu May 11 11:02:03 CEST 2017
  */
 
 /*
@@ -65,9 +65,9 @@
  *
  */
 
-#define ONCHIP_MEMORY2_REGION_BASE 0x40020
-#define ONCHIP_MEMORY2_REGION_SPAN 204768
-#define RESET_REGION_BASE 0x40000
+#define ONCHIP_MEMORY2_REGION_BASE 0x20020
+#define ONCHIP_MEMORY2_REGION_SPAN 99968
+#define RESET_REGION_BASE 0x20000
 #define RESET_REGION_SPAN 32
 
 

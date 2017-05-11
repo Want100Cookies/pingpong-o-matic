@@ -196,6 +196,11 @@ wire			disp_clk;
 wire			disp_hs;
 wire			disp_vs;
 
+// 7 Seg
+wire	[7:0]		sevseg_0_binary;
+wire	[7:0]		sevseg_1_binary;
+wire	[15:0]	sevseg_2_binary;
+
 
 //=======================================================
 //  Structural coding
@@ -209,6 +214,30 @@ assign VGA_BLANK_N 				= 1'b1;
 assign VGA_SYNC_N 				= 1'b0;
 assign MIPI_CS_n              = 1'b0;
 
+NumberDisplay NumberDisplay_0_inst (
+	.binary	(sevseg_0_binary),
+	.DIG0		(HEX6),
+	.DIG1		(HEX7),
+	.DIG2 	(),
+	.DIG3 	()
+);
+
+NumberDisplay NumberDisplay_1_inst (
+	.binary	(sevseg_1_binary),
+	.DIG0		(HEX4),
+	.DIG1		(HEX5),
+	.DIG2 	(),
+	.DIG3 	()
+);
+
+NumberDisplay NumberDisplay_2_inst (
+	.binary	(sevseg_2_binary),
+	.DIG0		(HEX0),
+	.DIG1		(HEX1),
+	.DIG2 	(HEX2),
+	.DIG3 	(HEX3)
+);
+
 DE2_115_QSYS DE2_115_QSYS_inst (
 	.clk_clk                                      (CLOCK2_50),								// clk.clk
 	.reset_reset_n                                (1'b1),										// reset.reset_n
@@ -217,9 +246,13 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	.vga_clk_clk                                  (disp_clk),								// vga_clk.clk
 	.d8m_clk_clk                                  (MIPI_REFCLK),							// d8m_xclk.clk
 
-	.key_external_connection_export               (KEY),										// key_external_connection.export
-	.led_external_connection_export               (LEDR[9:0]),								// led_external_connection.export
-	.sw_external_connection_export                (SW),										// sw_external_connection.export
+	.key_external_connection_export              (KEY),										// key_external_connection.export
+	.led_external_connection_export              (LEDR[9:0]),								// led_external_connection.export
+	.sw_external_connection_export               (SW),										// sw_external_connection.export
+	
+	.sevseg_0_external_connection_export			(sevseg_0_binary),
+	.sevseg_1_external_connection_export			(sevseg_1_binary),
+	.sevseg_2_external_connection_export			(sevseg_2_binary),
 
 	.sdram_wire_addr                              (DRAM_ADDR),                              //                     sdram_wire.addr
 	.sdram_wire_ba                                (DRAM_BA),                                //                               .ba

@@ -40,7 +40,10 @@
 			terasic_camera_0_conduit_end_FVAL         : in    std_logic                     := 'X';             -- FVAL
 			terasic_camera_0_conduit_end_LVAL         : in    std_logic                     := 'X';             -- LVAL
 			terasic_camera_0_conduit_end_PIXCLK       : in    std_logic                     := 'X';             -- PIXCLK
-			vga_clk_clk                               : out   std_logic                                         -- clk
+			vga_clk_clk                               : out   std_logic;                                        -- clk
+			sevseg_0_external_connection_export       : out   std_logic_vector(7 downto 0);                     -- export
+			sevseg_1_external_connection_export       : out   std_logic_vector(7 downto 0);                     -- export
+			sevseg_2_external_connection_export       : out   std_logic_vector(15 downto 0)                     -- export
 		);
 	end component DE2_115_QSYS;
 
@@ -86,6 +89,9 @@
 			terasic_camera_0_conduit_end_FVAL         => CONNECTED_TO_terasic_camera_0_conduit_end_FVAL,         --                                 .FVAL
 			terasic_camera_0_conduit_end_LVAL         => CONNECTED_TO_terasic_camera_0_conduit_end_LVAL,         --                                 .LVAL
 			terasic_camera_0_conduit_end_PIXCLK       => CONNECTED_TO_terasic_camera_0_conduit_end_PIXCLK,       --                                 .PIXCLK
-			vga_clk_clk                               => CONNECTED_TO_vga_clk_clk                                --                          vga_clk.clk
+			vga_clk_clk                               => CONNECTED_TO_vga_clk_clk,                               --                          vga_clk.clk
+			sevseg_0_external_connection_export       => CONNECTED_TO_sevseg_0_external_connection_export,       --     sevseg_0_external_connection.export
+			sevseg_1_external_connection_export       => CONNECTED_TO_sevseg_1_external_connection_export,       --     sevseg_1_external_connection.export
+			sevseg_2_external_connection_export       => CONNECTED_TO_sevseg_2_external_connection_export        --     sevseg_2_external_connection.export
 		);
 

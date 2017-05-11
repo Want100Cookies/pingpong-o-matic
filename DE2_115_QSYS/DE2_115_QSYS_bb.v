@@ -40,7 +40,10 @@ module DE2_115_QSYS (
 	terasic_camera_0_conduit_end_FVAL,
 	terasic_camera_0_conduit_end_LVAL,
 	terasic_camera_0_conduit_end_PIXCLK,
-	vga_clk_clk);	
+	vga_clk_clk,
+	sevseg_0_external_connection_export,
+	sevseg_1_external_connection_export,
+	sevseg_2_external_connection_export);	
 
 	input		alt_vip_itc_0_clocked_video_vid_clk;
 	output	[23:0]	alt_vip_itc_0_clocked_video_vid_data;
@@ -83,4 +86,7 @@ module DE2_115_QSYS (
 	input		terasic_camera_0_conduit_end_LVAL;
 	input		terasic_camera_0_conduit_end_PIXCLK;
 	output		vga_clk_clk;
+	output	[7:0]	sevseg_0_external_connection_export;
+	output	[7:0]	sevseg_1_external_connection_export;
+	output	[15:0]	sevseg_2_external_connection_export;
 endmodule

@@ -39,6 +39,9 @@
 		.terasic_camera_0_conduit_end_FVAL         (<connected-to-terasic_camera_0_conduit_end_FVAL>),         //                                 .FVAL
 		.terasic_camera_0_conduit_end_LVAL         (<connected-to-terasic_camera_0_conduit_end_LVAL>),         //                                 .LVAL
 		.terasic_camera_0_conduit_end_PIXCLK       (<connected-to-terasic_camera_0_conduit_end_PIXCLK>),       //                                 .PIXCLK
-		.vga_clk_clk                               (<connected-to-vga_clk_clk>)                                //                          vga_clk.clk
+		.vga_clk_clk                               (<connected-to-vga_clk_clk>),                               //                          vga_clk.clk
+		.sevseg_0_external_connection_export       (<connected-to-sevseg_0_external_connection_export>),       //     sevseg_0_external_connection.export
+		.sevseg_1_external_connection_export       (<connected-to-sevseg_1_external_connection_export>),       //     sevseg_1_external_connection.export
+		.sevseg_2_external_connection_export       (<connected-to-sevseg_2_external_connection_export>)        //     sevseg_2_external_connection.export
 	);
 

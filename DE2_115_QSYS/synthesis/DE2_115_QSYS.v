@@ -36,6 +36,9 @@ module DE2_115_QSYS (
 		output wire [3:0]  sdram_wire_dqm,                            //                                 .dqm
 		output wire        sdram_wire_ras_n,                          //                                 .ras_n
 		output wire        sdram_wire_we_n,                           //                                 .we_n
+		output wire [7:0]  sevseg_0_external_connection_export,       //     sevseg_0_external_connection.export
+		output wire [7:0]  sevseg_1_external_connection_export,       //     sevseg_1_external_connection.export
+		output wire [15:0] sevseg_2_external_connection_export,       //     sevseg_2_external_connection.export
 		input  wire [9:0]  sw_external_connection_export,             //           sw_external_connection.export
 		inout  wire        terasic_auto_focus_0_conduit_vcm_i2c_scl,  //     terasic_auto_focus_0_conduit.vcm_i2c_scl
 		inout  wire        terasic_auto_focus_0_conduit_vcm_i2c_sda,  //                                 .vcm_i2c_sda
@@ -63,7 +66,7 @@ module DE2_115_QSYS (
 	wire         terasic_auto_focus_0_dout_startofpacket;                           // TERASIC_AUTO_FOCUS_0:source_sop -> alt_vip_itc_0:is_sop
 	wire         terasic_auto_focus_0_dout_endofpacket;                             // TERASIC_AUTO_FOCUS_0:source_eop -> alt_vip_itc_0:is_eop
 	wire         altpll_0_c0_clk;                                                   // altpll_0:c0 -> [TERASIC_AUTO_FOCUS_0:clk, TERASIC_CAMERA_0:clk, alt_vip_itc_0:is_clk, alt_vip_vfb_0:clock, mm_interconnect_0:altpll_0_c0_clk, mm_interconnect_1:altpll_0_c0_clk, rst_controller:clk, sdram:clk]
-	wire         nios2_qsys_debug_reset_request_reset;                              // nios2_qsys:debug_reset_request -> [key:reset_n, led:reset_n, mipi_pwdn_n:reset_n, mipi_reset_n:reset_n, mm_interconnect_0:sysid_qsys_reset_reset_bridge_in_reset_reset, rst_controller_002:reset_in1, sw:reset_n, sysid_qsys:reset_n, timer:reset_n]
+	wire         nios2_qsys_debug_reset_request_reset;                              // nios2_qsys:debug_reset_request -> [key:reset_n, led:reset_n, mipi_pwdn_n:reset_n, mipi_reset_n:reset_n, mm_interconnect_0:sysid_qsys_reset_reset_bridge_in_reset_reset, rst_controller_002:reset_in1, sevseg_0:reset_n, sevseg_1:reset_n, sevseg_2:reset_n, sw:reset_n, sysid_qsys:reset_n, timer:reset_n]
 	wire  [31:0] nios2_qsys_data_master_readdata;                                   // mm_interconnect_0:nios2_qsys_data_master_readdata -> nios2_qsys:d_readdata
 	wire         nios2_qsys_data_master_waitrequest;                                // mm_interconnect_0:nios2_qsys_data_master_waitrequest -> nios2_qsys:d_waitrequest
 	wire         nios2_qsys_data_master_debugaccess;                                // nios2_qsys:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:nios2_qsys_data_master_debugaccess
@@ -147,6 +150,21 @@ module DE2_115_QSYS (
 	wire   [2:0] mm_interconnect_0_timer_s1_address;                                // mm_interconnect_0:timer_s1_address -> timer:address
 	wire         mm_interconnect_0_timer_s1_write;                                  // mm_interconnect_0:timer_s1_write -> timer:write_n
 	wire  [15:0] mm_interconnect_0_timer_s1_writedata;                              // mm_interconnect_0:timer_s1_writedata -> timer:writedata
+	wire         mm_interconnect_0_sevseg_0_s1_chipselect;                          // mm_interconnect_0:sevseg_0_s1_chipselect -> sevseg_0:chipselect
+	wire  [31:0] mm_interconnect_0_sevseg_0_s1_readdata;                            // sevseg_0:readdata -> mm_interconnect_0:sevseg_0_s1_readdata
+	wire   [1:0] mm_interconnect_0_sevseg_0_s1_address;                             // mm_interconnect_0:sevseg_0_s1_address -> sevseg_0:address
+	wire         mm_interconnect_0_sevseg_0_s1_write;                               // mm_interconnect_0:sevseg_0_s1_write -> sevseg_0:write_n
+	wire  [31:0] mm_interconnect_0_sevseg_0_s1_writedata;                           // mm_interconnect_0:sevseg_0_s1_writedata -> sevseg_0:writedata
+	wire         mm_interconnect_0_sevseg_1_s1_chipselect;                          // mm_interconnect_0:sevseg_1_s1_chipselect -> sevseg_1:chipselect
+	wire  [31:0] mm_interconnect_0_sevseg_1_s1_readdata;                            // sevseg_1:readdata -> mm_interconnect_0:sevseg_1_s1_readdata
+	wire   [1:0] mm_interconnect_0_sevseg_1_s1_address;                             // mm_interconnect_0:sevseg_1_s1_address -> sevseg_1:address
+	wire         mm_interconnect_0_sevseg_1_s1_write;                               // mm_interconnect_0:sevseg_1_s1_write -> sevseg_1:write_n
+	wire  [31:0] mm_interconnect_0_sevseg_1_s1_writedata;                           // mm_interconnect_0:sevseg_1_s1_writedata -> sevseg_1:writedata
+	wire         mm_interconnect_0_sevseg_2_s1_chipselect;                          // mm_interconnect_0:sevseg_2_s1_chipselect -> sevseg_2:chipselect
+	wire  [31:0] mm_interconnect_0_sevseg_2_s1_readdata;                            // sevseg_2:readdata -> mm_interconnect_0:sevseg_2_s1_readdata
+	wire   [1:0] mm_interconnect_0_sevseg_2_s1_address;                             // mm_interconnect_0:sevseg_2_s1_address -> sevseg_2:address
+	wire         mm_interconnect_0_sevseg_2_s1_write;                               // mm_interconnect_0:sevseg_2_s1_write -> sevseg_2:write_n
+	wire  [31:0] mm_interconnect_0_sevseg_2_s1_writedata;                           // mm_interconnect_0:sevseg_2_s1_writedata -> sevseg_2:writedata
 	wire         alt_vip_vfb_0_read_master_waitrequest;                             // mm_interconnect_1:alt_vip_vfb_0_read_master_waitrequest -> alt_vip_vfb_0:read_master_av_waitrequest
 	wire  [31:0] alt_vip_vfb_0_read_master_readdata;                                // mm_interconnect_1:alt_vip_vfb_0_read_master_readdata -> alt_vip_vfb_0:read_master_av_readdata
 	wire  [31:0] alt_vip_vfb_0_read_master_address;                                 // alt_vip_vfb_0:read_master_av_address -> mm_interconnect_1:alt_vip_vfb_0_read_master_address
@@ -474,6 +492,39 @@ module DE2_115_QSYS (
 		.zs_we_n        (sdram_wire_we_n)                           //      .export
 	);
 
+	DE2_115_QSYS_sevseg_0 sevseg_0 (
+		.clk        (clk_clk),                                  //                 clk.clk
+		.reset_n    (~nios2_qsys_debug_reset_request_reset),    //               reset.reset_n
+		.address    (mm_interconnect_0_sevseg_0_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_sevseg_0_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_sevseg_0_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_sevseg_0_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_sevseg_0_s1_readdata),   //                    .readdata
+		.out_port   (sevseg_0_external_connection_export)       // external_connection.export
+	);
+
+	DE2_115_QSYS_sevseg_0 sevseg_1 (
+		.clk        (clk_clk),                                  //                 clk.clk
+		.reset_n    (~nios2_qsys_debug_reset_request_reset),    //               reset.reset_n
+		.address    (mm_interconnect_0_sevseg_1_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_sevseg_1_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_sevseg_1_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_sevseg_1_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_sevseg_1_s1_readdata),   //                    .readdata
+		.out_port   (sevseg_1_external_connection_export)       // external_connection.export
+	);
+
+	DE2_115_QSYS_sevseg_2 sevseg_2 (
+		.clk        (clk_clk),                                  //                 clk.clk
+		.reset_n    (~nios2_qsys_debug_reset_request_reset),    //               reset.reset_n
+		.address    (mm_interconnect_0_sevseg_2_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_sevseg_2_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_sevseg_2_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_sevseg_2_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_sevseg_2_s1_readdata),   //                    .readdata
+		.out_port   (sevseg_2_external_connection_export)       // external_connection.export
+	);
+
 	DE2_115_QSYS_sw sw (
 		.clk      (clk_clk),                               //                 clk.clk
 		.reset_n  (~nios2_qsys_debug_reset_request_reset), //               reset.reset_n
@@ -575,6 +626,21 @@ module DE2_115_QSYS (
 		.onchip_memory2_s1_byteenable                               (mm_interconnect_0_onchip_memory2_s1_byteenable),                     //                                                     .byteenable
 		.onchip_memory2_s1_chipselect                               (mm_interconnect_0_onchip_memory2_s1_chipselect),                     //                                                     .chipselect
 		.onchip_memory2_s1_clken                                    (mm_interconnect_0_onchip_memory2_s1_clken),                          //                                                     .clken
+		.sevseg_0_s1_address                                        (mm_interconnect_0_sevseg_0_s1_address),                              //                                          sevseg_0_s1.address
+		.sevseg_0_s1_write                                          (mm_interconnect_0_sevseg_0_s1_write),                                //                                                     .write
+		.sevseg_0_s1_readdata                                       (mm_interconnect_0_sevseg_0_s1_readdata),                             //                                                     .readdata
+		.sevseg_0_s1_writedata                                      (mm_interconnect_0_sevseg_0_s1_writedata),                            //                                                     .writedata
+		.sevseg_0_s1_chipselect                                     (mm_interconnect_0_sevseg_0_s1_chipselect),                           //                                                     .chipselect
+		.sevseg_1_s1_address                                        (mm_interconnect_0_sevseg_1_s1_address),                              //                                          sevseg_1_s1.address
+		.sevseg_1_s1_write                                          (mm_interconnect_0_sevseg_1_s1_write),                                //                                                     .write
+		.sevseg_1_s1_readdata                                       (mm_interconnect_0_sevseg_1_s1_readdata),                             //                                                     .readdata
+		.sevseg_1_s1_writedata                                      (mm_interconnect_0_sevseg_1_s1_writedata),                            //                                                     .writedata
+		.sevseg_1_s1_chipselect                                     (mm_interconnect_0_sevseg_1_s1_chipselect),                           //                                                     .chipselect
+		.sevseg_2_s1_address                                        (mm_interconnect_0_sevseg_2_s1_address),                              //                                          sevseg_2_s1.address
+		.sevseg_2_s1_write                                          (mm_interconnect_0_sevseg_2_s1_write),                                //                                                     .write
+		.sevseg_2_s1_readdata                                       (mm_interconnect_0_sevseg_2_s1_readdata),                             //                                                     .readdata
+		.sevseg_2_s1_writedata                                      (mm_interconnect_0_sevseg_2_s1_writedata),                            //                                                     .writedata
+		.sevseg_2_s1_chipselect                                     (mm_interconnect_0_sevseg_2_s1_chipselect),                           //                                                     .chipselect
 		.sw_s1_address                                              (mm_interconnect_0_sw_s1_address),                                    //                                                sw_s1.address
 		.sw_s1_readdata                                             (mm_interconnect_0_sw_s1_readdata),                                   //                                                     .readdata
 		.sysid_qsys_control_slave_address                           (mm_interconnect_0_sysid_qsys_control_slave_address),                 //                             sysid_qsys_control_slave.address
