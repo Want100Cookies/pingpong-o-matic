@@ -22,6 +22,10 @@ module DE2_115_QSYS (
 		inout  wire        i2c_opencores_mipi_export_scl_pad_io,      //        i2c_opencores_mipi_export.scl_pad_io
 		inout  wire        i2c_opencores_mipi_export_sda_pad_io,      //                                 .sda_pad_io
 		input  wire [3:0]  key_external_connection_export,            //          key_external_connection.export
+		output wire        lcd_external_connection_RS,                //          lcd_external_connection.RS
+		output wire        lcd_external_connection_RW,                //                                 .RW
+		inout  wire [7:0]  lcd_external_connection_data,              //                                 .data
+		output wire        lcd_external_connection_E,                 //                                 .E
 		output wire [9:0]  led_external_connection_export,            //          led_external_connection.export
 		output wire        mipi_pwdn_n_external_connection_export,    //  mipi_pwdn_n_external_connection.export
 		output wire        mipi_reset_n_external_connection_export,   // mipi_reset_n_external_connection.export
@@ -66,7 +70,7 @@ module DE2_115_QSYS (
 	wire         terasic_auto_focus_0_dout_startofpacket;                           // TERASIC_AUTO_FOCUS_0:source_sop -> alt_vip_itc_0:is_sop
 	wire         terasic_auto_focus_0_dout_endofpacket;                             // TERASIC_AUTO_FOCUS_0:source_eop -> alt_vip_itc_0:is_eop
 	wire         altpll_0_c0_clk;                                                   // altpll_0:c0 -> [TERASIC_AUTO_FOCUS_0:clk, TERASIC_CAMERA_0:clk, alt_vip_itc_0:is_clk, alt_vip_vfb_0:clock, mm_interconnect_0:altpll_0_c0_clk, mm_interconnect_1:altpll_0_c0_clk, rst_controller:clk, sdram:clk]
-	wire         nios2_qsys_debug_reset_request_reset;                              // nios2_qsys:debug_reset_request -> [key:reset_n, led:reset_n, mipi_pwdn_n:reset_n, mipi_reset_n:reset_n, mm_interconnect_0:sysid_qsys_reset_reset_bridge_in_reset_reset, rst_controller_002:reset_in1, sevseg_0:reset_n, sevseg_1:reset_n, sevseg_2:reset_n, sw:reset_n, sysid_qsys:reset_n, timer:reset_n]
+	wire         nios2_qsys_debug_reset_request_reset;                              // nios2_qsys:debug_reset_request -> [key:reset_n, lcd_0:reset_n, led:reset_n, mipi_pwdn_n:reset_n, mipi_reset_n:reset_n, mm_interconnect_0:sysid_qsys_reset_reset_bridge_in_reset_reset, rst_controller_002:reset_in1, sevseg_0:reset_n, sevseg_1:reset_n, sevseg_2:reset_n, sw:reset_n, sysid_qsys:reset_n, timer:reset_n]
 	wire  [31:0] nios2_qsys_data_master_readdata;                                   // mm_interconnect_0:nios2_qsys_data_master_readdata -> nios2_qsys:d_readdata
 	wire         nios2_qsys_data_master_waitrequest;                                // mm_interconnect_0:nios2_qsys_data_master_waitrequest -> nios2_qsys:d_waitrequest
 	wire         nios2_qsys_data_master_debugaccess;                                // nios2_qsys:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:nios2_qsys_data_master_debugaccess
@@ -100,6 +104,12 @@ module DE2_115_QSYS (
 	wire   [7:0] mm_interconnect_0_i2c_opencores_camera_avalon_slave_0_writedata;   // mm_interconnect_0:i2c_opencores_camera_avalon_slave_0_writedata -> i2c_opencores_camera:wb_dat_i
 	wire  [31:0] mm_interconnect_0_sysid_qsys_control_slave_readdata;               // sysid_qsys:readdata -> mm_interconnect_0:sysid_qsys_control_slave_readdata
 	wire   [0:0] mm_interconnect_0_sysid_qsys_control_slave_address;                // mm_interconnect_0:sysid_qsys_control_slave_address -> sysid_qsys:address
+	wire   [7:0] mm_interconnect_0_lcd_0_control_slave_readdata;                    // lcd_0:readdata -> mm_interconnect_0:lcd_0_control_slave_readdata
+	wire   [1:0] mm_interconnect_0_lcd_0_control_slave_address;                     // mm_interconnect_0:lcd_0_control_slave_address -> lcd_0:address
+	wire         mm_interconnect_0_lcd_0_control_slave_read;                        // mm_interconnect_0:lcd_0_control_slave_read -> lcd_0:read
+	wire         mm_interconnect_0_lcd_0_control_slave_begintransfer;               // mm_interconnect_0:lcd_0_control_slave_begintransfer -> lcd_0:begintransfer
+	wire         mm_interconnect_0_lcd_0_control_slave_write;                       // mm_interconnect_0:lcd_0_control_slave_write -> lcd_0:write
+	wire   [7:0] mm_interconnect_0_lcd_0_control_slave_writedata;                   // mm_interconnect_0:lcd_0_control_slave_writedata -> lcd_0:writedata
 	wire  [31:0] mm_interconnect_0_nios2_qsys_debug_mem_slave_readdata;             // nios2_qsys:debug_mem_slave_readdata -> mm_interconnect_0:nios2_qsys_debug_mem_slave_readdata
 	wire         mm_interconnect_0_nios2_qsys_debug_mem_slave_waitrequest;          // nios2_qsys:debug_mem_slave_waitrequest -> mm_interconnect_0:nios2_qsys_debug_mem_slave_waitrequest
 	wire         mm_interconnect_0_nios2_qsys_debug_mem_slave_debugaccess;          // mm_interconnect_0:nios2_qsys_debug_mem_slave_debugaccess -> nios2_qsys:debug_mem_slave_debugaccess
@@ -393,6 +403,21 @@ module DE2_115_QSYS (
 		.in_port  (key_external_connection_export)         // external_connection.export
 	);
 
+	DE2_115_QSYS_lcd_0 lcd_0 (
+		.reset_n       (~nios2_qsys_debug_reset_request_reset),               //         reset.reset_n
+		.clk           (clk_clk),                                             //           clk.clk
+		.begintransfer (mm_interconnect_0_lcd_0_control_slave_begintransfer), // control_slave.begintransfer
+		.read          (mm_interconnect_0_lcd_0_control_slave_read),          //              .read
+		.write         (mm_interconnect_0_lcd_0_control_slave_write),         //              .write
+		.readdata      (mm_interconnect_0_lcd_0_control_slave_readdata),      //              .readdata
+		.writedata     (mm_interconnect_0_lcd_0_control_slave_writedata),     //              .writedata
+		.address       (mm_interconnect_0_lcd_0_control_slave_address),       //              .address
+		.LCD_RS        (lcd_external_connection_RS),                          //      external.export
+		.LCD_RW        (lcd_external_connection_RW),                          //              .export
+		.LCD_data      (lcd_external_connection_data),                        //              .export
+		.LCD_E         (lcd_external_connection_E)                            //              .export
+	);
+
 	DE2_115_QSYS_led led (
 		.clk        (clk_clk),                               //                 clk.clk
 		.reset_n    (~nios2_qsys_debug_reset_request_reset), //               reset.reset_n
@@ -596,6 +621,12 @@ module DE2_115_QSYS (
 		.jtag_uart_avalon_jtag_slave_chipselect                     (mm_interconnect_0_jtag_uart_avalon_jtag_slave_chipselect),           //                                                     .chipselect
 		.key_s1_address                                             (mm_interconnect_0_key_s1_address),                                   //                                               key_s1.address
 		.key_s1_readdata                                            (mm_interconnect_0_key_s1_readdata),                                  //                                                     .readdata
+		.lcd_0_control_slave_address                                (mm_interconnect_0_lcd_0_control_slave_address),                      //                                  lcd_0_control_slave.address
+		.lcd_0_control_slave_write                                  (mm_interconnect_0_lcd_0_control_slave_write),                        //                                                     .write
+		.lcd_0_control_slave_read                                   (mm_interconnect_0_lcd_0_control_slave_read),                         //                                                     .read
+		.lcd_0_control_slave_readdata                               (mm_interconnect_0_lcd_0_control_slave_readdata),                     //                                                     .readdata
+		.lcd_0_control_slave_writedata                              (mm_interconnect_0_lcd_0_control_slave_writedata),                    //                                                     .writedata
+		.lcd_0_control_slave_begintransfer                          (mm_interconnect_0_lcd_0_control_slave_begintransfer),                //                                                     .begintransfer
 		.led_s1_address                                             (mm_interconnect_0_led_s1_address),                                   //                                               led_s1.address
 		.led_s1_write                                               (mm_interconnect_0_led_s1_write),                                     //                                                     .write
 		.led_s1_readdata                                            (mm_interconnect_0_led_s1_readdata),                                  //                                                     .readdata

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_qsys' in SOPC Builder design 'DE2_115_QSYS'
  * SOPC Builder design path: ../../DE2_115_QSYS.sopcinfo
  *
- * Generated: Thu May 11 15:14:09 CEST 2017
+ * Generated: Fri May 12 13:00:28 CEST 2017
  */
 
 /*
@@ -134,6 +134,7 @@
  */
 
 #define __ALTERA_AVALON_JTAG_UART
+#define __ALTERA_AVALON_LCD_16207
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_SYSID_QSYS
@@ -290,6 +291,20 @@
 #define KEY_RESET_VALUE 0
 #define KEY_SPAN 16
 #define KEY_TYPE "altera_avalon_pio"
+
+
+/*
+ * lcd_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_lcd_0 altera_avalon_lcd_16207
+#define LCD_0_BASE 0x411d0
+#define LCD_0_IRQ -1
+#define LCD_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define LCD_0_NAME "/dev/lcd_0"
+#define LCD_0_SPAN 16
+#define LCD_0_TYPE "altera_avalon_lcd_16207"
 
 
 /*
@@ -522,7 +537,7 @@
 #define SYSID_QSYS_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_NAME "/dev/sysid_qsys"
 #define SYSID_QSYS_SPAN 8
-#define SYSID_QSYS_TIMESTAMP 1494507905
+#define SYSID_QSYS_TIMESTAMP 1494586477
 #define SYSID_QSYS_TYPE "altera_avalon_sysid_qsys"
 
 

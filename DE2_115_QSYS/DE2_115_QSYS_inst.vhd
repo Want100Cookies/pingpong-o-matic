@@ -18,6 +18,10 @@
 			i2c_opencores_mipi_export_scl_pad_io      : inout std_logic                     := 'X';             -- scl_pad_io
 			i2c_opencores_mipi_export_sda_pad_io      : inout std_logic                     := 'X';             -- sda_pad_io
 			key_external_connection_export            : in    std_logic_vector(3 downto 0)  := (others => 'X'); -- export
+			lcd_external_connection_RS                : out   std_logic;                                        -- RS
+			lcd_external_connection_RW                : out   std_logic;                                        -- RW
+			lcd_external_connection_data              : inout std_logic_vector(7 downto 0)  := (others => 'X'); -- data
+			lcd_external_connection_E                 : out   std_logic;                                        -- E
 			led_external_connection_export            : out   std_logic_vector(9 downto 0);                     -- export
 			mipi_pwdn_n_external_connection_export    : out   std_logic;                                        -- export
 			mipi_reset_n_external_connection_export   : out   std_logic;                                        -- export
@@ -32,6 +36,9 @@
 			sdram_wire_dqm                            : out   std_logic_vector(3 downto 0);                     -- dqm
 			sdram_wire_ras_n                          : out   std_logic;                                        -- ras_n
 			sdram_wire_we_n                           : out   std_logic;                                        -- we_n
+			sevseg_0_external_connection_export       : out   std_logic_vector(7 downto 0);                     -- export
+			sevseg_1_external_connection_export       : out   std_logic_vector(7 downto 0);                     -- export
+			sevseg_2_external_connection_export       : out   std_logic_vector(15 downto 0);                    -- export
 			sw_external_connection_export             : in    std_logic_vector(9 downto 0)  := (others => 'X'); -- export
 			terasic_auto_focus_0_conduit_vcm_i2c_scl  : inout std_logic                     := 'X';             -- vcm_i2c_scl
 			terasic_auto_focus_0_conduit_vcm_i2c_sda  : inout std_logic                     := 'X';             -- vcm_i2c_sda
@@ -40,10 +47,7 @@
 			terasic_camera_0_conduit_end_FVAL         : in    std_logic                     := 'X';             -- FVAL
 			terasic_camera_0_conduit_end_LVAL         : in    std_logic                     := 'X';             -- LVAL
 			terasic_camera_0_conduit_end_PIXCLK       : in    std_logic                     := 'X';             -- PIXCLK
-			vga_clk_clk                               : out   std_logic;                                        -- clk
-			sevseg_0_external_connection_export       : out   std_logic_vector(7 downto 0);                     -- export
-			sevseg_1_external_connection_export       : out   std_logic_vector(7 downto 0);                     -- export
-			sevseg_2_external_connection_export       : out   std_logic_vector(15 downto 0)                     -- export
+			vga_clk_clk                               : out   std_logic                                         -- clk
 		);
 	end component DE2_115_QSYS;
 
@@ -67,6 +71,10 @@
 			i2c_opencores_mipi_export_scl_pad_io      => CONNECTED_TO_i2c_opencores_mipi_export_scl_pad_io,      --        i2c_opencores_mipi_export.scl_pad_io
 			i2c_opencores_mipi_export_sda_pad_io      => CONNECTED_TO_i2c_opencores_mipi_export_sda_pad_io,      --                                 .sda_pad_io
 			key_external_connection_export            => CONNECTED_TO_key_external_connection_export,            --          key_external_connection.export
+			lcd_external_connection_RS                => CONNECTED_TO_lcd_external_connection_RS,                --          lcd_external_connection.RS
+			lcd_external_connection_RW                => CONNECTED_TO_lcd_external_connection_RW,                --                                 .RW
+			lcd_external_connection_data              => CONNECTED_TO_lcd_external_connection_data,              --                                 .data
+			lcd_external_connection_E                 => CONNECTED_TO_lcd_external_connection_E,                 --                                 .E
 			led_external_connection_export            => CONNECTED_TO_led_external_connection_export,            --          led_external_connection.export
 			mipi_pwdn_n_external_connection_export    => CONNECTED_TO_mipi_pwdn_n_external_connection_export,    --  mipi_pwdn_n_external_connection.export
 			mipi_reset_n_external_connection_export   => CONNECTED_TO_mipi_reset_n_external_connection_export,   -- mipi_reset_n_external_connection.export
@@ -81,6 +89,9 @@
 			sdram_wire_dqm                            => CONNECTED_TO_sdram_wire_dqm,                            --                                 .dqm
 			sdram_wire_ras_n                          => CONNECTED_TO_sdram_wire_ras_n,                          --                                 .ras_n
 			sdram_wire_we_n                           => CONNECTED_TO_sdram_wire_we_n,                           --                                 .we_n
+			sevseg_0_external_connection_export       => CONNECTED_TO_sevseg_0_external_connection_export,       --     sevseg_0_external_connection.export
+			sevseg_1_external_connection_export       => CONNECTED_TO_sevseg_1_external_connection_export,       --     sevseg_1_external_connection.export
+			sevseg_2_external_connection_export       => CONNECTED_TO_sevseg_2_external_connection_export,       --     sevseg_2_external_connection.export
 			sw_external_connection_export             => CONNECTED_TO_sw_external_connection_export,             --           sw_external_connection.export
 			terasic_auto_focus_0_conduit_vcm_i2c_scl  => CONNECTED_TO_terasic_auto_focus_0_conduit_vcm_i2c_scl,  --     terasic_auto_focus_0_conduit.vcm_i2c_scl
 			terasic_auto_focus_0_conduit_vcm_i2c_sda  => CONNECTED_TO_terasic_auto_focus_0_conduit_vcm_i2c_sda,  --                                 .vcm_i2c_sda
@@ -89,9 +100,6 @@
 			terasic_camera_0_conduit_end_FVAL         => CONNECTED_TO_terasic_camera_0_conduit_end_FVAL,         --                                 .FVAL
 			terasic_camera_0_conduit_end_LVAL         => CONNECTED_TO_terasic_camera_0_conduit_end_LVAL,         --                                 .LVAL
 			terasic_camera_0_conduit_end_PIXCLK       => CONNECTED_TO_terasic_camera_0_conduit_end_PIXCLK,       --                                 .PIXCLK
-			vga_clk_clk                               => CONNECTED_TO_vga_clk_clk,                               --                          vga_clk.clk
-			sevseg_0_external_connection_export       => CONNECTED_TO_sevseg_0_external_connection_export,       --     sevseg_0_external_connection.export
-			sevseg_1_external_connection_export       => CONNECTED_TO_sevseg_1_external_connection_export,       --     sevseg_1_external_connection.export
-			sevseg_2_external_connection_export       => CONNECTED_TO_sevseg_2_external_connection_export        --     sevseg_2_external_connection.export
+			vga_clk_clk                               => CONNECTED_TO_vga_clk_clk                                --                          vga_clk.clk
 		);
 

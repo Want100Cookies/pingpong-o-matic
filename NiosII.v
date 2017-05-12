@@ -214,6 +214,8 @@ assign VGA_BLANK_N 				= 1'b1;
 assign VGA_SYNC_N 				= 1'b0;
 assign MIPI_CS_n              = 1'b0;
 
+assign LCD_ON						= 1'b1;
+
 NumberDisplay NumberDisplay_0_inst (
 	.binary	(sevseg_0_binary),
 	.DIG0		(HEX6),
@@ -253,6 +255,12 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	.sevseg_0_external_connection_export			(sevseg_0_binary),
 	.sevseg_1_external_connection_export			(sevseg_1_binary),
 	.sevseg_2_external_connection_export			(sevseg_2_binary),
+	
+	.lcd_external_connection_RS                	(LCD_RS),                //          lcd_external_connection.RS
+	.lcd_external_connection_RW						(LCD_RW),                //                                 .RW
+	.lcd_external_connection_data              	(LCD_DATA),              //                                 .data
+   .lcd_external_connection_E							(LCD_EN),                  //                                 .E
+
 
 	.sdram_wire_addr                              (DRAM_ADDR),                              //                     sdram_wire.addr
 	.sdram_wire_ba                                (DRAM_BA),                                //                               .ba

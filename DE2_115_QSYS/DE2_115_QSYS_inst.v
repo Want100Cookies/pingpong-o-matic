@@ -17,6 +17,10 @@
 		.i2c_opencores_mipi_export_scl_pad_io      (<connected-to-i2c_opencores_mipi_export_scl_pad_io>),      //        i2c_opencores_mipi_export.scl_pad_io
 		.i2c_opencores_mipi_export_sda_pad_io      (<connected-to-i2c_opencores_mipi_export_sda_pad_io>),      //                                 .sda_pad_io
 		.key_external_connection_export            (<connected-to-key_external_connection_export>),            //          key_external_connection.export
+		.lcd_external_connection_RS                (<connected-to-lcd_external_connection_RS>),                //          lcd_external_connection.RS
+		.lcd_external_connection_RW                (<connected-to-lcd_external_connection_RW>),                //                                 .RW
+		.lcd_external_connection_data              (<connected-to-lcd_external_connection_data>),              //                                 .data
+		.lcd_external_connection_E                 (<connected-to-lcd_external_connection_E>),                 //                                 .E
 		.led_external_connection_export            (<connected-to-led_external_connection_export>),            //          led_external_connection.export
 		.mipi_pwdn_n_external_connection_export    (<connected-to-mipi_pwdn_n_external_connection_export>),    //  mipi_pwdn_n_external_connection.export
 		.mipi_reset_n_external_connection_export   (<connected-to-mipi_reset_n_external_connection_export>),   // mipi_reset_n_external_connection.export
@@ -31,6 +35,9 @@
 		.sdram_wire_dqm                            (<connected-to-sdram_wire_dqm>),                            //                                 .dqm
 		.sdram_wire_ras_n                          (<connected-to-sdram_wire_ras_n>),                          //                                 .ras_n
 		.sdram_wire_we_n                           (<connected-to-sdram_wire_we_n>),                           //                                 .we_n
+		.sevseg_0_external_connection_export       (<connected-to-sevseg_0_external_connection_export>),       //     sevseg_0_external_connection.export
+		.sevseg_1_external_connection_export       (<connected-to-sevseg_1_external_connection_export>),       //     sevseg_1_external_connection.export
+		.sevseg_2_external_connection_export       (<connected-to-sevseg_2_external_connection_export>),       //     sevseg_2_external_connection.export
 		.sw_external_connection_export             (<connected-to-sw_external_connection_export>),             //           sw_external_connection.export
 		.terasic_auto_focus_0_conduit_vcm_i2c_scl  (<connected-to-terasic_auto_focus_0_conduit_vcm_i2c_scl>),  //     terasic_auto_focus_0_conduit.vcm_i2c_scl
 		.terasic_auto_focus_0_conduit_vcm_i2c_sda  (<connected-to-terasic_auto_focus_0_conduit_vcm_i2c_sda>),  //                                 .vcm_i2c_sda
@@ -39,9 +46,6 @@
 		.terasic_camera_0_conduit_end_FVAL         (<connected-to-terasic_camera_0_conduit_end_FVAL>),         //                                 .FVAL
 		.terasic_camera_0_conduit_end_LVAL         (<connected-to-terasic_camera_0_conduit_end_LVAL>),         //                                 .LVAL
 		.terasic_camera_0_conduit_end_PIXCLK       (<connected-to-terasic_camera_0_conduit_end_PIXCLK>),       //                                 .PIXCLK
-		.vga_clk_clk                               (<connected-to-vga_clk_clk>),                               //                          vga_clk.clk
-		.sevseg_0_external_connection_export       (<connected-to-sevseg_0_external_connection_export>),       //     sevseg_0_external_connection.export
-		.sevseg_1_external_connection_export       (<connected-to-sevseg_1_external_connection_export>),       //     sevseg_1_external_connection.export
-		.sevseg_2_external_connection_export       (<connected-to-sevseg_2_external_connection_export>)        //     sevseg_2_external_connection.export
+		.vga_clk_clk                               (<connected-to-vga_clk_clk>)                                //                          vga_clk.clk
 	);
 
