@@ -10346,7 +10346,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
    269e4:	d9400015 	stw	r5,0(sp)
    269e8:	d9800115 	stw	r6,4(sp)
    269ec:	d9c00215 	stw	r7,8(sp)
-   269f0:	00000000 	call	0 <__alt_mem_onchip_memory2-0x20000>
+   269f0:	00000000 	call	0 <__reset-0x20000>
    269f4:	d9400017 	ldw	r5,0(sp)
    269f8:	d9800117 	ldw	r6,4(sp)
    269fc:	d9c00217 	ldw	r7,8(sp)
@@ -10430,7 +10430,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
    26b2c:	10003226 	beq	r2,zero,26bf8 <__call_exitprocs+0x178>
    26b30:	a009883a 	mov	r4,r20
    26b34:	98800015 	stw	r2,0(r19)
-   26b38:	00000000 	call	0 <__alt_mem_onchip_memory2-0x20000>
+   26b38:	00000000 	call	0 <__reset-0x20000>
    26b3c:	9d000017 	ldw	r20,0(r19)
    26b40:	a03fe41e 	bne	r20,zero,26ad4 <__alt_data_end+0xfffee434>
    26b44:	dfc00a17 	ldw	ra,40(sp)
