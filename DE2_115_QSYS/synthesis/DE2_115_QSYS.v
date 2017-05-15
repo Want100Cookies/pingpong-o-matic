@@ -26,7 +26,8 @@ module DE2_115_QSYS (
 		output wire        lcd_external_connection_RW,                //                                 .RW
 		inout  wire [7:0]  lcd_external_connection_data,              //                                 .data
 		output wire        lcd_external_connection_E,                 //                                 .E
-		output wire [9:0]  led_external_connection_export,            //          led_external_connection.export
+		output wire [8:0]  ledg_external_connection_export,           //         ledg_external_connection.export
+		output wire [17:0] ledr_external_connection_export,           //         ledr_external_connection.export
 		output wire        mipi_pwdn_n_external_connection_export,    //  mipi_pwdn_n_external_connection.export
 		output wire        mipi_reset_n_external_connection_export,   // mipi_reset_n_external_connection.export
 		input  wire        reset_reset_n,                             //                            reset.reset_n
@@ -70,7 +71,7 @@ module DE2_115_QSYS (
 	wire         terasic_auto_focus_0_dout_startofpacket;                           // TERASIC_AUTO_FOCUS_0:source_sop -> alt_vip_itc_0:is_sop
 	wire         terasic_auto_focus_0_dout_endofpacket;                             // TERASIC_AUTO_FOCUS_0:source_eop -> alt_vip_itc_0:is_eop
 	wire         altpll_0_c0_clk;                                                   // altpll_0:c0 -> [TERASIC_AUTO_FOCUS_0:clk, TERASIC_CAMERA_0:clk, alt_vip_itc_0:is_clk, alt_vip_vfb_0:clock, mm_interconnect_0:altpll_0_c0_clk, mm_interconnect_1:altpll_0_c0_clk, rst_controller:clk, sdram:clk]
-	wire         nios2_qsys_debug_reset_request_reset;                              // nios2_qsys:debug_reset_request -> [key:reset_n, lcd_0:reset_n, led:reset_n, mipi_pwdn_n:reset_n, mipi_reset_n:reset_n, mm_interconnect_0:sysid_qsys_reset_reset_bridge_in_reset_reset, rst_controller_002:reset_in1, sevseg_0:reset_n, sevseg_1:reset_n, sevseg_2:reset_n, sw:reset_n, sysid_qsys:reset_n, timer:reset_n]
+	wire         nios2_qsys_debug_reset_request_reset;                              // nios2_qsys:debug_reset_request -> [key:reset_n, lcd_0:reset_n, ledg:reset_n, ledr:reset_n, mipi_pwdn_n:reset_n, mipi_reset_n:reset_n, mm_interconnect_0:sysid_qsys_reset_reset_bridge_in_reset_reset, rst_controller_002:reset_in1, sevseg_0:reset_n, sevseg_1:reset_n, sevseg_2:reset_n, sw:reset_n, sysid_qsys:reset_n, timer:reset_n]
 	wire  [31:0] nios2_qsys_data_master_readdata;                                   // mm_interconnect_0:nios2_qsys_data_master_readdata -> nios2_qsys:d_readdata
 	wire         nios2_qsys_data_master_waitrequest;                                // mm_interconnect_0:nios2_qsys_data_master_waitrequest -> nios2_qsys:d_waitrequest
 	wire         nios2_qsys_data_master_debugaccess;                                // nios2_qsys:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:nios2_qsys_data_master_debugaccess
@@ -136,11 +137,11 @@ module DE2_115_QSYS (
 	wire         mm_interconnect_0_onchip_memory2_s1_write;                         // mm_interconnect_0:onchip_memory2_s1_write -> onchip_memory2:write
 	wire  [31:0] mm_interconnect_0_onchip_memory2_s1_writedata;                     // mm_interconnect_0:onchip_memory2_s1_writedata -> onchip_memory2:writedata
 	wire         mm_interconnect_0_onchip_memory2_s1_clken;                         // mm_interconnect_0:onchip_memory2_s1_clken -> onchip_memory2:clken
-	wire         mm_interconnect_0_led_s1_chipselect;                               // mm_interconnect_0:led_s1_chipselect -> led:chipselect
-	wire  [31:0] mm_interconnect_0_led_s1_readdata;                                 // led:readdata -> mm_interconnect_0:led_s1_readdata
-	wire   [1:0] mm_interconnect_0_led_s1_address;                                  // mm_interconnect_0:led_s1_address -> led:address
-	wire         mm_interconnect_0_led_s1_write;                                    // mm_interconnect_0:led_s1_write -> led:write_n
-	wire  [31:0] mm_interconnect_0_led_s1_writedata;                                // mm_interconnect_0:led_s1_writedata -> led:writedata
+	wire         mm_interconnect_0_ledg_s1_chipselect;                              // mm_interconnect_0:ledg_s1_chipselect -> ledg:chipselect
+	wire  [31:0] mm_interconnect_0_ledg_s1_readdata;                                // ledg:readdata -> mm_interconnect_0:ledg_s1_readdata
+	wire   [1:0] mm_interconnect_0_ledg_s1_address;                                 // mm_interconnect_0:ledg_s1_address -> ledg:address
+	wire         mm_interconnect_0_ledg_s1_write;                                   // mm_interconnect_0:ledg_s1_write -> ledg:write_n
+	wire  [31:0] mm_interconnect_0_ledg_s1_writedata;                               // mm_interconnect_0:ledg_s1_writedata -> ledg:writedata
 	wire  [31:0] mm_interconnect_0_sw_s1_readdata;                                  // sw:readdata -> mm_interconnect_0:sw_s1_readdata
 	wire   [1:0] mm_interconnect_0_sw_s1_address;                                   // mm_interconnect_0:sw_s1_address -> sw:address
 	wire  [31:0] mm_interconnect_0_key_s1_readdata;                                 // key:readdata -> mm_interconnect_0:key_s1_readdata
@@ -175,6 +176,11 @@ module DE2_115_QSYS (
 	wire   [1:0] mm_interconnect_0_sevseg_2_s1_address;                             // mm_interconnect_0:sevseg_2_s1_address -> sevseg_2:address
 	wire         mm_interconnect_0_sevseg_2_s1_write;                               // mm_interconnect_0:sevseg_2_s1_write -> sevseg_2:write_n
 	wire  [31:0] mm_interconnect_0_sevseg_2_s1_writedata;                           // mm_interconnect_0:sevseg_2_s1_writedata -> sevseg_2:writedata
+	wire         mm_interconnect_0_ledr_s1_chipselect;                              // mm_interconnect_0:ledr_s1_chipselect -> ledr:chipselect
+	wire  [31:0] mm_interconnect_0_ledr_s1_readdata;                                // ledr:readdata -> mm_interconnect_0:ledr_s1_readdata
+	wire   [1:0] mm_interconnect_0_ledr_s1_address;                                 // mm_interconnect_0:ledr_s1_address -> ledr:address
+	wire         mm_interconnect_0_ledr_s1_write;                                   // mm_interconnect_0:ledr_s1_write -> ledr:write_n
+	wire  [31:0] mm_interconnect_0_ledr_s1_writedata;                               // mm_interconnect_0:ledr_s1_writedata -> ledr:writedata
 	wire         alt_vip_vfb_0_read_master_waitrequest;                             // mm_interconnect_1:alt_vip_vfb_0_read_master_waitrequest -> alt_vip_vfb_0:read_master_av_waitrequest
 	wire  [31:0] alt_vip_vfb_0_read_master_readdata;                                // mm_interconnect_1:alt_vip_vfb_0_read_master_readdata -> alt_vip_vfb_0:read_master_av_readdata
 	wire  [31:0] alt_vip_vfb_0_read_master_address;                                 // alt_vip_vfb_0:read_master_av_address -> mm_interconnect_1:alt_vip_vfb_0_read_master_address
@@ -418,15 +424,26 @@ module DE2_115_QSYS (
 		.LCD_E         (lcd_external_connection_E)                            //              .export
 	);
 
-	DE2_115_QSYS_led led (
+	DE2_115_QSYS_ledg ledg (
 		.clk        (clk_clk),                               //                 clk.clk
 		.reset_n    (~nios2_qsys_debug_reset_request_reset), //               reset.reset_n
-		.address    (mm_interconnect_0_led_s1_address),      //                  s1.address
-		.write_n    (~mm_interconnect_0_led_s1_write),       //                    .write_n
-		.writedata  (mm_interconnect_0_led_s1_writedata),    //                    .writedata
-		.chipselect (mm_interconnect_0_led_s1_chipselect),   //                    .chipselect
-		.readdata   (mm_interconnect_0_led_s1_readdata),     //                    .readdata
-		.out_port   (led_external_connection_export)         // external_connection.export
+		.address    (mm_interconnect_0_ledg_s1_address),     //                  s1.address
+		.write_n    (~mm_interconnect_0_ledg_s1_write),      //                    .write_n
+		.writedata  (mm_interconnect_0_ledg_s1_writedata),   //                    .writedata
+		.chipselect (mm_interconnect_0_ledg_s1_chipselect),  //                    .chipselect
+		.readdata   (mm_interconnect_0_ledg_s1_readdata),    //                    .readdata
+		.out_port   (ledg_external_connection_export)        // external_connection.export
+	);
+
+	DE2_115_QSYS_ledr ledr (
+		.clk        (clk_clk),                               //                 clk.clk
+		.reset_n    (~nios2_qsys_debug_reset_request_reset), //               reset.reset_n
+		.address    (mm_interconnect_0_ledr_s1_address),     //                  s1.address
+		.write_n    (~mm_interconnect_0_ledr_s1_write),      //                    .write_n
+		.writedata  (mm_interconnect_0_ledr_s1_writedata),   //                    .writedata
+		.chipselect (mm_interconnect_0_ledr_s1_chipselect),  //                    .chipselect
+		.readdata   (mm_interconnect_0_ledr_s1_readdata),    //                    .readdata
+		.out_port   (ledr_external_connection_export)        // external_connection.export
 	);
 
 	DE2_115_QSYS_mipi_pwdn_n mipi_pwdn_n (
@@ -627,11 +644,16 @@ module DE2_115_QSYS (
 		.lcd_0_control_slave_readdata                               (mm_interconnect_0_lcd_0_control_slave_readdata),                     //                                                     .readdata
 		.lcd_0_control_slave_writedata                              (mm_interconnect_0_lcd_0_control_slave_writedata),                    //                                                     .writedata
 		.lcd_0_control_slave_begintransfer                          (mm_interconnect_0_lcd_0_control_slave_begintransfer),                //                                                     .begintransfer
-		.led_s1_address                                             (mm_interconnect_0_led_s1_address),                                   //                                               led_s1.address
-		.led_s1_write                                               (mm_interconnect_0_led_s1_write),                                     //                                                     .write
-		.led_s1_readdata                                            (mm_interconnect_0_led_s1_readdata),                                  //                                                     .readdata
-		.led_s1_writedata                                           (mm_interconnect_0_led_s1_writedata),                                 //                                                     .writedata
-		.led_s1_chipselect                                          (mm_interconnect_0_led_s1_chipselect),                                //                                                     .chipselect
+		.ledg_s1_address                                            (mm_interconnect_0_ledg_s1_address),                                  //                                              ledg_s1.address
+		.ledg_s1_write                                              (mm_interconnect_0_ledg_s1_write),                                    //                                                     .write
+		.ledg_s1_readdata                                           (mm_interconnect_0_ledg_s1_readdata),                                 //                                                     .readdata
+		.ledg_s1_writedata                                          (mm_interconnect_0_ledg_s1_writedata),                                //                                                     .writedata
+		.ledg_s1_chipselect                                         (mm_interconnect_0_ledg_s1_chipselect),                               //                                                     .chipselect
+		.ledr_s1_address                                            (mm_interconnect_0_ledr_s1_address),                                  //                                              ledr_s1.address
+		.ledr_s1_write                                              (mm_interconnect_0_ledr_s1_write),                                    //                                                     .write
+		.ledr_s1_readdata                                           (mm_interconnect_0_ledr_s1_readdata),                                 //                                                     .readdata
+		.ledr_s1_writedata                                          (mm_interconnect_0_ledr_s1_writedata),                                //                                                     .writedata
+		.ledr_s1_chipselect                                         (mm_interconnect_0_ledr_s1_chipselect),                               //                                                     .chipselect
 		.mipi_pwdn_n_s1_address                                     (mm_interconnect_0_mipi_pwdn_n_s1_address),                           //                                       mipi_pwdn_n_s1.address
 		.mipi_pwdn_n_s1_write                                       (mm_interconnect_0_mipi_pwdn_n_s1_write),                             //                                                     .write
 		.mipi_pwdn_n_s1_readdata                                    (mm_interconnect_0_mipi_pwdn_n_s1_readdata),                          //                                                     .readdata

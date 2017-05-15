@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>15-mei-2017 11:13:26</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1494839606767</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>15-mei-2017 11:55:21</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1494842121642</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\Wisse\Documents\Quartus\pingpong-o-matic\software\pingpong-o-matic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\DE2_115_QSYS.sopcinfo</SopcDesignFile>
@@ -953,7 +953,7 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>led</slaveDescriptor>
+                <slaveDescriptor>ledg</slaveDescriptor>
                 <addressRange>0x000410E0 - 0x000410EF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
@@ -993,6 +993,12 @@
                 <addressRange>0x000411D0 - 0x000411DF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes>printable</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>ledr</slaveDescriptor>
+                <addressRange>0x000411E0 - 0x000411EF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>

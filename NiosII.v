@@ -249,8 +249,12 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	.d8m_clk_clk                                  (MIPI_REFCLK),							// d8m_xclk.clk
 
 	.key_external_connection_export              (KEY),										// key_external_connection.export
-	.led_external_connection_export              (LEDR[9:0]),								// led_external_connection.export
+	//.led_external_connection_export              (LEDR[9:0]),								// led_external_connection.export
 	.sw_external_connection_export               (SW),										// sw_external_connection.export
+	
+	.ledg_external_connection_export					(LEDG),           //         ledg_external_connection.export
+	.ledr_external_connection_export					(LEDR),           //         ledr_external_connection.export
+
 	
 	.sevseg_0_external_connection_export			(sevseg_0_binary),
 	.sevseg_1_external_connection_export			(sevseg_1_binary),

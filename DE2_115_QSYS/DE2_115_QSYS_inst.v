@@ -21,7 +21,7 @@
 		.lcd_external_connection_RW                (<connected-to-lcd_external_connection_RW>),                //                                 .RW
 		.lcd_external_connection_data              (<connected-to-lcd_external_connection_data>),              //                                 .data
 		.lcd_external_connection_E                 (<connected-to-lcd_external_connection_E>),                 //                                 .E
-		.led_external_connection_export            (<connected-to-led_external_connection_export>),            //          led_external_connection.export
+		.ledg_external_connection_export           (<connected-to-ledg_external_connection_export>),           //         ledg_external_connection.export
 		.mipi_pwdn_n_external_connection_export    (<connected-to-mipi_pwdn_n_external_connection_export>),    //  mipi_pwdn_n_external_connection.export
 		.mipi_reset_n_external_connection_export   (<connected-to-mipi_reset_n_external_connection_export>),   // mipi_reset_n_external_connection.export
 		.reset_reset_n                             (<connected-to-reset_reset_n>),                             //                            reset.reset_n
@@ -46,6 +46,7 @@
 		.terasic_camera_0_conduit_end_FVAL         (<connected-to-terasic_camera_0_conduit_end_FVAL>),         //                                 .FVAL
 		.terasic_camera_0_conduit_end_LVAL         (<connected-to-terasic_camera_0_conduit_end_LVAL>),         //                                 .LVAL
 		.terasic_camera_0_conduit_end_PIXCLK       (<connected-to-terasic_camera_0_conduit_end_PIXCLK>),       //                                 .PIXCLK
-		.vga_clk_clk                               (<connected-to-vga_clk_clk>)                                //                          vga_clk.clk
+		.vga_clk_clk                               (<connected-to-vga_clk_clk>),                               //                          vga_clk.clk
+		.ledr_external_connection_export           (<connected-to-ledr_external_connection_export>)            //         ledr_external_connection.export
 	);
 

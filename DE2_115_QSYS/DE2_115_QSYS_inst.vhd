@@ -22,7 +22,7 @@
 			lcd_external_connection_RW                : out   std_logic;                                        -- RW
 			lcd_external_connection_data              : inout std_logic_vector(7 downto 0)  := (others => 'X'); -- data
 			lcd_external_connection_E                 : out   std_logic;                                        -- E
-			led_external_connection_export            : out   std_logic_vector(9 downto 0);                     -- export
+			ledg_external_connection_export           : out   std_logic_vector(8 downto 0);                     -- export
 			mipi_pwdn_n_external_connection_export    : out   std_logic;                                        -- export
 			mipi_reset_n_external_connection_export   : out   std_logic;                                        -- export
 			reset_reset_n                             : in    std_logic                     := 'X';             -- reset_n
@@ -47,7 +47,8 @@
 			terasic_camera_0_conduit_end_FVAL         : in    std_logic                     := 'X';             -- FVAL
 			terasic_camera_0_conduit_end_LVAL         : in    std_logic                     := 'X';             -- LVAL
 			terasic_camera_0_conduit_end_PIXCLK       : in    std_logic                     := 'X';             -- PIXCLK
-			vga_clk_clk                               : out   std_logic                                         -- clk
+			vga_clk_clk                               : out   std_logic;                                        -- clk
+			ledr_external_connection_export           : out   std_logic_vector(17 downto 0)                     -- export
 		);
 	end component DE2_115_QSYS;
 
@@ -75,7 +76,7 @@
 			lcd_external_connection_RW                => CONNECTED_TO_lcd_external_connection_RW,                --                                 .RW
 			lcd_external_connection_data              => CONNECTED_TO_lcd_external_connection_data,              --                                 .data
 			lcd_external_connection_E                 => CONNECTED_TO_lcd_external_connection_E,                 --                                 .E
-			led_external_connection_export            => CONNECTED_TO_led_external_connection_export,            --          led_external_connection.export
+			ledg_external_connection_export           => CONNECTED_TO_ledg_external_connection_export,           --         ledg_external_connection.export
 			mipi_pwdn_n_external_connection_export    => CONNECTED_TO_mipi_pwdn_n_external_connection_export,    --  mipi_pwdn_n_external_connection.export
 			mipi_reset_n_external_connection_export   => CONNECTED_TO_mipi_reset_n_external_connection_export,   -- mipi_reset_n_external_connection.export
 			reset_reset_n                             => CONNECTED_TO_reset_reset_n,                             --                            reset.reset_n
@@ -100,6 +101,7 @@
 			terasic_camera_0_conduit_end_FVAL         => CONNECTED_TO_terasic_camera_0_conduit_end_FVAL,         --                                 .FVAL
 			terasic_camera_0_conduit_end_LVAL         => CONNECTED_TO_terasic_camera_0_conduit_end_LVAL,         --                                 .LVAL
 			terasic_camera_0_conduit_end_PIXCLK       => CONNECTED_TO_terasic_camera_0_conduit_end_PIXCLK,       --                                 .PIXCLK
-			vga_clk_clk                               => CONNECTED_TO_vga_clk_clk                                --                          vga_clk.clk
+			vga_clk_clk                               => CONNECTED_TO_vga_clk_clk,                               --                          vga_clk.clk
+			ledr_external_connection_export           => CONNECTED_TO_ledr_external_connection_export            --         ledr_external_connection.export
 		);
 

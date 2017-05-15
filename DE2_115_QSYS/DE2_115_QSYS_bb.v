@@ -22,7 +22,7 @@ module DE2_115_QSYS (
 	lcd_external_connection_RW,
 	lcd_external_connection_data,
 	lcd_external_connection_E,
-	led_external_connection_export,
+	ledg_external_connection_export,
 	mipi_pwdn_n_external_connection_export,
 	mipi_reset_n_external_connection_export,
 	reset_reset_n,
@@ -47,7 +47,8 @@ module DE2_115_QSYS (
 	terasic_camera_0_conduit_end_FVAL,
 	terasic_camera_0_conduit_end_LVAL,
 	terasic_camera_0_conduit_end_PIXCLK,
-	vga_clk_clk);	
+	vga_clk_clk,
+	ledr_external_connection_export);	
 
 	input		alt_vip_itc_0_clocked_video_vid_clk;
 	output	[23:0]	alt_vip_itc_0_clocked_video_vid_data;
@@ -71,7 +72,7 @@ module DE2_115_QSYS (
 	output		lcd_external_connection_RW;
 	inout	[7:0]	lcd_external_connection_data;
 	output		lcd_external_connection_E;
-	output	[9:0]	led_external_connection_export;
+	output	[8:0]	ledg_external_connection_export;
 	output		mipi_pwdn_n_external_connection_export;
 	output		mipi_reset_n_external_connection_export;
 	input		reset_reset_n;
@@ -97,4 +98,5 @@ module DE2_115_QSYS (
 	input		terasic_camera_0_conduit_end_LVAL;
 	input		terasic_camera_0_conduit_end_PIXCLK;
 	output		vga_clk_clk;
+	output	[17:0]	ledr_external_connection_export;
 endmodule

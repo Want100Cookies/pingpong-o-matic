@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_qsys' in SOPC Builder design 'DE2_115_QSYS'
  * SOPC Builder design path: ../../DE2_115_QSYS.sopcinfo
  *
- * Generated: Mon May 15 11:13:27 CEST 2017
+ * Generated: Mon May 15 11:55:22 CEST 2017
  */
 
 /*
@@ -308,30 +308,57 @@
 
 
 /*
- * led configuration
+ * ledg configuration
  *
  */
 
-#define ALT_MODULE_CLASS_led altera_avalon_pio
-#define LED_BASE 0x410e0
-#define LED_BIT_CLEARING_EDGE_REGISTER 0
-#define LED_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define LED_CAPTURE 0
-#define LED_DATA_WIDTH 10
-#define LED_DO_TEST_BENCH_WIRING 0
-#define LED_DRIVEN_SIM_VALUE 0
-#define LED_EDGE_TYPE "NONE"
-#define LED_FREQ 50000000
-#define LED_HAS_IN 0
-#define LED_HAS_OUT 1
-#define LED_HAS_TRI 0
-#define LED_IRQ -1
-#define LED_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define LED_IRQ_TYPE "NONE"
-#define LED_NAME "/dev/led"
-#define LED_RESET_VALUE 0
-#define LED_SPAN 16
-#define LED_TYPE "altera_avalon_pio"
+#define ALT_MODULE_CLASS_ledg altera_avalon_pio
+#define LEDG_BASE 0x410e0
+#define LEDG_BIT_CLEARING_EDGE_REGISTER 0
+#define LEDG_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define LEDG_CAPTURE 0
+#define LEDG_DATA_WIDTH 9
+#define LEDG_DO_TEST_BENCH_WIRING 0
+#define LEDG_DRIVEN_SIM_VALUE 0
+#define LEDG_EDGE_TYPE "NONE"
+#define LEDG_FREQ 50000000
+#define LEDG_HAS_IN 0
+#define LEDG_HAS_OUT 1
+#define LEDG_HAS_TRI 0
+#define LEDG_IRQ -1
+#define LEDG_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define LEDG_IRQ_TYPE "NONE"
+#define LEDG_NAME "/dev/ledg"
+#define LEDG_RESET_VALUE 0
+#define LEDG_SPAN 16
+#define LEDG_TYPE "altera_avalon_pio"
+
+
+/*
+ * ledr configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_ledr altera_avalon_pio
+#define LEDR_BASE 0x411e0
+#define LEDR_BIT_CLEARING_EDGE_REGISTER 0
+#define LEDR_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define LEDR_CAPTURE 0
+#define LEDR_DATA_WIDTH 18
+#define LEDR_DO_TEST_BENCH_WIRING 0
+#define LEDR_DRIVEN_SIM_VALUE 0
+#define LEDR_EDGE_TYPE "NONE"
+#define LEDR_FREQ 50000000
+#define LEDR_HAS_IN 0
+#define LEDR_HAS_OUT 1
+#define LEDR_HAS_TRI 0
+#define LEDR_IRQ -1
+#define LEDR_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define LEDR_IRQ_TYPE "NONE"
+#define LEDR_NAME "/dev/ledr"
+#define LEDR_RESET_VALUE 0
+#define LEDR_SPAN 16
+#define LEDR_TYPE "altera_avalon_pio"
 
 
 /*
@@ -537,7 +564,7 @@
 #define SYSID_QSYS_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_NAME "/dev/sysid_qsys"
 #define SYSID_QSYS_SPAN 8
-#define SYSID_QSYS_TIMESTAMP 1494587095
+#define SYSID_QSYS_TIMESTAMP 1494841816
 #define SYSID_QSYS_TYPE "altera_avalon_sysid_qsys"
 
 
