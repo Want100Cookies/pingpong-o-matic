@@ -1,107 +1,35 @@
 	component DE2_115_QSYS is
 		port (
-			alt_vip_itc_0_clocked_video_vid_clk       : in    std_logic                     := 'X';             -- vid_clk
-			alt_vip_itc_0_clocked_video_vid_data      : out   std_logic_vector(23 downto 0);                    -- vid_data
-			alt_vip_itc_0_clocked_video_underflow     : out   std_logic;                                        -- underflow
-			alt_vip_itc_0_clocked_video_vid_datavalid : out   std_logic;                                        -- vid_datavalid
-			alt_vip_itc_0_clocked_video_vid_v_sync    : out   std_logic;                                        -- vid_v_sync
-			alt_vip_itc_0_clocked_video_vid_h_sync    : out   std_logic;                                        -- vid_h_sync
-			alt_vip_itc_0_clocked_video_vid_f         : out   std_logic;                                        -- vid_f
-			alt_vip_itc_0_clocked_video_vid_h         : out   std_logic;                                        -- vid_h
-			alt_vip_itc_0_clocked_video_vid_v         : out   std_logic;                                        -- vid_v
-			altpll_0_areset_conduit_export            : in    std_logic                     := 'X';             -- export
-			altpll_0_locked_conduit_export            : out   std_logic;                                        -- export
-			clk_clk                                   : in    std_logic                     := 'X';             -- clk
-			d8m_clk_clk                               : out   std_logic;                                        -- clk
-			i2c_opencores_camera_export_scl_pad_io    : inout std_logic                     := 'X';             -- scl_pad_io
-			i2c_opencores_camera_export_sda_pad_io    : inout std_logic                     := 'X';             -- sda_pad_io
-			i2c_opencores_mipi_export_scl_pad_io      : inout std_logic                     := 'X';             -- scl_pad_io
-			i2c_opencores_mipi_export_sda_pad_io      : inout std_logic                     := 'X';             -- sda_pad_io
-			key_external_connection_export            : in    std_logic_vector(3 downto 0)  := (others => 'X'); -- export
-			lcd_external_connection_RS                : out   std_logic;                                        -- RS
-			lcd_external_connection_RW                : out   std_logic;                                        -- RW
-			lcd_external_connection_data              : inout std_logic_vector(7 downto 0)  := (others => 'X'); -- data
-			lcd_external_connection_E                 : out   std_logic;                                        -- E
-			ledg_external_connection_export           : out   std_logic_vector(8 downto 0);                     -- export
-			mipi_pwdn_n_external_connection_export    : out   std_logic;                                        -- export
-			mipi_reset_n_external_connection_export   : out   std_logic;                                        -- export
-			reset_reset_n                             : in    std_logic                     := 'X';             -- reset_n
-			sdram_clk_clk                             : out   std_logic;                                        -- clk
-			sdram_wire_addr                           : out   std_logic_vector(12 downto 0);                    -- addr
-			sdram_wire_ba                             : out   std_logic_vector(1 downto 0);                     -- ba
-			sdram_wire_cas_n                          : out   std_logic;                                        -- cas_n
-			sdram_wire_cke                            : out   std_logic;                                        -- cke
-			sdram_wire_cs_n                           : out   std_logic;                                        -- cs_n
-			sdram_wire_dq                             : inout std_logic_vector(31 downto 0) := (others => 'X'); -- dq
-			sdram_wire_dqm                            : out   std_logic_vector(3 downto 0);                     -- dqm
-			sdram_wire_ras_n                          : out   std_logic;                                        -- ras_n
-			sdram_wire_we_n                           : out   std_logic;                                        -- we_n
-			sevseg_0_external_connection_export       : out   std_logic_vector(7 downto 0);                     -- export
-			sevseg_1_external_connection_export       : out   std_logic_vector(7 downto 0);                     -- export
-			sevseg_2_external_connection_export       : out   std_logic_vector(15 downto 0);                    -- export
-			sw_external_connection_export             : in    std_logic_vector(9 downto 0)  := (others => 'X'); -- export
-			terasic_auto_focus_0_conduit_vcm_i2c_scl  : inout std_logic                     := 'X';             -- vcm_i2c_scl
-			terasic_auto_focus_0_conduit_vcm_i2c_sda  : inout std_logic                     := 'X';             -- vcm_i2c_sda
-			terasic_auto_focus_0_conduit_clk50        : in    std_logic                     := 'X';             -- clk50
-			terasic_camera_0_conduit_end_D            : in    std_logic_vector(11 downto 0) := (others => 'X'); -- D
-			terasic_camera_0_conduit_end_FVAL         : in    std_logic                     := 'X';             -- FVAL
-			terasic_camera_0_conduit_end_LVAL         : in    std_logic                     := 'X';             -- LVAL
-			terasic_camera_0_conduit_end_PIXCLK       : in    std_logic                     := 'X';             -- PIXCLK
-			vga_clk_clk                               : out   std_logic;                                        -- clk
-			ledr_external_connection_export           : out   std_logic_vector(17 downto 0)                     -- export
+			clk_clk                             : in    std_logic                     := 'X';             -- clk
+			key_external_connection_export      : in    std_logic_vector(3 downto 0)  := (others => 'X'); -- export
+			lcd_external_connection_RS          : out   std_logic;                                        -- RS
+			lcd_external_connection_RW          : out   std_logic;                                        -- RW
+			lcd_external_connection_data        : inout std_logic_vector(7 downto 0)  := (others => 'X'); -- data
+			lcd_external_connection_E           : out   std_logic;                                        -- E
+			ledg_external_connection_export     : out   std_logic_vector(8 downto 0);                     -- export
+			ledr_external_connection_export     : out   std_logic_vector(17 downto 0);                    -- export
+			reset_reset_n                       : in    std_logic                     := 'X';             -- reset_n
+			sevseg_0_external_connection_export : out   std_logic_vector(7 downto 0);                     -- export
+			sevseg_1_external_connection_export : out   std_logic_vector(7 downto 0);                     -- export
+			sevseg_2_external_connection_export : out   std_logic_vector(15 downto 0);                    -- export
+			sw_external_connection_export       : in    std_logic_vector(9 downto 0)  := (others => 'X')  -- export
 		);
 	end component DE2_115_QSYS;
 
 	u0 : component DE2_115_QSYS
 		port map (
-			alt_vip_itc_0_clocked_video_vid_clk       => CONNECTED_TO_alt_vip_itc_0_clocked_video_vid_clk,       --      alt_vip_itc_0_clocked_video.vid_clk
-			alt_vip_itc_0_clocked_video_vid_data      => CONNECTED_TO_alt_vip_itc_0_clocked_video_vid_data,      --                                 .vid_data
-			alt_vip_itc_0_clocked_video_underflow     => CONNECTED_TO_alt_vip_itc_0_clocked_video_underflow,     --                                 .underflow
-			alt_vip_itc_0_clocked_video_vid_datavalid => CONNECTED_TO_alt_vip_itc_0_clocked_video_vid_datavalid, --                                 .vid_datavalid
-			alt_vip_itc_0_clocked_video_vid_v_sync    => CONNECTED_TO_alt_vip_itc_0_clocked_video_vid_v_sync,    --                                 .vid_v_sync
-			alt_vip_itc_0_clocked_video_vid_h_sync    => CONNECTED_TO_alt_vip_itc_0_clocked_video_vid_h_sync,    --                                 .vid_h_sync
-			alt_vip_itc_0_clocked_video_vid_f         => CONNECTED_TO_alt_vip_itc_0_clocked_video_vid_f,         --                                 .vid_f
-			alt_vip_itc_0_clocked_video_vid_h         => CONNECTED_TO_alt_vip_itc_0_clocked_video_vid_h,         --                                 .vid_h
-			alt_vip_itc_0_clocked_video_vid_v         => CONNECTED_TO_alt_vip_itc_0_clocked_video_vid_v,         --                                 .vid_v
-			altpll_0_areset_conduit_export            => CONNECTED_TO_altpll_0_areset_conduit_export,            --          altpll_0_areset_conduit.export
-			altpll_0_locked_conduit_export            => CONNECTED_TO_altpll_0_locked_conduit_export,            --          altpll_0_locked_conduit.export
-			clk_clk                                   => CONNECTED_TO_clk_clk,                                   --                              clk.clk
-			d8m_clk_clk                               => CONNECTED_TO_d8m_clk_clk,                               --                          d8m_clk.clk
-			i2c_opencores_camera_export_scl_pad_io    => CONNECTED_TO_i2c_opencores_camera_export_scl_pad_io,    --      i2c_opencores_camera_export.scl_pad_io
-			i2c_opencores_camera_export_sda_pad_io    => CONNECTED_TO_i2c_opencores_camera_export_sda_pad_io,    --                                 .sda_pad_io
-			i2c_opencores_mipi_export_scl_pad_io      => CONNECTED_TO_i2c_opencores_mipi_export_scl_pad_io,      --        i2c_opencores_mipi_export.scl_pad_io
-			i2c_opencores_mipi_export_sda_pad_io      => CONNECTED_TO_i2c_opencores_mipi_export_sda_pad_io,      --                                 .sda_pad_io
-			key_external_connection_export            => CONNECTED_TO_key_external_connection_export,            --          key_external_connection.export
-			lcd_external_connection_RS                => CONNECTED_TO_lcd_external_connection_RS,                --          lcd_external_connection.RS
-			lcd_external_connection_RW                => CONNECTED_TO_lcd_external_connection_RW,                --                                 .RW
-			lcd_external_connection_data              => CONNECTED_TO_lcd_external_connection_data,              --                                 .data
-			lcd_external_connection_E                 => CONNECTED_TO_lcd_external_connection_E,                 --                                 .E
-			ledg_external_connection_export           => CONNECTED_TO_ledg_external_connection_export,           --         ledg_external_connection.export
-			mipi_pwdn_n_external_connection_export    => CONNECTED_TO_mipi_pwdn_n_external_connection_export,    --  mipi_pwdn_n_external_connection.export
-			mipi_reset_n_external_connection_export   => CONNECTED_TO_mipi_reset_n_external_connection_export,   -- mipi_reset_n_external_connection.export
-			reset_reset_n                             => CONNECTED_TO_reset_reset_n,                             --                            reset.reset_n
-			sdram_clk_clk                             => CONNECTED_TO_sdram_clk_clk,                             --                        sdram_clk.clk
-			sdram_wire_addr                           => CONNECTED_TO_sdram_wire_addr,                           --                       sdram_wire.addr
-			sdram_wire_ba                             => CONNECTED_TO_sdram_wire_ba,                             --                                 .ba
-			sdram_wire_cas_n                          => CONNECTED_TO_sdram_wire_cas_n,                          --                                 .cas_n
-			sdram_wire_cke                            => CONNECTED_TO_sdram_wire_cke,                            --                                 .cke
-			sdram_wire_cs_n                           => CONNECTED_TO_sdram_wire_cs_n,                           --                                 .cs_n
-			sdram_wire_dq                             => CONNECTED_TO_sdram_wire_dq,                             --                                 .dq
-			sdram_wire_dqm                            => CONNECTED_TO_sdram_wire_dqm,                            --                                 .dqm
-			sdram_wire_ras_n                          => CONNECTED_TO_sdram_wire_ras_n,                          --                                 .ras_n
-			sdram_wire_we_n                           => CONNECTED_TO_sdram_wire_we_n,                           --                                 .we_n
-			sevseg_0_external_connection_export       => CONNECTED_TO_sevseg_0_external_connection_export,       --     sevseg_0_external_connection.export
-			sevseg_1_external_connection_export       => CONNECTED_TO_sevseg_1_external_connection_export,       --     sevseg_1_external_connection.export
-			sevseg_2_external_connection_export       => CONNECTED_TO_sevseg_2_external_connection_export,       --     sevseg_2_external_connection.export
-			sw_external_connection_export             => CONNECTED_TO_sw_external_connection_export,             --           sw_external_connection.export
-			terasic_auto_focus_0_conduit_vcm_i2c_scl  => CONNECTED_TO_terasic_auto_focus_0_conduit_vcm_i2c_scl,  --     terasic_auto_focus_0_conduit.vcm_i2c_scl
-			terasic_auto_focus_0_conduit_vcm_i2c_sda  => CONNECTED_TO_terasic_auto_focus_0_conduit_vcm_i2c_sda,  --                                 .vcm_i2c_sda
-			terasic_auto_focus_0_conduit_clk50        => CONNECTED_TO_terasic_auto_focus_0_conduit_clk50,        --                                 .clk50
-			terasic_camera_0_conduit_end_D            => CONNECTED_TO_terasic_camera_0_conduit_end_D,            --     terasic_camera_0_conduit_end.D
-			terasic_camera_0_conduit_end_FVAL         => CONNECTED_TO_terasic_camera_0_conduit_end_FVAL,         --                                 .FVAL
-			terasic_camera_0_conduit_end_LVAL         => CONNECTED_TO_terasic_camera_0_conduit_end_LVAL,         --                                 .LVAL
-			terasic_camera_0_conduit_end_PIXCLK       => CONNECTED_TO_terasic_camera_0_conduit_end_PIXCLK,       --                                 .PIXCLK
-			vga_clk_clk                               => CONNECTED_TO_vga_clk_clk,                               --                          vga_clk.clk
-			ledr_external_connection_export           => CONNECTED_TO_ledr_external_connection_export            --         ledr_external_connection.export
+			clk_clk                             => CONNECTED_TO_clk_clk,                             --                          clk.clk
+			key_external_connection_export      => CONNECTED_TO_key_external_connection_export,      --      key_external_connection.export
+			lcd_external_connection_RS          => CONNECTED_TO_lcd_external_connection_RS,          --      lcd_external_connection.RS
+			lcd_external_connection_RW          => CONNECTED_TO_lcd_external_connection_RW,          --                             .RW
+			lcd_external_connection_data        => CONNECTED_TO_lcd_external_connection_data,        --                             .data
+			lcd_external_connection_E           => CONNECTED_TO_lcd_external_connection_E,           --                             .E
+			ledg_external_connection_export     => CONNECTED_TO_ledg_external_connection_export,     --     ledg_external_connection.export
+			ledr_external_connection_export     => CONNECTED_TO_ledr_external_connection_export,     --     ledr_external_connection.export
+			reset_reset_n                       => CONNECTED_TO_reset_reset_n,                       --                        reset.reset_n
+			sevseg_0_external_connection_export => CONNECTED_TO_sevseg_0_external_connection_export, -- sevseg_0_external_connection.export
+			sevseg_1_external_connection_export => CONNECTED_TO_sevseg_1_external_connection_export, -- sevseg_1_external_connection.export
+			sevseg_2_external_connection_export => CONNECTED_TO_sevseg_2_external_connection_export, -- sevseg_2_external_connection.export
+			sw_external_connection_export       => CONNECTED_TO_sw_external_connection_export        --       sw_external_connection.export
 		);
 

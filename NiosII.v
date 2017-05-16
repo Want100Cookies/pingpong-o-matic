@@ -190,11 +190,6 @@ module NiosII (
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-// VGA TX
-wire [23:0]	disp_data;
-wire			disp_clk;
-wire			disp_hs;
-wire			disp_vs;
 
 // 7 Seg
 wire	[7:0]		sevseg_0_binary;
@@ -206,13 +201,6 @@ wire	[15:0]	sevseg_2_binary;
 //  Structural coding
 //=======================================================
 
-assign VGA_CLK						= ~disp_clk;
-assign {VGA_R, VGA_G, VGA_B}	= disp_data;
-assign VGA_HS						= ~disp_hs;
-assign VGA_VS						= ~disp_vs;	
-assign VGA_BLANK_N 				= 1'b1;
-assign VGA_SYNC_N 				= 1'b0;
-assign MIPI_CS_n              = 1'b0;
 
 assign LCD_ON						= 1'b1;
 
@@ -244,10 +232,6 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	.clk_clk                                      (CLOCK2_50),								// clk.clk
 	.reset_reset_n                                (1'b1),										// reset.reset_n
 	
-	//VGA
-	.vga_clk_clk                                  (disp_clk),								// vga_clk.clk
-	.d8m_clk_clk                                  (MIPI_REFCLK),							// d8m_xclk.clk
-
 	.key_external_connection_export              (KEY),										// key_external_connection.export
 	//.led_external_connection_export              (LEDR[9:0]),								// led_external_connection.export
 	.sw_external_connection_export               (SW),										// sw_external_connection.export
@@ -263,48 +247,7 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	.lcd_external_connection_RS                	(LCD_RS),                //          lcd_external_connection.RS
 	.lcd_external_connection_RW						(LCD_RW),                //                                 .RW
 	.lcd_external_connection_data              	(LCD_DATA),              //                                 .data
-   .lcd_external_connection_E							(LCD_EN),                  //                                 .E
-
-
-	.sdram_wire_addr                              (DRAM_ADDR),                              //                     sdram_wire.addr
-	.sdram_wire_ba                                (DRAM_BA),                                //                               .ba
-	.sdram_wire_cas_n                             (DRAM_CAS_N),                             //                               .cas_n
-	.sdram_wire_cke                               (DRAM_CKE),                               //                               .cke
-	.sdram_wire_cs_n                              (DRAM_CS_N),                              //                               .cs_n
-	.sdram_wire_dq                                (DRAM_DQ),                                //                               .dq
-	.sdram_wire_dqm                               (DRAM_DQM),                               //                               .dqm
-	.sdram_wire_ras_n                             (DRAM_RAS_N),                             //                               .ras_n
-	.sdram_wire_we_n                              (DRAM_WE_N),                              //                               .we_n
-	.sdram_clk_clk                                (DRAM_CLK),                                 //                      sdram_clk.clk
-
-
-	.alt_vip_itc_0_clocked_video_vid_clk       (disp_clk),       //      alt_vip_itc_0_clocked_video.vid_clk
-	.alt_vip_itc_0_clocked_video_vid_data      (disp_data),      //                                 .vid_data
-	.alt_vip_itc_0_clocked_video_underflow     (),     //                                 .underflow
-	.alt_vip_itc_0_clocked_video_vid_datavalid (), //                                 .vid_datavalid
-	.alt_vip_itc_0_clocked_video_vid_v_sync    (disp_vs),    //                                 .vid_v_sync
-	.alt_vip_itc_0_clocked_video_vid_h_sync    (disp_hs),    //                                 .vid_h_sync
-	.alt_vip_itc_0_clocked_video_vid_f         (),         //                                 .vid_f
-	.alt_vip_itc_0_clocked_video_vid_h         (),         //                                 .vid_h
-	.alt_vip_itc_0_clocked_video_vid_v         (),         //                                 .vid_v
-
-	.terasic_camera_0_conduit_end_D               ({MIPI_PIXEL_D[9:0],2'b00}),               //     terasic_camera_0_conduit_end.D
-	.terasic_camera_0_conduit_end_FVAL            (MIPI_PIXEL_VS),            //                                 .FVAL
-	.terasic_camera_0_conduit_end_LVAL            (MIPI_PIXEL_HS),            //                                 .LVAL
-	.terasic_camera_0_conduit_end_PIXCLK          (~MIPI_PIXEL_CLK),          //                                 .PIXCLK
-
-	.i2c_opencores_camera_export_scl_pad_io       (CAMERA_I2C_SCL),       //      i2c_opencores_camera_export.scl_pad_io
-	.i2c_opencores_camera_export_sda_pad_io       (CAMERA_I2C_SDA),       //                                 .sda_pad_io
-
-	.i2c_opencores_mipi_export_scl_pad_io         (MIPI_I2C_SCL),         //        i2c_opencores_mipi_export.scl_pad_io
-	.i2c_opencores_mipi_export_sda_pad_io         (MIPI_I2C_SDA),         //                                 .sda_pad_io
-
-	.mipi_pwdn_n_external_connection_export       (CAMERA_PWDN_n),       //  mipi_pwdn_n_external_connection.export
-	.mipi_reset_n_external_connection_export      (MIPI_RESET_n),      // mipi_reset_n_external_connection.export
-
-	.terasic_auto_focus_0_conduit_vcm_i2c_scl     (CAMERA_I2C_SCL),     //     terasic_auto_focus_0_conduit.vcm_i2c_scl
-	.terasic_auto_focus_0_conduit_vcm_i2c_sda     (CAMERA_I2C_SDA),     //                                 .vcm_i2c_sda
-	.terasic_auto_focus_0_conduit_clk50           (CLOCK3_50)            //     ø
+   .lcd_external_connection_E							(LCD_EN)                  //                                 .E
 );
 
 endmodule 

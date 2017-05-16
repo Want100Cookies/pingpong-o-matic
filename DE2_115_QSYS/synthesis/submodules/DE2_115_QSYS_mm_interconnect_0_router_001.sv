@@ -47,23 +47,23 @@ module DE2_115_QSYS_mm_interconnect_0_router_001_default_decode
      parameter DEFAULT_CHANNEL = 1,
                DEFAULT_WR_CHANNEL = -1,
                DEFAULT_RD_CHANNEL = -1,
-               DEFAULT_DESTID = 12 
+               DEFAULT_DESTID = 6 
    )
-  (output [86 - 82 : 0] default_destination_id,
-   output [19-1 : 0] default_wr_channel,
-   output [19-1 : 0] default_rd_channel,
-   output [19-1 : 0] default_src_channel
+  (output [84 - 81 : 0] default_destination_id,
+   output [13-1 : 0] default_wr_channel,
+   output [13-1 : 0] default_rd_channel,
+   output [13-1 : 0] default_src_channel
   );
 
   assign default_destination_id = 
-    DEFAULT_DESTID[86 - 82 : 0];
+    DEFAULT_DESTID[84 - 81 : 0];
 
   generate
     if (DEFAULT_CHANNEL == -1) begin : no_default_channel_assignment
       assign default_src_channel = '0;
     end
     else begin : default_channel_assignment
-      assign default_src_channel = 19'b1 << DEFAULT_CHANNEL;
+      assign default_src_channel = 13'b1 << DEFAULT_CHANNEL;
     end
   endgenerate
 
@@ -73,8 +73,8 @@ module DE2_115_QSYS_mm_interconnect_0_router_001_default_decode
       assign default_rd_channel = '0;
     end
     else begin : default_rw_channel_assignment
-      assign default_wr_channel = 19'b1 << DEFAULT_WR_CHANNEL;
-      assign default_rd_channel = 19'b1 << DEFAULT_RD_CHANNEL;
+      assign default_wr_channel = 13'b1 << DEFAULT_WR_CHANNEL;
+      assign default_rd_channel = 13'b1 << DEFAULT_RD_CHANNEL;
     end
   endgenerate
 
@@ -93,7 +93,7 @@ module DE2_115_QSYS_mm_interconnect_0_router_001
     // Command Sink (Input)
     // -------------------
     input                       sink_valid,
-    input  [100-1 : 0]    sink_data,
+    input  [98-1 : 0]    sink_data,
     input                       sink_startofpacket,
     input                       sink_endofpacket,
     output                      sink_ready,
@@ -102,8 +102,8 @@ module DE2_115_QSYS_mm_interconnect_0_router_001
     // Command Source (Output)
     // -------------------
     output                          src_valid,
-    output reg [100-1    : 0] src_data,
-    output reg [19-1 : 0] src_channel,
+    output reg [98-1    : 0] src_data,
+    output reg [13-1 : 0] src_channel,
     output                          src_startofpacket,
     output                          src_endofpacket,
     input                           src_ready
@@ -114,12 +114,12 @@ module DE2_115_QSYS_mm_interconnect_0_router_001
     // -------------------------------------------------------
     localparam PKT_ADDR_H = 55;
     localparam PKT_ADDR_L = 36;
-    localparam PKT_DEST_ID_H = 86;
-    localparam PKT_DEST_ID_L = 82;
-    localparam PKT_PROTECTION_H = 90;
-    localparam PKT_PROTECTION_L = 88;
-    localparam ST_DATA_W = 100;
-    localparam ST_CHANNEL_W = 19;
+    localparam PKT_DEST_ID_H = 84;
+    localparam PKT_DEST_ID_L = 81;
+    localparam PKT_PROTECTION_H = 88;
+    localparam PKT_PROTECTION_L = 86;
+    localparam ST_DATA_W = 98;
+    localparam ST_CHANNEL_W = 13;
     localparam DECODER_TYPE = 0;
 
     localparam PKT_TRANS_WRITE = 58;
@@ -165,7 +165,7 @@ module DE2_115_QSYS_mm_interconnect_0_router_001
     assign src_startofpacket = sink_startofpacket;
     assign src_endofpacket   = sink_endofpacket;
     wire [PKT_DEST_ID_W-1:0] default_destid;
-    wire [19-1 : 0] default_src_channel;
+    wire [13-1 : 0] default_src_channel;
 
 
 
@@ -191,14 +191,14 @@ module DE2_115_QSYS_mm_interconnect_0_router_001
 
     // ( 0x20000 .. 0x40000 )
     if ( {address[RG:PAD0],{PAD0{1'b0}}} == 19'h20000   ) begin
-            src_channel = 19'b10;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 12;
+            src_channel = 13'b10;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 6;
     end
 
     // ( 0x40800 .. 0x41000 )
     if ( {address[RG:PAD1],{PAD1{1'b0}}} == 19'h40800   ) begin
-            src_channel = 19'b01;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 11;
+            src_channel = 13'b01;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 5;
     end
 
 end

@@ -53,34 +53,11 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK2_50 -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK3_50 -entity DE2_115_D8M_VIP
 set_location_assignment PIN_AG14 -to CLOCK2_50
 set_location_assignment PIN_AG15 -to CLOCK3_50
 set_location_assignment PIN_Y2 -to CLOCK_50
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SMA_CLKIN -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SMA_CLKOUT -entity DE2_115_D8M_VIP
 set_location_assignment PIN_AH14 -to SMA_CLKIN
 set_location_assignment PIN_AE23 -to SMA_CLKOUT
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDG[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[9] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[10] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[11] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[12] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[13] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[14] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[15] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[16] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LEDR[17] -entity DE2_115_D8M_VIP
 set_location_assignment PIN_E21 -to LEDG[0]
 set_location_assignment PIN_E22 -to LEDG[1]
 set_location_assignment PIN_E25 -to LEDG[2]
@@ -108,20 +85,10 @@ set_location_assignment PIN_F15 -to LEDR[14]
 set_location_assignment PIN_G15 -to LEDR[15]
 set_location_assignment PIN_G16 -to LEDR[16]
 set_location_assignment PIN_H15 -to LEDR[17]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[3] -entity DE2_115_D8M_VIP
 set_location_assignment PIN_M23 -to KEY[0]
 set_location_assignment PIN_M21 -to KEY[1]
 set_location_assignment PIN_N21 -to KEY[2]
 set_location_assignment PIN_R24 -to KEY[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to EX_IO[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to EX_IO[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to EX_IO[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to EX_IO[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to EX_IO[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to EX_IO[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to EX_IO[6] -entity DE2_115_D8M_VIP
 set_location_assignment PIN_J10 -to EX_IO[0]
 set_location_assignment PIN_J14 -to EX_IO[1]
 set_location_assignment PIN_H13 -to EX_IO[2]
@@ -129,24 +96,6 @@ set_location_assignment PIN_H14 -to EX_IO[3]
 set_location_assignment PIN_F14 -to EX_IO[4]
 set_location_assignment PIN_E10 -to EX_IO[5]
 set_location_assignment PIN_D9 -to EX_IO[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[9] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[10] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[11] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[12] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[13] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[14] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[15] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[16] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[17] -entity DE2_115_D8M_VIP
 set_location_assignment PIN_AB28 -to SW[0]
 set_location_assignment PIN_AC28 -to SW[1]
 set_location_assignment PIN_AC27 -to SW[2]
@@ -165,62 +114,6 @@ set_location_assignment PIN_AA23 -to SW[14]
 set_location_assignment PIN_AA22 -to SW[15]
 set_location_assignment PIN_Y24 -to SW[16]
 set_location_assignment PIN_Y23 -to SW[17]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to HEX0[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to HEX0[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to HEX0[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX6[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX6[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX6[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX6[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX6[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX6[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX6[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX7[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX7[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX7[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX7[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX7[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX7[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX7[6] -entity DE2_115_D8M_VIP
 set_location_assignment PIN_G18 -to HEX0[0]
 set_location_assignment PIN_F22 -to HEX0[1]
 set_location_assignment PIN_E17 -to HEX0[2]
@@ -277,19 +170,6 @@ set_location_assignment PIN_AH17 -to HEX7[3]
 set_location_assignment PIN_AF17 -to HEX7[4]
 set_location_assignment PIN_AG18 -to HEX7[5]
 set_location_assignment PIN_AA14 -to HEX7[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_BLON -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_EN -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_ON -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_RS -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_RW -entity DE2_115_D8M_VIP
 set_location_assignment PIN_L6 -to LCD_BLON
 set_location_assignment PIN_L3 -to LCD_DATA[0]
 set_location_assignment PIN_L1 -to LCD_DATA[1]
@@ -303,29 +183,14 @@ set_location_assignment PIN_L4 -to LCD_EN
 set_location_assignment PIN_L5 -to LCD_ON
 set_location_assignment PIN_M2 -to LCD_RS
 set_location_assignment PIN_M1 -to LCD_RW
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART_CTS -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART_RTS -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART_RXD -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to UART_TXD -entity DE2_115_D8M_VIP
 set_location_assignment PIN_G14 -to UART_CTS
 set_location_assignment PIN_J13 -to UART_RTS
 set_location_assignment PIN_G12 -to UART_RXD
 set_location_assignment PIN_G9 -to UART_TXD
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_CLK2 -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT2 -entity DE2_115_D8M_VIP
 set_location_assignment PIN_G6 -to PS2_CLK
 set_location_assignment PIN_G5 -to PS2_CLK2
 set_location_assignment PIN_H5 -to PS2_DAT
 set_location_assignment PIN_F5 -to PS2_DAT2
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CMD -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_WP_N -entity DE2_115_D8M_VIP
 set_location_assignment PIN_AE13 -to SD_CLK
 set_location_assignment PIN_AD14 -to SD_CMD
 set_location_assignment PIN_AE14 -to SD_DAT[0]
@@ -333,35 +198,6 @@ set_location_assignment PIN_AF13 -to SD_DAT[1]
 set_location_assignment PIN_AB14 -to SD_DAT[2]
 set_location_assignment PIN_AC14 -to SD_DAT[3]
 set_location_assignment PIN_AF14 -to SD_WP_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_BLANK_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_HS -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_SYNC_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_VS -entity DE2_115_D8M_VIP
 set_location_assignment PIN_F11 -to VGA_BLANK_N
 set_location_assignment PIN_B10 -to VGA_B[0]
 set_location_assignment PIN_A10 -to VGA_B[1]
@@ -391,49 +227,16 @@ set_location_assignment PIN_H8 -to VGA_R[6]
 set_location_assignment PIN_H10 -to VGA_R[7]
 set_location_assignment PIN_C10 -to VGA_SYNC_N
 set_location_assignment PIN_C13 -to VGA_VS
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCDAT -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCLRCK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_BCLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACDAT -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACLRCK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_XCK -entity DE2_115_D8M_VIP
 set_location_assignment PIN_D2 -to AUD_ADCDAT
 set_location_assignment PIN_C2 -to AUD_ADCLRCK
 set_location_assignment PIN_F2 -to AUD_BCLK
 set_location_assignment PIN_D1 -to AUD_DACDAT
 set_location_assignment PIN_E3 -to AUD_DACLRCK
 set_location_assignment PIN_E1 -to AUD_XCK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to EEP_I2C_SCLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to EEP_I2C_SDAT -entity DE2_115_D8M_VIP
 set_location_assignment PIN_D14 -to EEP_I2C_SCLK
 set_location_assignment PIN_E14 -to EEP_I2C_SDAT
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to I2C_SCLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to I2C_SDAT -entity DE2_115_D8M_VIP
 set_location_assignment PIN_B7 -to I2C_SCLK
 set_location_assignment PIN_A8 -to I2C_SDAT
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_GTX_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_INT_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ENET0_LINK100 -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_MDC -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_MDIO -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RST_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RX_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RX_COL -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RX_CRS -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RX_DATA[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RX_DATA[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RX_DATA[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RX_DATA[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RX_DV -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_RX_ER -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_TX_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_TX_DATA[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_TX_DATA[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_TX_DATA[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_TX_DATA[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_TX_EN -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET0_TX_ER -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ENETCLK_25 -entity DE2_115_D8M_VIP
 set_location_assignment PIN_A17 -to ENET0_GTX_CLK
 set_location_assignment PIN_A21 -to ENET0_INT_N
 set_location_assignment PIN_C14 -to ENET0_LINK100
@@ -457,28 +260,6 @@ set_location_assignment PIN_B19 -to ENET0_TX_DATA[3]
 set_location_assignment PIN_A18 -to ENET0_TX_EN
 set_location_assignment PIN_B18 -to ENET0_TX_ER
 set_location_assignment PIN_A14 -to ENETCLK_25
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_GTX_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_INT_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ENET1_LINK100 -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_MDC -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_MDIO -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RST_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RX_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RX_COL -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RX_CRS -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RX_DATA[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RX_DATA[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RX_DATA[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RX_DATA[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RX_DV -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_RX_ER -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_TX_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_TX_DATA[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_TX_DATA[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_TX_DATA[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_TX_DATA[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_TX_EN -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "2.5 V" -to ENET1_TX_ER -entity DE2_115_D8M_VIP
 set_location_assignment PIN_C23 -to ENET1_GTX_CLK
 set_location_assignment PIN_D24 -to ENET1_INT_N
 set_location_assignment PIN_D13 -to ENET1_LINK100
@@ -501,18 +282,6 @@ set_location_assignment PIN_B26 -to ENET1_TX_DATA[2]
 set_location_assignment PIN_C26 -to ENET1_TX_DATA[3]
 set_location_assignment PIN_B25 -to ENET1_TX_EN
 set_location_assignment PIN_A25 -to ENET1_TX_ER
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_CLK27 -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_HS -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_RESET_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_VS -entity DE2_115_D8M_VIP
 set_location_assignment PIN_B14 -to TD_CLK27
 set_location_assignment PIN_E8 -to TD_DATA[0]
 set_location_assignment PIN_A7 -to TD_DATA[1]
@@ -525,29 +294,6 @@ set_location_assignment PIN_F7 -to TD_DATA[7]
 set_location_assignment PIN_E5 -to TD_HS
 set_location_assignment PIN_G7 -to TD_RESET_N
 set_location_assignment PIN_E4 -to TD_VS
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_ADDR[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_ADDR[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_CS_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[9] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[10] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[11] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[12] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[13] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[14] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_DATA[15] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_INT -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_RD_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_RST_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to OTG_WE_N -entity DE2_115_D8M_VIP
 set_location_assignment PIN_H7 -to OTG_ADDR[0]
 set_location_assignment PIN_C3 -to OTG_ADDR[1]
 set_location_assignment PIN_A3 -to OTG_CS_N
@@ -567,69 +313,9 @@ set_location_assignment PIN_G3 -to OTG_DATA[12]
 set_location_assignment PIN_F1 -to OTG_DATA[13]
 set_location_assignment PIN_F3 -to OTG_DATA[14]
 set_location_assignment PIN_G4 -to OTG_DATA[15]
-set_location_assignment PIN_D5 -to OTG_INT
 set_location_assignment PIN_B3 -to OTG_RD_N
 set_location_assignment PIN_C5 -to OTG_RST_N
-set_location_assignment PIN_A4 -to OTG_WE_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to IRDA_RXD -entity DE2_115_D8M_VIP
 set_location_assignment PIN_Y15 -to IRDA_RXD
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[9] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[10] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[11] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CAS_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CS_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[9] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[10] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[11] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[12] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[13] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[14] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[15] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[16] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[17] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[18] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[19] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[20] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[21] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[22] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[23] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[24] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[25] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[26] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[27] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[28] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[29] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[30] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[31] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQM[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQM[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQM[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQM[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_RAS_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_WE_N -entity DE2_115_D8M_VIP
 set_location_assignment PIN_R6 -to DRAM_ADDR[0]
 set_location_assignment PIN_V8 -to DRAM_ADDR[1]
 set_location_assignment PIN_U8 -to DRAM_ADDR[2]
@@ -687,47 +373,6 @@ set_location_assignment PIN_K8 -to DRAM_DQM[2]
 set_location_assignment PIN_N8 -to DRAM_DQM[3]
 set_location_assignment PIN_U6 -to DRAM_RAS_N
 set_location_assignment PIN_V6 -to DRAM_WE_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[9] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[10] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[11] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[12] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[13] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[14] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[15] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[16] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[17] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[18] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_ADDR[19] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_CE_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[9] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[10] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[11] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[12] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[13] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[14] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_DQ[15] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_LB_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_OE_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_UB_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SRAM_WE_N -entity DE2_115_D8M_VIP
 set_location_assignment PIN_AB7 -to SRAM_ADDR[0]
 set_location_assignment PIN_AD7 -to SRAM_ADDR[1]
 set_location_assignment PIN_AE7 -to SRAM_ADDR[2]
@@ -769,43 +414,6 @@ set_location_assignment PIN_AD4 -to SRAM_LB_N
 set_location_assignment PIN_AD5 -to SRAM_OE_N
 set_location_assignment PIN_AC4 -to SRAM_UB_N
 set_location_assignment PIN_AE8 -to SRAM_WE_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[9] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[10] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[11] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[12] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[13] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[14] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[15] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[16] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[17] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[18] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[19] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[20] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[21] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_ADDR[22] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_CE_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_DQ[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_DQ[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_DQ[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_DQ[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_DQ[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_DQ[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_DQ[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_DQ[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_OE_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_RST_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_RY -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_WE_N -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FL_WP_N -entity DE2_115_D8M_VIP
 set_location_assignment PIN_AG12 -to FL_ADDR[0]
 set_location_assignment PIN_AH7 -to FL_ADDR[1]
 set_location_assignment PIN_Y13 -to FL_ADDR[2]
@@ -843,50 +451,6 @@ set_location_assignment PIN_AE11 -to FL_RST_N
 set_location_assignment PIN_Y1 -to FL_RY
 set_location_assignment PIN_AC10 -to FL_WE_N
 set_location_assignment PIN_AE12 -to FL_WP_N
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CAMERA_I2C_SCL -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CAMERA_I2C_SDA -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CAMERA_PWDN_n -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_CS_n -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_I2C_SCL -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_I2C_SDA -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_MCLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_CLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[0] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[1] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[2] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[3] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[4] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[5] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[6] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[7] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[8] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[9] -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_HS -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_VS -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_REFCLK -entity DE2_115_D8M_VIP
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_RESET_n -entity DE2_115_D8M_VIP
-set_location_assignment PIN_AG22 -to CAMERA_I2C_SCL
-set_location_assignment PIN_AE24 -to CAMERA_I2C_SDA
-set_location_assignment PIN_AE25 -to CAMERA_PWDN_n
-set_location_assignment PIN_AD25 -to MIPI_CS_n
-set_location_assignment PIN_AE20 -to MIPI_I2C_SCL
-set_location_assignment PIN_AG23 -to MIPI_I2C_SDA
-set_location_assignment PIN_AH22 -to MIPI_MCLK
-set_location_assignment PIN_AC15 -to MIPI_PIXEL_CLK
-set_location_assignment PIN_Y17 -to MIPI_PIXEL_D[0]
-set_location_assignment PIN_AC21 -to MIPI_PIXEL_D[1]
-set_location_assignment PIN_Y16 -to MIPI_PIXEL_D[2]
-set_location_assignment PIN_AD21 -to MIPI_PIXEL_D[3]
-set_location_assignment PIN_AE16 -to MIPI_PIXEL_D[4]
-set_location_assignment PIN_AD15 -to MIPI_PIXEL_D[5]
-set_location_assignment PIN_AE15 -to MIPI_PIXEL_D[6]
-set_location_assignment PIN_AC19 -to MIPI_PIXEL_D[7]
-set_location_assignment PIN_AF16 -to MIPI_PIXEL_D[8]
-set_location_assignment PIN_AD19 -to MIPI_PIXEL_D[9]
-set_location_assignment PIN_AG25 -to MIPI_PIXEL_HS
-set_location_assignment PIN_AF22 -to MIPI_PIXEL_VS
-set_location_assignment PIN_AE22 -to MIPI_REFCLK
-set_location_assignment PIN_AH25 -to MIPI_RESET_n
 set_global_assignment -name VERILOG_FILE DE2_115_QSYS/synthesis/DE2_115_QSYS.v
 set_global_assignment -name QSYS_FILE DE2_115_QSYS.qsys
 set_global_assignment -name VERILOG_FILE NiosII.v
@@ -894,7 +458,6 @@ set_global_assignment -name SDC_FILE NiosII.sdc
 set_global_assignment -name VERILOG_FILE SevSeg.v
 set_global_assignment -name VERILOG_FILE NumberDisplay.v
 set_global_assignment -name VERILOG_FILE HexDisplay.v
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCDAT
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCLRCK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_BCLK
@@ -1547,3 +1110,4 @@ set_location_assignment PIN_V24 -to HSMC_CLKOUT_N2
 set_instance_assignment -name IO_STANDARD LVDS -to HSMC_CLKOUT_N2
 set_location_assignment PIN_G24 -to HSMC_CLKOUT_N1
 set_instance_assignment -name IO_STANDARD LVDS -to HSMC_CLKOUT_N1
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
