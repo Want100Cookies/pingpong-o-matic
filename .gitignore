@@ -6,7 +6,7 @@
 
 ######### Quartus II source files
 
-.metadata/
+.metadata
 .settings/
 
 .qsys_edit/
