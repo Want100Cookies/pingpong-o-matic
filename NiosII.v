@@ -233,11 +233,10 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	.reset_reset_n                                (1'b1),										// reset.reset_n
 	
 	.key_external_connection_export              (KEY),										// key_external_connection.export
-	//.led_external_connection_export              (LEDR[9:0]),								// led_external_connection.export
 	.sw_external_connection_export               (SW),										// sw_external_connection.export
 	
 	.ledg_external_connection_export					(LEDG),           //         ledg_external_connection.export
-	.ledr_external_connection_export					(),           //         ledr_external_connection.export
+	.ledr_external_connection_export					(LEDR),           //         ledr_external_connection.export
 
 	
 	.sevseg_0_external_connection_export			(sevseg_0_binary),
@@ -494,8 +493,8 @@ FpsMonitor uFps(
 	/*input     			  */     .vs       ( MIPI_PIXEL_VS_ ),
 	
 	/*output reg [7:0]		*/    .fps      (),
-	/*output reg [6:0]		*/    .hex_fps_h( HEX6 ),
-	/*output reg [6:0]		*/    .hex_fps_l( HEX7 )
+	/*output reg [6:0]		*/    .hex_fps_h( HEX7 ),
+	/*output reg [6:0]		*/    .hex_fps_l( HEX6 )
 );
 
 
@@ -503,8 +502,5 @@ FpsMonitor uFps(
 CLOCKMEM  ck1 ( .CLK(VGA_CLK )   ,.CLK_FREQ  (25000000  ) , . CK_1HZ (D8M_CK_HZ   )  )        ;//25MHZ
 CLOCKMEM  ck2 ( .CLK(MIPI_REFCLK   )   ,.CLK_FREQ  (20000000   ) , . CK_1HZ (D8M_CK_HZ2  )  ) ;//20MHZ
 CLOCKMEM  ck3 ( .CLK(MIPI_PIXEL_CLK)   ,.CLK_FREQ  (25000000  ) , . CK_1HZ (D8M_CK_HZ3  )  )  ;//25MHZ
-
-
-assign LEDR = { D8M_CK_HZ ,D8M_CK_HZ2,D8M_CK_HZ3, RESET_N ,4'h0,CAMERA_MIPI_RELEASE ,MIPI_BRIDGE_RELEASE  } ; 
 
 endmodule 
