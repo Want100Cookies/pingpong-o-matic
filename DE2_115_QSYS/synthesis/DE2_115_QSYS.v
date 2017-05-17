@@ -4,22 +4,25 @@
 
 `timescale 1 ps / 1 ps
 module DE2_115_QSYS (
-		input  wire        clk_clk,                             //                          clk.clk
-		input  wire [3:0]  key_external_connection_export,      //      key_external_connection.export
-		output wire        lcd_external_connection_RS,          //      lcd_external_connection.RS
-		output wire        lcd_external_connection_RW,          //                             .RW
-		inout  wire [7:0]  lcd_external_connection_data,        //                             .data
-		output wire        lcd_external_connection_E,           //                             .E
-		output wire [8:0]  ledg_external_connection_export,     //     ledg_external_connection.export
-		output wire [17:0] ledr_external_connection_export,     //     ledr_external_connection.export
-		input  wire        reset_reset_n,                       //                        reset.reset_n
-		output wire [7:0]  sevseg_0_external_connection_export, // sevseg_0_external_connection.export
-		output wire [7:0]  sevseg_1_external_connection_export, // sevseg_1_external_connection.export
-		output wire [15:0] sevseg_2_external_connection_export, // sevseg_2_external_connection.export
-		input  wire [9:0]  sw_external_connection_export        //       sw_external_connection.export
+		input  wire [7:0]  camera_blue_in_external_connection_export,  //  camera_blue_in_external_connection.export
+		input  wire [7:0]  camera_green_in_external_connection_export, // camera_green_in_external_connection.export
+		input  wire [7:0]  camera_red_in_external_connection_export,   //   camera_red_in_external_connection.export
+		input  wire        clk_clk,                                    //                                 clk.clk
+		input  wire [3:0]  key_external_connection_export,             //             key_external_connection.export
+		output wire        lcd_external_connection_RS,                 //             lcd_external_connection.RS
+		output wire        lcd_external_connection_RW,                 //                                    .RW
+		inout  wire [7:0]  lcd_external_connection_data,               //                                    .data
+		output wire        lcd_external_connection_E,                  //                                    .E
+		output wire [8:0]  ledg_external_connection_export,            //            ledg_external_connection.export
+		output wire [17:0] ledr_external_connection_export,            //            ledr_external_connection.export
+		input  wire        reset_reset_n,                              //                               reset.reset_n
+		output wire [7:0]  sevseg_0_external_connection_export,        //        sevseg_0_external_connection.export
+		output wire [7:0]  sevseg_1_external_connection_export,        //        sevseg_1_external_connection.export
+		output wire [15:0] sevseg_2_external_connection_export,        //        sevseg_2_external_connection.export
+		input  wire [9:0]  sw_external_connection_export               //              sw_external_connection.export
 	);
 
-	wire         nios2_qsys_debug_reset_request_reset;                      // nios2_qsys:debug_reset_request -> [key:reset_n, lcd_0:reset_n, ledg:reset_n, ledr:reset_n, mm_interconnect_0:sysid_qsys_reset_reset_bridge_in_reset_reset, rst_controller:reset_in1, sevseg_0:reset_n, sevseg_1:reset_n, sevseg_2:reset_n, sw:reset_n, sysid_qsys:reset_n, timer:reset_n]
+	wire         nios2_qsys_debug_reset_request_reset;                      // nios2_qsys:debug_reset_request -> [camera_blue_in:reset_n, camera_green_in:reset_n, camera_red_in:reset_n, key:reset_n, lcd_0:reset_n, ledg:reset_n, ledr:reset_n, mm_interconnect_0:sysid_qsys_reset_reset_bridge_in_reset_reset, rst_controller:reset_in1, sevseg_0:reset_n, sevseg_1:reset_n, sevseg_2:reset_n, sw:reset_n, sysid_qsys:reset_n, timer:reset_n]
 	wire  [31:0] nios2_qsys_data_master_readdata;                           // mm_interconnect_0:nios2_qsys_data_master_readdata -> nios2_qsys:d_readdata
 	wire         nios2_qsys_data_master_waitrequest;                        // mm_interconnect_0:nios2_qsys_data_master_waitrequest -> nios2_qsys:d_waitrequest
 	wire         nios2_qsys_data_master_debugaccess;                        // nios2_qsys:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:nios2_qsys_data_master_debugaccess
@@ -96,11 +99,41 @@ module DE2_115_QSYS (
 	wire   [1:0] mm_interconnect_0_ledr_s1_address;                         // mm_interconnect_0:ledr_s1_address -> ledr:address
 	wire         mm_interconnect_0_ledr_s1_write;                           // mm_interconnect_0:ledr_s1_write -> ledr:write_n
 	wire  [31:0] mm_interconnect_0_ledr_s1_writedata;                       // mm_interconnect_0:ledr_s1_writedata -> ledr:writedata
+	wire  [31:0] mm_interconnect_0_camera_red_in_s1_readdata;               // camera_red_in:readdata -> mm_interconnect_0:camera_red_in_s1_readdata
+	wire   [1:0] mm_interconnect_0_camera_red_in_s1_address;                // mm_interconnect_0:camera_red_in_s1_address -> camera_red_in:address
+	wire  [31:0] mm_interconnect_0_camera_green_in_s1_readdata;             // camera_green_in:readdata -> mm_interconnect_0:camera_green_in_s1_readdata
+	wire   [1:0] mm_interconnect_0_camera_green_in_s1_address;              // mm_interconnect_0:camera_green_in_s1_address -> camera_green_in:address
+	wire  [31:0] mm_interconnect_0_camera_blue_in_s1_readdata;              // camera_blue_in:readdata -> mm_interconnect_0:camera_blue_in_s1_readdata
+	wire   [1:0] mm_interconnect_0_camera_blue_in_s1_address;               // mm_interconnect_0:camera_blue_in_s1_address -> camera_blue_in:address
 	wire         irq_mapper_receiver0_irq;                                  // jtag_uart:av_irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                  // timer:irq -> irq_mapper:receiver1_irq
 	wire  [31:0] nios2_qsys_irq_irq;                                        // irq_mapper:sender_irq -> nios2_qsys:irq
 	wire         rst_controller_reset_out_reset;                            // rst_controller:reset_out -> [irq_mapper:reset, jtag_uart:rst_n, mm_interconnect_0:nios2_qsys_reset_reset_bridge_in_reset_reset, nios2_qsys:reset_n, onchip_memory2:reset, rst_translator:in_reset]
 	wire         rst_controller_reset_out_reset_req;                        // rst_controller:reset_req -> [nios2_qsys:reset_req, onchip_memory2:reset_req, rst_translator:reset_req_in]
+
+	DE2_115_QSYS_camera_blue_in camera_blue_in (
+		.clk      (clk_clk),                                      //                 clk.clk
+		.reset_n  (~nios2_qsys_debug_reset_request_reset),        //               reset.reset_n
+		.address  (mm_interconnect_0_camera_blue_in_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_camera_blue_in_s1_readdata), //                    .readdata
+		.in_port  (camera_blue_in_external_connection_export)     // external_connection.export
+	);
+
+	DE2_115_QSYS_camera_blue_in camera_green_in (
+		.clk      (clk_clk),                                       //                 clk.clk
+		.reset_n  (~nios2_qsys_debug_reset_request_reset),         //               reset.reset_n
+		.address  (mm_interconnect_0_camera_green_in_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_camera_green_in_s1_readdata), //                    .readdata
+		.in_port  (camera_green_in_external_connection_export)     // external_connection.export
+	);
+
+	DE2_115_QSYS_camera_blue_in camera_red_in (
+		.clk      (clk_clk),                                     //                 clk.clk
+		.reset_n  (~nios2_qsys_debug_reset_request_reset),       //               reset.reset_n
+		.address  (mm_interconnect_0_camera_red_in_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_camera_red_in_s1_readdata), //                    .readdata
+		.in_port  (camera_red_in_external_connection_export)     // external_connection.export
+	);
 
 	DE2_115_QSYS_jtag_uart jtag_uart (
 		.clk            (clk_clk),                                                   //               clk.clk
@@ -278,6 +311,12 @@ module DE2_115_QSYS (
 		.nios2_qsys_instruction_master_waitrequest    (nios2_qsys_instruction_master_waitrequest),                 //                                       .waitrequest
 		.nios2_qsys_instruction_master_read           (nios2_qsys_instruction_master_read),                        //                                       .read
 		.nios2_qsys_instruction_master_readdata       (nios2_qsys_instruction_master_readdata),                    //                                       .readdata
+		.camera_blue_in_s1_address                    (mm_interconnect_0_camera_blue_in_s1_address),               //                      camera_blue_in_s1.address
+		.camera_blue_in_s1_readdata                   (mm_interconnect_0_camera_blue_in_s1_readdata),              //                                       .readdata
+		.camera_green_in_s1_address                   (mm_interconnect_0_camera_green_in_s1_address),              //                     camera_green_in_s1.address
+		.camera_green_in_s1_readdata                  (mm_interconnect_0_camera_green_in_s1_readdata),             //                                       .readdata
+		.camera_red_in_s1_address                     (mm_interconnect_0_camera_red_in_s1_address),                //                       camera_red_in_s1.address
+		.camera_red_in_s1_readdata                    (mm_interconnect_0_camera_red_in_s1_readdata),               //                                       .readdata
 		.jtag_uart_avalon_jtag_slave_address          (mm_interconnect_0_jtag_uart_avalon_jtag_slave_address),     //            jtag_uart_avalon_jtag_slave.address
 		.jtag_uart_avalon_jtag_slave_write            (mm_interconnect_0_jtag_uart_avalon_jtag_slave_write),       //                                       .write
 		.jtag_uart_avalon_jtag_slave_read             (mm_interconnect_0_jtag_uart_avalon_jtag_slave_read),        //                                       .read

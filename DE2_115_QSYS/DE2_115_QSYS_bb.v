@@ -12,7 +12,10 @@ module DE2_115_QSYS (
 	sevseg_0_external_connection_export,
 	sevseg_1_external_connection_export,
 	sevseg_2_external_connection_export,
-	sw_external_connection_export);	
+	sw_external_connection_export,
+	camera_red_in_external_connection_export,
+	camera_green_in_external_connection_export,
+	camera_blue_in_external_connection_export);	
 
 	input		clk_clk;
 	input	[3:0]	key_external_connection_export;
@@ -27,4 +30,7 @@ module DE2_115_QSYS (
 	output	[7:0]	sevseg_1_external_connection_export;
 	output	[15:0]	sevseg_2_external_connection_export;
 	input	[9:0]	sw_external_connection_export;
+	input	[7:0]	camera_red_in_external_connection_export;
+	input	[7:0]	camera_green_in_external_connection_export;
+	input	[7:0]	camera_blue_in_external_connection_export;
 endmodule

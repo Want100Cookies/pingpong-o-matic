@@ -79,29 +79,35 @@ int main() {
 	lcd_init();
 	test_lcd();
 
-	printf("Hello DE2-115!\n");
-	int count = 0;
-	int count2 = 0;
-	int count3 = 0;
+	printf("Starting camera capture...\n");
+//	int count = 0;
+//	int count2 = 0;
+//	int count3 = 0;
 
-	int delay;
+//	int delay;
 	while (1) {
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDR_BASE, 7 << count);
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDG_BASE, 0b111111111);
-
-
-		delay = 0;
-		while (delay < 100000) {
-			delay++;
-		}
-		count = (count + 1) % 17;
-
-		count2 = (count2 + 1) % 10000;
-		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_2_BASE, count2);
-
-		count3 = (count3 + 1) % 100;
-		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_0_BASE, count3);
-		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_1_BASE, 99 - count3);
+		printf("0x%.8X", IORD_ALTERA_AVALON_PIO_DATA(CAMERA_RED_IN_BASE));
+		printf(" | ");
+		printf("0x%.8X", IORD_ALTERA_AVALON_PIO_DATA(CAMERA_GREEN_IN_BASE));
+		printf(" | ");
+		printf("0x%.8X", IORD_ALTERA_AVALON_PIO_DATA(CAMERA_BLUE_IN_BASE));
+		printf("\n");
+//		IOWR_ALTERA_AVALON_PIO_DATA(LEDR_BASE, 7 << count);
+//		IOWR_ALTERA_AVALON_PIO_DATA(LEDG_BASE, 0b111111111);
+//
+//
+//		delay = 0;
+//		while (delay < 100000) {
+//			delay++;
+//		}
+//		count = (count + 1) % 17;
+//
+//		count2 = (count2 + 1) % 10000;
+//		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_2_BASE, count2);
+//
+//		count3 = (count3 + 1) % 100;
+//		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_0_BASE, count3);
+//		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_1_BASE, 99 - count3);
 	}
 
 	return 0;

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_qsys' in SOPC Builder design 'DE2_115_QSYS'
  * SOPC Builder design path: ../../DE2_115_QSYS.sopcinfo
  *
- * Generated: Mon May 15 11:55:22 CEST 2017
+ * Generated: Wed May 17 12:11:55 CEST 2017
  */
 
 /*
@@ -140,9 +140,6 @@
 #define __ALTERA_AVALON_SYSID_QSYS
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_GEN2
-#define __ALTPLL
-#define __I2C_OPENCORES
-#define __TERASIC_AUTO_FOCUS
 
 
 /*
@@ -182,31 +179,84 @@
 
 
 /*
- * TERASIC_AUTO_FOCUS_0 configuration
+ * camera_blue_in configuration
  *
  */
 
-#define ALT_MODULE_CLASS_TERASIC_AUTO_FOCUS_0 TERASIC_AUTO_FOCUS
-#define TERASIC_AUTO_FOCUS_0_BASE 0x41000
-#define TERASIC_AUTO_FOCUS_0_IRQ -1
-#define TERASIC_AUTO_FOCUS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define TERASIC_AUTO_FOCUS_0_NAME "/dev/TERASIC_AUTO_FOCUS_0"
-#define TERASIC_AUTO_FOCUS_0_SPAN 64
-#define TERASIC_AUTO_FOCUS_0_TYPE "TERASIC_AUTO_FOCUS"
+#define ALT_MODULE_CLASS_camera_blue_in altera_avalon_pio
+#define CAMERA_BLUE_IN_BASE 0x412a0
+#define CAMERA_BLUE_IN_BIT_CLEARING_EDGE_REGISTER 0
+#define CAMERA_BLUE_IN_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define CAMERA_BLUE_IN_CAPTURE 0
+#define CAMERA_BLUE_IN_DATA_WIDTH 8
+#define CAMERA_BLUE_IN_DO_TEST_BENCH_WIRING 0
+#define CAMERA_BLUE_IN_DRIVEN_SIM_VALUE 0
+#define CAMERA_BLUE_IN_EDGE_TYPE "NONE"
+#define CAMERA_BLUE_IN_FREQ 50000000
+#define CAMERA_BLUE_IN_HAS_IN 1
+#define CAMERA_BLUE_IN_HAS_OUT 0
+#define CAMERA_BLUE_IN_HAS_TRI 0
+#define CAMERA_BLUE_IN_IRQ -1
+#define CAMERA_BLUE_IN_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define CAMERA_BLUE_IN_IRQ_TYPE "NONE"
+#define CAMERA_BLUE_IN_NAME "/dev/camera_blue_in"
+#define CAMERA_BLUE_IN_RESET_VALUE 0
+#define CAMERA_BLUE_IN_SPAN 16
+#define CAMERA_BLUE_IN_TYPE "altera_avalon_pio"
 
 
 /*
- * altpll_0 configuration
+ * camera_green_in configuration
  *
  */
 
-#define ALTPLL_0_BASE 0x410f0
-#define ALTPLL_0_IRQ -1
-#define ALTPLL_0_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define ALTPLL_0_NAME "/dev/altpll_0"
-#define ALTPLL_0_SPAN 16
-#define ALTPLL_0_TYPE "altpll"
-#define ALT_MODULE_CLASS_altpll_0 altpll
+#define ALT_MODULE_CLASS_camera_green_in altera_avalon_pio
+#define CAMERA_GREEN_IN_BASE 0x41200
+#define CAMERA_GREEN_IN_BIT_CLEARING_EDGE_REGISTER 0
+#define CAMERA_GREEN_IN_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define CAMERA_GREEN_IN_CAPTURE 0
+#define CAMERA_GREEN_IN_DATA_WIDTH 8
+#define CAMERA_GREEN_IN_DO_TEST_BENCH_WIRING 0
+#define CAMERA_GREEN_IN_DRIVEN_SIM_VALUE 0
+#define CAMERA_GREEN_IN_EDGE_TYPE "NONE"
+#define CAMERA_GREEN_IN_FREQ 50000000
+#define CAMERA_GREEN_IN_HAS_IN 1
+#define CAMERA_GREEN_IN_HAS_OUT 0
+#define CAMERA_GREEN_IN_HAS_TRI 0
+#define CAMERA_GREEN_IN_IRQ -1
+#define CAMERA_GREEN_IN_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define CAMERA_GREEN_IN_IRQ_TYPE "NONE"
+#define CAMERA_GREEN_IN_NAME "/dev/camera_green_in"
+#define CAMERA_GREEN_IN_RESET_VALUE 0
+#define CAMERA_GREEN_IN_SPAN 16
+#define CAMERA_GREEN_IN_TYPE "altera_avalon_pio"
+
+
+/*
+ * camera_red_in configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_camera_red_in altera_avalon_pio
+#define CAMERA_RED_IN_BASE 0x411f0
+#define CAMERA_RED_IN_BIT_CLEARING_EDGE_REGISTER 0
+#define CAMERA_RED_IN_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define CAMERA_RED_IN_CAPTURE 0
+#define CAMERA_RED_IN_DATA_WIDTH 8
+#define CAMERA_RED_IN_DO_TEST_BENCH_WIRING 0
+#define CAMERA_RED_IN_DRIVEN_SIM_VALUE 0
+#define CAMERA_RED_IN_EDGE_TYPE "NONE"
+#define CAMERA_RED_IN_FREQ 50000000
+#define CAMERA_RED_IN_HAS_IN 1
+#define CAMERA_RED_IN_HAS_OUT 0
+#define CAMERA_RED_IN_HAS_TRI 0
+#define CAMERA_RED_IN_IRQ -1
+#define CAMERA_RED_IN_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define CAMERA_RED_IN_IRQ_TYPE "NONE"
+#define CAMERA_RED_IN_NAME "/dev/camera_red_in"
+#define CAMERA_RED_IN_RESET_VALUE 0
+#define CAMERA_RED_IN_SPAN 16
+#define CAMERA_RED_IN_TYPE "altera_avalon_pio"
 
 
 /*
@@ -218,34 +268,6 @@
 #define ALT_MAX_FD 32
 #define ALT_SYS_CLK none
 #define ALT_TIMESTAMP_CLK none
-
-
-/*
- * i2c_opencores_camera configuration
- *
- */
-
-#define ALT_MODULE_CLASS_i2c_opencores_camera i2c_opencores
-#define I2C_OPENCORES_CAMERA_BASE 0x41060
-#define I2C_OPENCORES_CAMERA_IRQ 2
-#define I2C_OPENCORES_CAMERA_IRQ_INTERRUPT_CONTROLLER_ID 0
-#define I2C_OPENCORES_CAMERA_NAME "/dev/i2c_opencores_camera"
-#define I2C_OPENCORES_CAMERA_SPAN 32
-#define I2C_OPENCORES_CAMERA_TYPE "i2c_opencores"
-
-
-/*
- * i2c_opencores_mipi configuration
- *
- */
-
-#define ALT_MODULE_CLASS_i2c_opencores_mipi i2c_opencores
-#define I2C_OPENCORES_MIPI_BASE 0x41080
-#define I2C_OPENCORES_MIPI_IRQ 1
-#define I2C_OPENCORES_MIPI_IRQ_INTERRUPT_CONTROLLER_ID 0
-#define I2C_OPENCORES_MIPI_NAME "/dev/i2c_opencores_mipi"
-#define I2C_OPENCORES_MIPI_SPAN 32
-#define I2C_OPENCORES_MIPI_TYPE "i2c_opencores"
 
 
 /*
@@ -359,60 +381,6 @@
 #define LEDR_RESET_VALUE 0
 #define LEDR_SPAN 16
 #define LEDR_TYPE "altera_avalon_pio"
-
-
-/*
- * mipi_pwdn_n configuration
- *
- */
-
-#define ALT_MODULE_CLASS_mipi_pwdn_n altera_avalon_pio
-#define MIPI_PWDN_N_BASE 0x410a0
-#define MIPI_PWDN_N_BIT_CLEARING_EDGE_REGISTER 0
-#define MIPI_PWDN_N_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define MIPI_PWDN_N_CAPTURE 0
-#define MIPI_PWDN_N_DATA_WIDTH 1
-#define MIPI_PWDN_N_DO_TEST_BENCH_WIRING 0
-#define MIPI_PWDN_N_DRIVEN_SIM_VALUE 0
-#define MIPI_PWDN_N_EDGE_TYPE "NONE"
-#define MIPI_PWDN_N_FREQ 50000000
-#define MIPI_PWDN_N_HAS_IN 0
-#define MIPI_PWDN_N_HAS_OUT 1
-#define MIPI_PWDN_N_HAS_TRI 0
-#define MIPI_PWDN_N_IRQ -1
-#define MIPI_PWDN_N_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define MIPI_PWDN_N_IRQ_TYPE "NONE"
-#define MIPI_PWDN_N_NAME "/dev/mipi_pwdn_n"
-#define MIPI_PWDN_N_RESET_VALUE 0
-#define MIPI_PWDN_N_SPAN 16
-#define MIPI_PWDN_N_TYPE "altera_avalon_pio"
-
-
-/*
- * mipi_reset_n configuration
- *
- */
-
-#define ALT_MODULE_CLASS_mipi_reset_n altera_avalon_pio
-#define MIPI_RESET_N_BASE 0x410b0
-#define MIPI_RESET_N_BIT_CLEARING_EDGE_REGISTER 0
-#define MIPI_RESET_N_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define MIPI_RESET_N_CAPTURE 0
-#define MIPI_RESET_N_DATA_WIDTH 1
-#define MIPI_RESET_N_DO_TEST_BENCH_WIRING 0
-#define MIPI_RESET_N_DRIVEN_SIM_VALUE 0
-#define MIPI_RESET_N_EDGE_TYPE "NONE"
-#define MIPI_RESET_N_FREQ 50000000
-#define MIPI_RESET_N_HAS_IN 0
-#define MIPI_RESET_N_HAS_OUT 1
-#define MIPI_RESET_N_HAS_TRI 0
-#define MIPI_RESET_N_IRQ -1
-#define MIPI_RESET_N_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define MIPI_RESET_N_IRQ_TYPE "NONE"
-#define MIPI_RESET_N_NAME "/dev/mipi_reset_n"
-#define MIPI_RESET_N_RESET_VALUE 0
-#define MIPI_RESET_N_SPAN 16
-#define MIPI_RESET_N_TYPE "altera_avalon_pio"
 
 
 /*
@@ -564,7 +532,7 @@
 #define SYSID_QSYS_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_NAME "/dev/sysid_qsys"
 #define SYSID_QSYS_SPAN 8
-#define SYSID_QSYS_TIMESTAMP 1494841816
+#define SYSID_QSYS_TIMESTAMP 1495015625
 #define SYSID_QSYS_TYPE "altera_avalon_sysid_qsys"
 
 

@@ -241,12 +241,16 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	
 	.sevseg_0_external_connection_export			(sevseg_0_binary),
 	.sevseg_1_external_connection_export			(sevseg_1_binary),
-	.sevseg_2_external_connection_export			(sevseg_2_binary),
+	.sevseg_2_external_connection_export			(),
 	
 	.lcd_external_connection_RS                	(LCD_RS),                //          lcd_external_connection.RS
 	.lcd_external_connection_RW						(LCD_RW),                //                                 .RW
 	.lcd_external_connection_data              	(LCD_DATA),              //                                 .data
-   .lcd_external_connection_E							(LCD_EN)                  //                                 .E
+   .lcd_external_connection_E							(LCD_EN),                  //                                 .E
+	
+	.camera_blue_in_external_connection_export  (), //(VGA_B),  //  camera_blue_in_external_connection.export
+	.camera_green_in_external_connection_export (), //(VGA_G), // camera_green_in_external_connection.export
+	.camera_red_in_external_connection_export   (), //(VGA_R)   //   camera_red_in_external_connection.export
 );
 
 // CAMERA SHIZZLE
@@ -271,6 +275,8 @@ wire [11:0] GREEN  ;
 wire [11:0] BLUE 		 ; 
 wire [12:0] VGA_H_CNT;			
 wire [12:0] VGA_V_CNT;	
+
+assign sevseg_2_binary = VGA_V_CNT;
 
 wire        READ_Request ;
 wire 	[7:0] B_AUTO;
@@ -484,7 +490,7 @@ RAW2RGB_J				u4	(
 							.oBlue        ( BLUE [11:0] ),
 							.oDVAL        ( )
 
-							);	
+							);
 
 //------VS FREQUENCY TEST = 60HZ --
 							

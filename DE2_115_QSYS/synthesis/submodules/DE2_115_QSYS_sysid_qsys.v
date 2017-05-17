@@ -49,7 +49,7 @@ module DE2_115_QSYS_sysid_qsys (
 
   wire    [ 31: 0] readdata;
   //control_slave, which is an e_avalon_slave
-  assign readdata = address ? 1494924551 : 0;
+  assign readdata = address ? 1495013996 : 0;
 
 endmodule
 
