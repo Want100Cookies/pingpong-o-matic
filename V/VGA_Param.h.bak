@@ -16,5 +16,5 @@ parameter	V_SYNC_ACT	=	480;
 parameter	V_SYNC_FRONT=	10;
 parameter	V_SYNC_TOTAL=	525;
 //	Start Offset
-parameter	X_START		=	H_SYNC_CYC+H_SYNC_BACK; // 96+6 + 48-6 = 144
-parameter	Y_START		=	V_SYNC_CYC+V_SYNC_BACK; // 2+2 + 33-2 = 35
+parameter	X_START		=	H_SYNC_CYC+H_SYNC_BACK;
+parameter	Y_START		=	V_SYNC_CYC+V_SYNC_BACK;

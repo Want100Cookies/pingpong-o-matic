@@ -345,11 +345,11 @@ case ( WCNT )
 	   55 :SLV8_REG16_DATA8<= { 8'h6c,16'h3646, 8'h86}; // MIPI settings
 	   56 :SLV8_REG16_DATA8<= { 8'h6c,16'h3647, 8'h27}; // MIPI settings
 	   57 :SLV8_REG16_DATA8<= { 8'h6c,16'h364a, 8'h1b}; // MIPI settings    // exposure
-	   58 :SLV8_REG16_DATA8<= { 8'h6c,16'h3500, 8'h05}; // exposure HH
-	   59 :SLV8_REG16_DATA8<= { 8'h6c,16'h3501, 8'hf0}; // exposure H
+	   58 :SLV8_REG16_DATA8<= { 8'h6c,16'h3500, 8'h00}; // exposure HH
+	   59 :SLV8_REG16_DATA8<= { 8'h6c,16'h3501, 8'h2c}; // exposure H
 	   60 :SLV8_REG16_DATA8<= { 8'h6c,16'h3502, 8'h00}; // exposure L
 	   61 :SLV8_REG16_DATA8<= { 8'h6c,16'h3503, 8'h00}; // gain no delay, exposure no delay
-	   62 :SLV8_REG16_DATA8<= { 8'h6c,16'h3508, 8'h00}; // gain H
+	   62 :SLV8_REG16_DATA8<= { 8'h6c,16'h3508, 8'h02}; // gain H
 	   63 :SLV8_REG16_DATA8<= { 8'h6c,16'h3509, 8'h00}; // gain L
 	   64 :SLV8_REG16_DATA8<= { 8'h6c,16'h3700, 8'h48}; // sensor control  // TODO: to check
 	   65 :SLV8_REG16_DATA8<= { 8'h6c,16'h3701, 8'h18};

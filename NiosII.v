@@ -276,12 +276,13 @@ wire [11:0] BLUE 		 ;
 wire [12:0] VGA_H_CNT;			
 wire [12:0] VGA_V_CNT;	
 
-assign sevseg_2_binary = VGA_V_CNT;
-
 wire        READ_Request ;
 wire 	[7:0] B_AUTO;
 wire 	[7:0] G_AUTO;
 wire 	[7:0] R_AUTO;
+wire 	[7:0] B_AUTO1;
+wire 	[7:0] G_AUTO1;
+wire 	[7:0] R_AUTO1;
 wire        RESET_N  ; 
 
 wire        I2C_RELEASE ;  
@@ -405,9 +406,9 @@ VGA_Controller		u1	(	//	Host Side
 							 .iBlue   ( BLUE  [11:4] ),
 							 
 							 //	VGA Side
-							 .oVGA_R  ( R_AUTO[7:0] ),
-							 .oVGA_G  ( G_AUTO[7:0] ),
-							 .oVGA_B  ( B_AUTO[7:0] ),
+							 .oVGA_R  ( R_AUTO1[7:0] ),
+							 .oVGA_G  ( G_AUTO1[7:0] ),
+							 .oVGA_B  ( B_AUTO1[7:0] ),
 							 .oVGA_H_SYNC( VGA_HS ),
 							 .oVGA_V_SYNC( VGA_VS ),
 							 .oVGA_SYNC  ( VGA_SYNC_N ),
@@ -419,7 +420,88 @@ VGA_Controller		u1	(	//	Host Side
 						    .V_Cont     ( VGA_V_CNT )								
 						);	
 
+						
 
+
+//always @(posedge VGA_CLK) begin
+//	clock,
+//	shiftin,
+//	shiftout,
+//	taps
+
+//wire [5119:0] LINE_R_TAP;
+//wire [5119:0] LINE_G_TAP;
+//wire [5119:0] LINE_B_TAP;
+//
+//VGA_LINE line_r (
+//	.clock		( VGA_CLK),
+//	.shiftin		( R_AUTO[7:0] ),
+//	.shiftout	(),
+//	.taps			( LINE_R_TAP )
+//);
+//
+//VGA_LINE line_g (
+//	.clock		( VGA_CLK),
+//	.shiftin		( G_AUTO[7:0] ),
+//	.shiftout	(),
+//	.taps			( LINE_G_TAP )
+//);
+//
+//VGA_LINE line_b (
+//	.clock		( VGA_CLK),
+//	.shiftin		( G_AUTO[7:0] ),
+//	.shiftout	(),
+//	.taps			( LINE_G_TAP )
+//);
+//
+//always @(posedge VGA_VS) begin
+////	reg [24:0] previous [0:3];
+////	previous[0] = { LINE_R_TAP[0:7], LINE_G_TAP[0:7], LINE_B_TAP[0:7] };
+////	previous[1] = { LINE_R_TAP[8:15], LINE_G_TAP[8:15], LINE_B_TAP[8:15] };
+//
+//	reg 
+//	
+//	for (i = 2; i < 640; i = i + 1) begin
+//		previous[i
+//	end
+//end
+
+reg [11:0] x;
+reg [11:0] y;
+
+always @(posedge VGA_CLK) begin
+	if (VGA_H_CNT == 190 && VGA_V_CNT === 190) begin
+		real r_tmp = R_AUTO1 / 255;
+		real g_tmp = G_AUTO1 / 255;
+		real b_tmp = B_AUTO1 / 255;
+		
+		real max = (r_tmp > g_tmp) ? (r_tmp > b_tmp ? r_tmp : b_tmp) : (g_tmp > b_tmp ? g_tmp : b_tmp);
+		real min = (r_tmp < g_tmp) ? (r_tmp < b_tmp ? r_tmp : b_tmp) : (g_tmp < b_tmp ? g_tmp : b_tmp);
+		
+		real h, s, l = (max + min) / 2;
+		
+		if (max == min) h = 0; s = 0;
+		else begin
+			real d = max - min;
+			s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+			
+			if (max == r_tmp) h = (g_tmp - b_tmp) / d + (g_tmp < b_tmp ? 6 : 0);
+			if (max == g_tmp) h = (b_tmp - r_tmp) / d + 2);
+			if (max == b_tmp) h = (r_tmp - g_tmp) / d + 4;
+			
+			h = h / 6;
+		end
+				
+		if (h > 300 && h < 350) begin
+			x = VGA_H_CNT;
+			y = VGA_V_CNT;
+		end;
+	end
+end
+
+assign R_AUTO = (VGA_H_CNT == x && VGA_V_CNT == y) ? 255 : R_AUTO1;
+assign G_AUTO = (VGA_H_CNT == x && VGA_V_CNT == y) ? 111 : G_AUTO1;
+assign B_AUTO = (VGA_H_CNT == x && VGA_V_CNT == y) ? 255 : B_AUTO1;
 
 //------SDRAM CLOCK GENNERATER  --
 sdram_pll u6(
