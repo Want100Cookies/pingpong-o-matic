@@ -221,7 +221,7 @@ NumberDisplay NumberDisplay_1_inst (
 );
 
 NumberDisplay NumberDisplay_2_inst (
-	.binary	(sevseg_2_binary),
+	.binary	(hue),
 	.DIG0		(HEX0),
 	.DIG1		(HEX1),
 	.DIG2 	(HEX2),
@@ -466,42 +466,43 @@ VGA_Controller		u1	(	//	Host Side
 //	end
 //end
 
-reg [11:0] x;
-reg [11:0] y;
+reg [8:0] hue;
+reg [8:0] count;
+reg [9:0] x;
+reg [9:0] y;
+
 
 always @(posedge VGA_CLK) begin
-	if (VGA_H_CNT == 190 && VGA_V_CNT === 190) begin
-		real r_tmp = R_AUTO1 / 255;
-		real g_tmp = G_AUTO1 / 255;
-		real b_tmp = B_AUTO1 / 255;
-		
-		real max = (r_tmp > g_tmp) ? (r_tmp > b_tmp ? r_tmp : b_tmp) : (g_tmp > b_tmp ? g_tmp : b_tmp);
-		real min = (r_tmp < g_tmp) ? (r_tmp < b_tmp ? r_tmp : b_tmp) : (g_tmp < b_tmp ? g_tmp : b_tmp);
-		
-		real h, s, l = (max + min) / 2;
-		
-		if (max == min) h = 0; s = 0;
-		else begin
-			real d = max - min;
-			s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-			
-			if (max == r_tmp) h = (g_tmp - b_tmp) / d + (g_tmp < b_tmp ? 6 : 0);
-			if (max == g_tmp) h = (b_tmp - r_tmp) / d + 2);
-			if (max == b_tmp) h = (r_tmp - g_tmp) / d + 4;
-			
-			h = h / 6;
-		end
-				
-		if (h > 300 && h < 350) begin
-			x = VGA_H_CNT;
-			y = VGA_V_CNT;
-		end;
+	reg [7:0] max;
+	reg [7:0] min;
+
+	max = (R_AUTO1 > G_AUTO1) ? (R_AUTO1 > B_AUTO1 ? R_AUTO1 : B_AUTO1) : (G_AUTO1 > B_AUTO1 ? G_AUTO1 : B_AUTO1);
+	min = (R_AUTO1 < G_AUTO1) ? (R_AUTO1 < B_AUTO1 ? R_AUTO1 : B_AUTO1) : (G_AUTO1 < B_AUTO1 ? G_AUTO1 : B_AUTO1);
+
+	if (max == R_AUTO1) hue = (G_AUTO1 - B_AUTO1) * 60 / (max - min);
+	if (max == G_AUTO1) hue = 120 + (B_AUTO1 - R_AUTO1) * 60 / (max - min);
+	if (max == B_AUTO1) hue = 240 + (R_AUTO1 - G_AUTO1) * 60 / (max - min);
+	
+	if (hue > 360) hue = hue - 360;
+	if (hue < 0) hue = hue + 360;
+	
+	if (hue > 280 && hue < 320) begin
+		count = count + 1;
 	end
+	else begin
+		count = 0;
+	end
+	
+	if (count > 20) begin
+		x = VGA_H_CNT;
+		y = VGA_V_CNT;
+	end
+
 end
 
-assign R_AUTO = (VGA_H_CNT == x && VGA_V_CNT == y) ? 255 : R_AUTO1;
-assign G_AUTO = (VGA_H_CNT == x && VGA_V_CNT == y) ? 111 : G_AUTO1;
-assign B_AUTO = (VGA_H_CNT == x && VGA_V_CNT == y) ? 255 : B_AUTO1;
+assign R_AUTO = (VGA_H_CNT > x - 5  && VGA_H_CNT < x + 5 && VGA_V_CNT > y - 5 && VGA_V_CNT < y + 5) ? 255 : R_AUTO1;
+assign G_AUTO = (VGA_H_CNT > x - 5  && VGA_H_CNT < x + 5 && VGA_V_CNT > y - 5 && VGA_V_CNT < y + 5) ? 000 : G_AUTO1;
+assign B_AUTO = (VGA_H_CNT > x - 5  && VGA_H_CNT < x + 5 && VGA_V_CNT > y - 5 && VGA_V_CNT < y + 5) ? 255 : B_AUTO1;
 
 //------SDRAM CLOCK GENNERATER  --
 sdram_pll u6(
