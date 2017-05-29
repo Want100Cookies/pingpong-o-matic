@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include "system.h"
 #include "altera_avalon_pio_regs.h"
 #include "altera_avalon_lcd_16207_regs.h"
@@ -84,14 +85,23 @@ int main() {
 //	int count2 = 0;
 //	int count3 = 0;
 
+	//IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
+	for(int x = 200; x < 250; x++)
+	{
+		printf("%d\n",x);
+		for(int y = 200; y < 250; y++)
+		{
+			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
+			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, x * y * 640);
+			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE, 0xFF00FF);
+			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
+			usleep(10);
+
+		}
+	}
+
 //	int delay;
 	while (1) {
-		printf("0x%.8X", IORD_ALTERA_AVALON_PIO_DATA(CAMERA_RED_IN_BASE));
-		printf(" | ");
-		printf("0x%.8X", IORD_ALTERA_AVALON_PIO_DATA(CAMERA_GREEN_IN_BASE));
-		printf(" | ");
-		printf("0x%.8X", IORD_ALTERA_AVALON_PIO_DATA(CAMERA_BLUE_IN_BASE));
-		printf("\n");
 //		IOWR_ALTERA_AVALON_PIO_DATA(LEDR_BASE, 7 << count);
 //		IOWR_ALTERA_AVALON_PIO_DATA(LEDG_BASE, 0b111111111);
 //

@@ -1,0 +1,9 @@
+module FrameBuffer(
+	input		     [7:0]		VGA_B_IN,
+	input		     [7:0]		VGA_G_IN,
+	input		     [7:0]		VGA_R_IN,
+	
+	output		     [7:0]		VGA_B_OUT,
+	output		     [7:0]		VGA_G_OUT,
+	output		     [7:0]		VGA_R_OUT,
+);

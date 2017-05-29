@@ -196,6 +196,13 @@ wire	[7:0]		sevseg_0_binary;
 wire	[7:0]		sevseg_1_binary;
 wire	[15:0]	sevseg_2_binary;
 
+// FrameBuffer
+wire 	[7:0] R_RESULT;
+wire 	[7:0] B_RESULT;
+wire 	[7:0] G_RESULT;
+wire				FRAMEBUFFER_CLK;
+wire	[18:0]	FRAMEBUFFER_ADDR;
+wire	[23:0]	FRAMEBUFFER_DATA;
 
 //=======================================================
 //  Structural coding
@@ -228,6 +235,21 @@ NumberDisplay NumberDisplay_2_inst (
 	.DIG3 	(HEX3)
 );
 
+FrameBuffer FrameBuffer_inst (
+	.VGA_CLK		(VGA_CLK),
+	.VGA_R_IN	(R_RESULT),
+	.VGA_G_IN	(G_RESULT),
+	.VGA_B_IN	(B_RESULT),
+	.H_CNT		(VGA_H_CNT),
+	.V_CNT		(VGA_V_CNT),
+	.VGA_R_OUT	(VGA_R),
+	.VGA_G_OUT	(VGA_G),
+	.VGA_B_OUT	(VGA_B),
+	.WRITE_CLK	(FRAMEBUFFER_CLK),
+	.WRITE_ADDR	(FRAMEBUFFER_ADDR),
+	.WRITE_DATA	(FRAMEBUFFER_DATA)
+);
+
 DE2_115_QSYS DE2_115_QSYS_inst (
 	.clk_clk                                      (CLOCK2_50),								// clk.clk
 	.reset_reset_n                                (1'b1),										// reset.reset_n
@@ -247,10 +269,11 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	.lcd_external_connection_RW						(LCD_RW),                //                                 .RW
 	.lcd_external_connection_data              	(LCD_DATA),              //                                 .data
    .lcd_external_connection_E							(LCD_EN),                  //                                 .E
-	
-	.camera_blue_in_external_connection_export  (), //(VGA_B),  //  camera_blue_in_external_connection.export
-	.camera_green_in_external_connection_export (), //(VGA_G), // camera_green_in_external_connection.export
-	.camera_red_in_external_connection_export   (), //(VGA_R)   //   camera_red_in_external_connection.export
+
+	.framebuffer_addr_external_connection_export (FRAMEBUFFER_ADDR), // framebuffer_addr_external_connection.export
+	.framebuffer_clk_external_connection_export  (FRAMEBUFFER_CLK),  //  framebuffer_clk_external_connection.export
+	.framebuffer_data_external_connection_export (FRAMEBUFFER_DATA), // framebuffer_data_external_connection.export
+
 );
 
 // CAMERA SHIZZLE
@@ -270,11 +293,11 @@ wire        D8M_CK_HZ ;
 wire        D8M_CK_HZ2 ; 
 wire        D8M_CK_HZ3 ; 
 
-wire [11:0] RED   ; 
-wire [11:0] GREEN  ; 
-wire [11:0] BLUE 		 ; 
-wire [12:0] VGA_H_CNT;			
-wire [12:0] VGA_V_CNT;	
+wire [11:0] RED;
+wire [11:0] GREEN;
+wire [11:0] BLUE;
+wire [12:0] VGA_H_CNT;
+wire [12:0] VGA_V_CNT;
 
 wire        READ_Request ;
 wire 	[7:0] B_AUTO;
@@ -384,13 +407,13 @@ FOCUS_ADJ adl(
                       .VIDEO_HS      ( VGA_HS ),
                       .VIDEO_VS      ( VGA_VS ),
                       .VIDEO_CLK     ( VGA_CLK ),
-		                .VIDEO_DE      (READ_Request) ,
+		                .VIDEO_DE      (READ_Request),
                       .iR            ( R_AUTO ), 
                       .iG            ( G_AUTO ), 
                       .iB            ( B_AUTO ), 
-                      .oR            ( VGA_R ) , 
-                      .oG            ( VGA_G ) , 
-                      .oB            ( VGA_B ) , 
+                      .oR            ( R_RESULT ), 
+                      .oG            ( G_RESULT ), 
+                      .oB            ( B_RESULT ), 
                       
                       .READY         ( READY ),
                       .SCL           ( CAMERA_I2C_SCL_AF ), 
