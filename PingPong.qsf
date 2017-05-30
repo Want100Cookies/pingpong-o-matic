@@ -1229,7 +1229,7 @@ set_location_assignment PIN_AE25 -to CAMERA_PWDN_n
 set_global_assignment -name VERILOG_FILE FrameBuffer.v
 set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
 set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
-set_global_assignment -name VERILOG_FILE output_files/FrameBuffer_ram.v
+set_global_assignment -name VERILOG_FILE FrameBuffer_ram.v
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name CDF_FILE output_files/Chain.cdf
