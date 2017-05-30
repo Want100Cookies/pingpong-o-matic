@@ -221,7 +221,7 @@ NumberDisplay NumberDisplay_1_inst (
 );
 
 NumberDisplay NumberDisplay_2_inst (
-	.binary	(hue),
+	.binary	(sevseg_2_binary),
 	.DIG0		(HEX0),
 	.DIG1		(HEX1),
 	.DIG2 	(HEX2),
@@ -422,104 +422,22 @@ VGA_Controller		u1	(	//	Host Side
 
 						
 
-
-//always @(posedge VGA_CLK) begin
-//	clock,
-//	shiftin,
-//	shiftout,
-//	taps
-
-//wire [5119:0] LINE_R_TAP;
-//wire [5119:0] LINE_G_TAP;
-//wire [5119:0] LINE_B_TAP;
-//
-//VGA_LINE line_r (
-//	.clock		( VGA_CLK),
-//	.shiftin		( R_AUTO[7:0] ),
-//	.shiftout	(),
-//	.taps			( LINE_R_TAP )
-//);
-//
-//VGA_LINE line_g (
-//	.clock		( VGA_CLK),
-//	.shiftin		( G_AUTO[7:0] ),
-//	.shiftout	(),
-//	.taps			( LINE_G_TAP )
-//);
-//
-//VGA_LINE line_b (
-//	.clock		( VGA_CLK),
-//	.shiftin		( G_AUTO[7:0] ),
-//	.shiftout	(),
-//	.taps			( LINE_G_TAP )
-//);
-//
-//always @(posedge VGA_VS) begin
-////	reg [24:0] previous [0:3];
-////	previous[0] = { LINE_R_TAP[0:7], LINE_G_TAP[0:7], LINE_B_TAP[0:7] };
-////	previous[1] = { LINE_R_TAP[8:15], LINE_G_TAP[8:15], LINE_B_TAP[8:15] };
-//
-//	reg 
-//	
-//	for (i = 2; i < 640; i = i + 1) begin
-//		previous[i
-//	end
-//end
-
-reg is_magenta;
-reg [8:0] hue;
-reg [6:0] luminace;
-reg [6:0] saturation;
-
-`include "V/VGA_Param.h"
-
-
-always @(posedge VGA_CLK) begin
-	if (VGA_H_CNT == 200 && VGA_V_CNT == 200) begin
-		reg [7:0] max;
-		reg [7:0] min;
-		reg [7:0] NEW_R;
-		reg [7:0] NEW_G;
-		reg [7:0] NEW_B;
-
-		
-		NEW_R = R_AUTO1 * 100 / 255;
-		NEW_G = G_AUTO1 * 100 / 255;
-		NEW_B = B_AUTO1 * 100 / 255;
-
-		max = (NEW_R > NEW_G) ? (NEW_R > NEW_B ? NEW_R : NEW_B) : (NEW_G > NEW_B ? NEW_G : NEW_B);
-		min = (NEW_R < NEW_G) ? (NEW_R < NEW_B ? NEW_R : NEW_B) : (NEW_G < NEW_B ? NEW_G : NEW_B);
-
-		luminace = (max + min) / 2;
-		
-		if (max == min) begin
-			hue = 0;
-			saturation = 0;
-			
-		end else begin
-			saturation = luminace > 50 ? (max - min) / (200 - max - min) : (max - min) / (max + min);
-			
-			if (max == NEW_R) hue = (NEW_G - NEW_B) / (max - min) + (NEW_G < NEW_B ? 60 : 0);
-			if (max == NEW_G) hue = (NEW_B - NEW_R) / (max - min) + 20;
-			if (max == NEW_B) hue = (NEW_R - NEW_G) / (max - min) + 40;
-			
-			hue = hue / 60;
-		end
-		
-		if (hue > 360) hue = hue - 360;
-		if (hue < 0) hue = hue + 360;
-		
-		is_magenta = hue > 290 && hue < 340 && luminace > 30 && luminace < 70 && saturation > 70;
-	end
-end
-
-//assign R_AUTO = SW[0] || is_magenta ? R_AUTO1 : 0;
-//assign G_AUTO = SW[0] || is_magenta ? G_AUTO1 : 0;
-//assign B_AUTO = SW[0] || is_magenta ? B_AUTO1 : 0;
-
-assign R_AUTO = (VGA_H_CNT > 200  && VGA_H_CNT < 205 && VGA_V_CNT > 200 && VGA_V_CNT < 205) ? 255 : R_AUTO1;
-assign G_AUTO = (VGA_H_CNT > 200  && VGA_H_CNT < 205 && VGA_V_CNT > 200 && VGA_V_CNT < 205) ? 000 : G_AUTO1;
-assign B_AUTO = (VGA_H_CNT > 200  && VGA_H_CNT < 205 && VGA_V_CNT > 200 && VGA_V_CNT < 205) ? 255 : B_AUTO1;
+BallDetection bd1 (
+	.CLK(VGA_CLK),
+	.ENABLE(SW[0]),
+	
+	.VGA_V_CNT(VGA_V_CNT),
+	.VGA_H_CNT(VGA_H_CNT),
+	
+	.R_IN(R_AUTO1),
+	.G_IN(G_AUTO1),
+	.B_IN(B_AUTO1),
+	
+	.R_OUT(R_AUTO),
+	.G_OUT(G_AUTO),
+	.B_OUT(B_AUTO),
+	.debug(sevseg_2_binary)
+);
 
 //------SDRAM CLOCK GENNERATER  --
 sdram_pll u6(
