@@ -1,0 +1,115 @@
+module BallDetection (
+	input CLK,
+	input ENABLE,
+
+	input [7:0] R_IN,
+	input [7:0] G_IN,
+	input [7:0] B_IN,
+	
+	output [7:0] R_OUT,
+	output [7:0] G_OUT,
+	output [7:0] B_OUT
+);
+
+reg is_magenta;
+integer hue;
+integer lightness;
+integer saturation;
+
+integer R;
+integer G;
+integer B;
+
+always @(posedge CLK) begin
+	if (~ENABLE) begin
+		R_OUT = R_IN;
+		G_OUT = G_IN;
+		B_OUT = B_IN;
+	end else begin
+		
+		// RGB to HSL
+		
+		integer max;
+		integer min;
+		integer delta;
+		
+		integer C;
+		integer X;
+		integer M;
+		
+		R = R_IN * 100 / 255; // convert 0-255 to 0-100 (normally 0-1 but no floats bruh)
+		G = G_IN * 100 / 255;
+		B = B_IN * 100 / 255;
+
+		max = (R > G) ? (R > B ? R : B) : (G > B ? G : B);
+		min = (R < G) ? (R < B ? R : B) : (G < B ? G : B);
+		
+		delta = max - min;
+
+		lightness = (max + min) / 2;
+		saturation = (lightness > 50) ? (delta * 100) / (200 - max - min) : (delta * 100) / (max + min);
+		
+		if (max == R) hue = 60 * ((G - B) / delta % 6);
+		if (max == G) hue = 60 * ((B - R) / delta + 2);
+		if (max == B) hue = 60 * ((R - G) / delta + 4);
+		
+		if (max == min) begin // achromatic
+			hue = 0;
+			saturation = 0;
+		end
+
+		if (hue > 360) hue = hue - 360;
+		if (hue < 0) hue = hue + 360;
+		
+		//is_magenta = hue > 290 && hue < 340 && lightness > 30 && lightness < 70 && saturation > 70;
+		
+		// HSL to RGB
+		hue = hue / 60;
+		if (hue < 0) hue = 6 - (-hue % 6);
+		hue = hue % 6;
+		
+		saturation = (saturation / 100) > 1 ? 1 : ((saturation / 100) > 0 ? (saturation / 100) : 0);
+		lightness = (lightness / 100) > 1 ? 1 : ((lightness / 100) > 0 ? (lightness / 100) : 0);
+		
+		C = (2 * lightness) - 1;
+		if (C < 0) C = -C;
+		C = (1 - C - 1) * saturation;
+		
+		X = (hue % 2) - 1;
+		if (X < 0) X = -X;
+		X = C * (1 - X - 1);
+		
+		if (hue < 1) begin
+			R = C;
+			G = X;
+			B = 0;
+		end else if (hue < 2) begin
+			R = X;
+			G = C;
+			B = 0;
+		end else if (hue < 3) begin
+			R = 0;
+			G = C;
+			B = X;
+		end else if (hue < 4) begin
+			R = 0;
+			G = X;
+			B = C;
+		end else if (hue < 5) begin
+			R = X;
+			G = 0;
+			B = C;
+		end else begin
+			R = C;
+			G = 0;
+			B = X;
+		end
+		
+		M = lightness - C / 2;
+		
+		R = R + M * 255;
+		G = G + M * 255;
+		B = B + M * 255;
+	
+	end
+end 
