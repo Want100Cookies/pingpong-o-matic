@@ -76,6 +76,14 @@ alt_u32 test_lcd(void) {
 	return (0);
 }
 
+void setcolor(int x, int y, int c)
+{
+	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
+	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, x * y * 640);
+	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE, c);
+	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
+}
+
 int main() {
 	lcd_init();
 	test_lcd();
@@ -86,17 +94,12 @@ int main() {
 //	int count3 = 0;
 
 	//IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
-	for(int x = 200; x < 250; x++)
-	{
-		printf("%d\n",x);
-		for(int y = 200; y < 250; y++)
-		{
-			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
-			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, x * y * 640);
-			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE, 0xFF00FF);
-			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
-			usleep(10);
 
+	for(int x = 0; x < 640; x++)
+	{
+		for(int y = 0; y < 480; y++)
+		{
+			setcolor(x, y, 0);
 		}
 	}
 
@@ -118,6 +121,72 @@ int main() {
 //		count3 = (count3 + 1) % 100;
 //		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_0_BASE, count3);
 //		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_1_BASE, 99 - count3);
+
+		/*
+		for(int x = 200; x < 250; x++)
+		{
+			//printf("%d\n",x);
+			for(int y = 200; y < 250; y++)
+			{
+				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
+				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, x * y * 640);
+				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE,1);
+				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
+				usleep(5000);
+
+			}
+		}
+
+		usleep(1000000);
+
+		for(int x = 200; x < 250; x++)
+		{
+			//printf("%d\n",x);
+			for(int y = 200; y < 250; y++)
+			{
+				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
+				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, x * y * 640);
+				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE, 0);
+				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
+				//usleep(50);
+
+			}
+		}
+
+		usleep(1000000);
+		*/
+
+		/*
+		const int x = 0;
+		const int y = 0;
+
+		setcolor(x, y, 1);
+		usleep(1000000);
+		setcolor(x, y, 0);
+		*/
+
+		printf("1\n");
+
+		for(int x = 0; x < 640; x++)
+		{
+			for(int y = 0; y < 480; y++)
+			{
+				setcolor(x, y, 1);
+			}
+		}
+
+		//usleep(100000);
+		printf("2\n");
+
+		for(int x = 0; x < 640; x++)
+		{
+			for(int y = 0; y < 480; y++)
+			{
+				setcolor(x, y, 0);
+			}
+		}
+
+		//usleep(100000);
 	}
 
 	return 0;
