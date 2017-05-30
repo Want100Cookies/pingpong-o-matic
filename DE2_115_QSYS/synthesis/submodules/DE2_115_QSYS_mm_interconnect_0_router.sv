@@ -146,9 +146,9 @@ module DE2_115_QSYS_mm_interconnect_0_router
     localparam PAD9 = log2ceil(64'h411d0 - 64'h411c0); 
     localparam PAD10 = log2ceil(64'h411e0 - 64'h411d0); 
     localparam PAD11 = log2ceil(64'h411f0 - 64'h411e0); 
-    localparam PAD12 = log2ceil(64'h41200 - 64'h411f0); 
-    localparam PAD13 = log2ceil(64'h41210 - 64'h41200); 
-    localparam PAD14 = log2ceil(64'h412b0 - 64'h412a0); 
+    localparam PAD12 = log2ceil(64'h41210 - 64'h41200); 
+    localparam PAD13 = log2ceil(64'h41220 - 64'h41210); 
+    localparam PAD14 = log2ceil(64'h41230 - 64'h41220); 
     localparam PAD15 = log2ceil(64'h81110 - 64'h81108); 
     // -------------------------------------------------------
     // Work out which address bits are significant based on the
@@ -280,20 +280,20 @@ module DE2_115_QSYS_mm_interconnect_0_router
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 7;
     end
 
-    // ( 0x411f0 .. 0x41200 )
-    if ( {address[RG:PAD12],{PAD12{1'b0}}} == 20'h411f0  && read_transaction  ) begin
+    // ( 0x41200 .. 0x41210 )
+    if ( {address[RG:PAD12],{PAD12{1'b0}}} == 20'h41200   ) begin
             src_channel = 16'b0010000000000000;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 2;
     end
 
-    // ( 0x41200 .. 0x41210 )
-    if ( {address[RG:PAD13],{PAD13{1'b0}}} == 20'h41200  && read_transaction  ) begin
+    // ( 0x41210 .. 0x41220 )
+    if ( {address[RG:PAD13],{PAD13{1'b0}}} == 20'h41210   ) begin
             src_channel = 16'b0100000000000000;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 1;
     end
 
-    // ( 0x412a0 .. 0x412b0 )
-    if ( {address[RG:PAD14],{PAD14{1'b0}}} == 20'h412a0  && read_transaction  ) begin
+    // ( 0x41220 .. 0x41230 )
+    if ( {address[RG:PAD14],{PAD14{1'b0}}} == 20'h41220   ) begin
             src_channel = 16'b1000000000000000;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 0;
     end
