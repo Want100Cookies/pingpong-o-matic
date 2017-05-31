@@ -36,55 +36,11 @@ simple_dual_port_ram_dual_clock FrameBuffer_ram_inst (
 
 assign read_clk = ~VGA_CLK;
 
-always @(posedge VGA_CLK) begin
-	reg [7:0] x;
-	reg [7:0] y;
-	
-	x = H_CNT > X_START ? H_CNT - X_START : 0;
-	y = V_CNT > Y_START ? V_CNT - Y_START : 0;
-	
-	if (x > VGA_WIDTH) x = VGA_WIDTH;
-	if (y > VGA_HEIGHT) y = VGA_HEIGHT;
-	
-	read_addr = x + y * VGA_WIDTH;
-	//read_clk = 1;
-	
-	if (val > 0) begin
-		/*
-		VGA_R_OUT = val[7:0];
-		VGA_G_OUT = val[15:8];
-		VGA_B_OUT = val[23:16];
-		*/
-		VGA_R_OUT = 255;
-		VGA_G_OUT = 0;
-		VGA_B_OUT = 255;
-	end else begin
-		VGA_R_OUT = VGA_R_IN;
-		VGA_G_OUT = VGA_G_IN;
-		VGA_B_OUT = VGA_B_IN;
-	end
-	
-	//read_clk = 0;
-	
-	/*
-	if (H_CNT < X_START + 200 && V_CNT < Y_START + 200) begin
-		VGA_R_OUT = 255;
-		VGA_G_OUT = 0;
-		VGA_B_OUT = 0;
-	end else if (H_CNT < X_START + 200) begin
-		VGA_R_OUT = 0;
-		VGA_G_OUT = 255;
-		VGA_B_OUT = 0;
-	end else if (V_CNT < Y_START + 200) begin
-		VGA_R_OUT = 0;
-		VGA_G_OUT = 0;
-		VGA_B_OUT = 255;
-	end else begin
-		VGA_R_OUT = VGA_R_IN;
-		VGA_G_OUT = VGA_G_IN;
-		VGA_B_OUT = VGA_B_IN;
-	end
-	*/
-end
+assign VGA_R_OUT = val ? 255 : VGA_R_IN;
+assign VGA_G_OUT = val ? 0 : VGA_G_IN;
+assign VGA_B_OUT = val ? 255 : VGA_B_IN;
+
+assign read_addr =  (H_CNT > X_START ? ((H_CNT - X_START) > VGA_WIDTH ? VGA_WIDTH : (H_CNT - X_START)) : 0) + // x
+							(V_CNT > Y_START ? ((V_CNT - Y_START) > VGA_HEIGHT ? VGA_HEIGHT : (V_CNT - Y_START)) : 0) * VGA_WIDTH; // y
 
 endmodule
