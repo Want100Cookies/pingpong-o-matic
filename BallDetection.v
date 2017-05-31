@@ -23,14 +23,6 @@ integer R;
 integer G;
 integer B;
 
-integer max_v = 0;
-integer count_v = 0;
-
-integer found_v = 0;
-
-integer prev_v = 0;
-integer prev_h = 0;
-
 always @(posedge CLK) begin
 	if (~ENABLE) begin
 		R_OUT = R_IN;
@@ -71,30 +63,18 @@ always @(posedge CLK) begin
 		if (hue > 360) hue = hue - 360;
 		if (hue < 0) hue = hue + 360;
 		
-		if (hue > 100 && hue < 140 
+		if (hue > 290 && hue < 320
 			&& lightness > 20 && lightness < 80 
-			&& saturation > 50
-			&& VGA_H_CNT > 10) begin
-			count_v = count_v + 1;
+			&& saturation > 50) begin
 			R_OUT = 255;
 			G_OUT = 0;
 			B_OUT = 0;
 		end else begin
 			R_OUT = R_IN;
-			G_OUT = (found_v < VGA_H_CNT - 5 || found_v > VGA_H_CNT + 5) ? 255 : G_IN;
+			G_OUT = G_IN;
 			B_OUT = B_IN;
 		end
 		
-		if (VGA_H_CNT == 1) max_v = 0;
-		
-		if (VGA_V_CNT == 0) count_v = 0;
-		
-		if (VGA_V_CNT > 640 && count_v > max_v) found_v = VGA_H_CNT; max_v = count_v;
-		
-		
-		prev_v = VGA_V_CNT;
-		prev_h = VGA_H_CNT;
-			
 		
 		// HSL to RGB
 //		if (saturation == 0) begin
