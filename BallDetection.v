@@ -64,7 +64,7 @@ always @(posedge CLK) begin
 		if (hue < 0) hue = hue + 360;
 		
 		if (hue > 290 && hue < 320
-			&& lightness > 20 && lightness < 80 
+//			&& lightness > 20 && lightness < 80 
 			&& saturation > 50) begin
 			R_OUT = 255;
 			G_OUT = 0;
