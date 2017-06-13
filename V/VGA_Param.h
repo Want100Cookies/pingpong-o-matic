@@ -1,3 +1,7 @@
+parameter VGA_WIDTH  = 640;
+parameter VGA_HEIGHT = 480;
+
+
 //	Horizontal Parameter	( Pixel )
 parameter	H_SYNC_CYC	=	96+6;
 parameter	H_SYNC_BACK	=	48-6;//4848;
