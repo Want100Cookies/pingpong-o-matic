@@ -217,20 +217,22 @@ NumberDisplay NumberDisplay_2_inst (
 );
 
 BallDetection BallDetection_inst (
-	.CLK               (VGA_CLK           ),
-	.ENABLE            (SW[0]             ),
+	.CLK      (VGA_CLK        ),
+	.ENABLE   (SW[0]          ),
 	
-	.VGA_V_CNT         (VGA_V_CNT         ),
-	.VGA_H_CNT         (VGA_H_CNT         ),
+	.VGA_V_CNT(VGA_V_CNT      ),
+	.VGA_H_CNT(VGA_H_CNT      ),
+	.VGA_HS   (VGA_HS         ),
+	.VGA_VS   (VGA_VS         ),
 	
-	.R_IN              (R_RESULT          ),
-	.G_IN              (G_RESULT          ),
-	.B_IN              (B_RESULT          ),
+	.R_IN     (R_RESULT       ),
+	.G_IN     (G_RESULT       ),
+	.B_IN     (B_RESULT       ),
 	
-	.R_OUT             (R_RESULT1         ),
-	.G_OUT             (G_RESULT1         ),
-	.B_OUT             (B_RESULT1         ),
-	.debug             (sevseg_2_binary   )
+	.R_OUT    (R_RESULT1      ),
+	.G_OUT    (G_RESULT1      ),
+	.B_OUT    (B_RESULT1      ),
+	.debug    (sevseg_2_binary)
 );
 
 FrameBuffer FrameBuffer_inst (
