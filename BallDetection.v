@@ -27,11 +27,11 @@ module BallDetection (
 	integer x_grid;
 	integer y_grid;
 
-	integer x_ball        ;
-	integer y_ball        ;
+	integer x_ball     = 0;
+	integer y_ball     = 0;
 	integer ball_count = 0;
 
-	reg start = 1;
+	reg reset_grid = 1;
 
 	integer hue       ;
 	integer lightness ;
@@ -47,14 +47,14 @@ module BallDetection (
 
 	always @(posedge CLK) begin
 		if (~ENABLE || !(
-			VGA_H_CNT > X_START && (VGA_H_CNT - X_START) < VGA_WIDTH &&
-			VGA_V_CNT > Y_START && (VGA_V_CNT - Y_START) < VGA_HEIGHT)) begin
+				VGA_H_CNT > X_START && (VGA_H_CNT - X_START) < VGA_WIDTH &&
+				VGA_V_CNT > Y_START && (VGA_V_CNT - Y_START) < VGA_HEIGHT)) begin
 			R_OUT <= R_IN;
 			G_OUT <= G_IN;
 			B_OUT <= B_IN;
 		end else begin
-			if(start) begin
-				start = 0;
+			if(reset_grid) begin
+				reset_grid = 0;
 				for (int for_x = 0; for_x < cols; for_x++) begin
 					grid[for_x] = 0;
 				end
@@ -104,12 +104,12 @@ module BallDetection (
 				B_OUT <= 0;
 			end else if(hue > 100 && hue < 140) begin
 				R_OUT <= 0;
-				G_OUT <= 0;
+				G_OUT <= 255;
 				B_OUT <= 0;
 			end else begin
-				R_OUT <= R_IN;
-				G_OUT <= G_IN;
-				B_OUT <= B_IN;
+				R_OUT <= 0;
+				G_OUT <= 0;
+				B_OUT <= 0;
 			end
 
 			if(x == VGA_WIDTH - 1 && y % block_size == 0) begin
@@ -118,11 +118,12 @@ module BallDetection (
 				integer max_y;
 				for (int for_x = 0; for_x < cols; for_x++) begin
 					if(grid[for_x] > max_count) begin
-						max_count   = grid[for_x];
-						grid[for_x] = 0;
-						max_x       = for_x;
-						max_y       = y_grid;
+						max_count = grid[for_x];
+						max_x     = for_x;
+						max_y     = y_grid;
 					end
+
+					grid[for_x] = 0;
 				end
 
 				if(max_count > ball_count) begin
@@ -130,12 +131,12 @@ module BallDetection (
 					y_ball     = max_y;
 					ball_count = max_count;
 				end
-			end
 
-			if(x == VGA_WIDTH - 1 && y == VGA_HEIGHT - 1) begin
-				ball_count = 0;
+				if(y_grid == rows - 1) begin
+					debug      = ball_count;
+					ball_count = 0;
+				end
 			end
-
 		end
 	end
 endmodule 
