@@ -1,0 +1,4 @@
+module ScoreDisplay(
+	input		[6:0]	ScoreA,
+	input		[6:0]	ScoreB
+);

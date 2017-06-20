@@ -196,6 +196,11 @@ wire	[7:0]		sevseg_0_binary;
 wire	[7:0]		sevseg_1_binary;
 wire	[15:0]	sevseg_2_binary;
 
+// Score Display
+wire	[6:0]		score_a;
+wire	[6:0]		score_b;
+
+
 // FrameBuffer
 wire 	[7:0] R_RESULT;
 wire 	[7:0] B_RESULT;
@@ -235,6 +240,21 @@ NumberDisplay NumberDisplay_2_inst (
 	.DIG3 	(HEX3)
 );
 
+ScoreDisplay ScoreDisplay_inst (
+	.ScoreA		(score_a),
+	.ScoreB		(score_b),
+	.VGA_CLK		(VGA_CLK),
+	.VGA_R_IN	(R_RESULT),
+	.VGA_G_IN	(G_RESULT),
+	.VGA_B_IN	(B_RESULT),
+	.H_CNT		(VGA_H_CNT),
+	.V_CNT		(VGA_V_CNT),
+	.VGA_R_OUT	(VGA_R),
+	.VGA_G_OUT	(VGA_G),
+	.VGA_B_OUT	(VGA_B)
+);
+
+/*
 FrameBuffer FrameBuffer_inst (
 	.VGA_CLK		(VGA_CLK),
 	.VGA_R_IN	(R_RESULT),
@@ -249,6 +269,7 @@ FrameBuffer FrameBuffer_inst (
 	.WRITE_ADDR	(FRAMEBUFFER_ADDR),
 	.WRITE_DATA	(FRAMEBUFFER_DATA)
 );
+*/
 
 DE2_115_QSYS DE2_115_QSYS_inst (
 	.clk_clk                                      (CLOCK2_50),								// clk.clk
@@ -270,10 +291,8 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	.lcd_external_connection_data              	(LCD_DATA),              //                                 .data
    .lcd_external_connection_E							(LCD_EN),                  //                                 .E
 
-	.framebuffer_addr_external_connection_export (FRAMEBUFFER_ADDR), // framebuffer_addr_external_connection.export
-	.framebuffer_clk_external_connection_export  (FRAMEBUFFER_CLK),  //  framebuffer_clk_external_connection.export
-	.framebuffer_data_external_connection_export (FRAMEBUFFER_DATA), // framebuffer_data_external_connection.export
-
+	.score_a_external_connection_export  			(score_a),  //  score_a_external_connection.export
+	.score_b_external_connection_export  			(score_b)   //  score_b_external_connection.export
 );
 
 // CAMERA SHIZZLE

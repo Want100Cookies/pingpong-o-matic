@@ -13,9 +13,8 @@ module DE2_115_QSYS (
 	sevseg_1_external_connection_export,
 	sevseg_2_external_connection_export,
 	sw_external_connection_export,
-	framebuffer_data_external_connection_export,
-	framebuffer_clk_external_connection_export,
-	framebuffer_addr_external_connection_export);	
+	score_a_external_connection_export,
+	score_b_external_connection_export);	
 
 	input		clk_clk;
 	input	[3:0]	key_external_connection_export;
@@ -30,7 +29,6 @@ module DE2_115_QSYS (
 	output	[7:0]	sevseg_1_external_connection_export;
 	output	[15:0]	sevseg_2_external_connection_export;
 	input	[9:0]	sw_external_connection_export;
-	output	[18:0]	framebuffer_data_external_connection_export;
-	output		framebuffer_clk_external_connection_export;
-	output	[23:0]	framebuffer_addr_external_connection_export;
+	output	[6:0]	score_a_external_connection_export;
+	output	[6:0]	score_b_external_connection_export;
 endmodule

@@ -76,6 +76,7 @@ alt_u32 test_lcd(void) {
 	return (0);
 }
 
+/*
 void setcolor(int x, int y, int c)
 {
 	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
@@ -83,6 +84,7 @@ void setcolor(int x, int y, int c)
 	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE, c);
 	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
 }
+*/
 
 int main() {
 	lcd_init();
@@ -95,6 +97,7 @@ int main() {
 
 	//IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
 
+	/*
 	for(int x = 0; x < 640; x++)
 	{
 		for(int y = 0; y < 480; y++)
@@ -102,9 +105,30 @@ int main() {
 			setcolor(x, y, 0);
 		}
 	}
+	*/
 
 //	int delay;
 	while (1) {
+		for(int i = 0; i < 100; i++)
+		{
+			IOWR_ALTERA_AVALON_PIO_DATA(SCORE_A_BASE, i);
+			IOWR_ALTERA_AVALON_PIO_DATA(SCORE_B_BASE, 99 - i);
+			usleep(100000);
+		}
+
+		/*
+		for(int i = 0; i < 4; i++)
+		{
+			printf("%d\n",i);
+			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
+			//usleep(10000);
+			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, i);
+			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE, i == 0 ? 1 : 0);
+			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
+			usleep(1000000);
+		}
+		*/
+
 //		IOWR_ALTERA_AVALON_PIO_DATA(LEDR_BASE, 7 << count);
 //		IOWR_ALTERA_AVALON_PIO_DATA(LEDG_BASE, 0b111111111);
 //
@@ -165,6 +189,7 @@ int main() {
 		setcolor(x, y, 0);
 		*/
 
+		/*
 		printf("1\n");
 
 		for(int x = 0; x < 640; x++)
@@ -185,7 +210,7 @@ int main() {
 				setcolor(x, y, 0);
 			}
 		}
-
+		*/
 		//usleep(100000);
 	}
 
