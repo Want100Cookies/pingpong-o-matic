@@ -42,7 +42,7 @@
 # ========================
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:19:29  MAY 09, 2017"
-set_global_assignment -name LAST_QUARTUS_VERSION "17.0.0 Standard Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "16.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name VERILOG_FILE V_VCM/VCM_I2C_VR.v
 set_global_assignment -name VERILOG_FILE V_VCM/I2C_WRITE_POINTER_VR.v
@@ -104,11 +104,6 @@ set_global_assignment -name SDC_FILE NiosII.sdc
 set_global_assignment -name VERILOG_FILE SevSeg.v
 set_global_assignment -name VERILOG_FILE NumberDisplay.v
 set_global_assignment -name VERILOG_FILE HexDisplay.v
-set_global_assignment -name VERILOG_FILE FrameBuffer.v
-set_global_assignment -name VERILOG_FILE FrameBuffer_ram.v
-set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
-set_global_assignment -name CDF_FILE output_files/Chain.cdf
-set_global_assignment -name VERILOG_FILE BallDetection.v
 
 # Pin & Location Assignments
 # ==========================
@@ -656,23 +651,17 @@ set_location_assignment PIN_AG25 -to MIPI_PIXEL_HS
 set_location_assignment PIN_AF22 -to MIPI_PIXEL_VS
 set_location_assignment PIN_AE22 -to MIPI_REFCLK
 set_location_assignment PIN_AH25 -to MIPI_RESET_n
-set_location_assignment PIN_AG22 -to CAMERA_I2C_SCL
-set_location_assignment PIN_AE24 -to CAMERA_I2C_SDA
-set_location_assignment PIN_AE25 -to CAMERA_PWDN_n
 
 # Classic Timing Assignments
 # ==========================
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
-set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 
 # Analysis & Synthesis Assignments
 # ================================
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name TOP_LEVEL_ENTITY NiosII
-set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
-set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 
 # Fitter Assignments
 # ==================
@@ -689,25 +678,25 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 
 	# Fitter Assignments
 	# ==================
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_CS_n -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_I2C_SCL -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_I2C_SDA -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_MCLK -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_CLK -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[0] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[1] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[2] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[3] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[4] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[5] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[6] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[7] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[8] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[9] -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_HS -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_VS -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_REFCLK -entity DE2_115_D8M_RTL
-	set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_RESET_n -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_CS_n -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_I2C_SCL -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_I2C_SDA -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_MCLK -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_CLK -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[0] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[1] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[2] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[3] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[4] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[5] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[6] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[7] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[8] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_D[9] -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_HS -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_PIXEL_VS -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_REFCLK -entity DE2_115_D8M_RTL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MIPI_RESET_n -entity DE2_115_D8M_RTL
 
 # end ENTITY(DE2_115_D8M_RTL)
 # ---------------------------
@@ -1279,4 +1268,7 @@ set_global_assignment -name OPTIMIZATION_MODE BALANCED
 set_global_assignment -name VERILOG_FILE ScoreDisplay.v
 set_global_assignment -name SAVE_DISK_SPACE OFF
 set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

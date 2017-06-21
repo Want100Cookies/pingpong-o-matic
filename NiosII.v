@@ -291,9 +291,9 @@ DE2_115_QSYS DE2_115_QSYS_inst (
 	.lcd_external_connection_data               (LCD_DATA        ), //                                 .data
 	.lcd_external_connection_E                  (LCD_EN          ), //                                 .E
 	
-	.framebuffer_addr_external_connection_export(FRAMEBUFFER_ADDR), // framebuffer_addr_external_connection.export
-	.framebuffer_clk_external_connection_export (FRAMEBUFFER_CLK ), //  framebuffer_clk_external_connection.export
-	.framebuffer_data_external_connection_export(FRAMEBUFFER_DATA)  // framebuffer_data_external_connection.export
+	//.framebuffer_addr_external_connection_export(FRAMEBUFFER_ADDR), // framebuffer_addr_external_connection.export
+	//.framebuffer_clk_external_connection_export (FRAMEBUFFER_CLK ), //  framebuffer_clk_external_connection.export
+	//.framebuffer_data_external_connection_export(FRAMEBUFFER_DATA),  // framebuffer_data_external_connection.export
 
 	.score_a_external_connection_export  			(score_a),  //  score_a_external_connection.export
 	.score_b_external_connection_export  			(score_b)   //  score_b_external_connection.export

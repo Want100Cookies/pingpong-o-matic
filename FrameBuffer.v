@@ -1,8 +1,5 @@
 `include "V/VGA_Param.h"
 
-parameter VGA_WIDTH = 640;
-parameter VGA_HEIGHT = 480;
-
 parameter DATA_WIDTH = 2;
 parameter ADDR_WIDTH = 2;
 
