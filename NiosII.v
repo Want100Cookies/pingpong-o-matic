@@ -224,6 +224,7 @@ NumberDisplay NumberDisplay_2_inst (
 ScoreDisplay ScoreDisplay_inst (
 	.ScoreA		(score_a),
 	.ScoreB		(score_b),
+	.Enabled		(SW[17]),
 	.VGA_CLK		(VGA_CLK),
 	.VGA_R_IN	(R_RESULT1),
 	.VGA_G_IN	(G_RESULT1),
@@ -237,7 +238,7 @@ ScoreDisplay ScoreDisplay_inst (
 
 BallDetection BallDetection_inst (
 	.CLK      (VGA_CLK        ),
-	.ENABLE   (SW[0]          ),
+	.ENABLE   (SW[16]          ),
 	
 	.VGA_V_CNT(VGA_V_CNT      ),
 	.VGA_H_CNT(VGA_H_CNT      ),
