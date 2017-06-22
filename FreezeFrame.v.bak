@@ -1,0 +1,22 @@
+module FreezeFrame(
+	input		[1:0]	Enabled,
+	
+	input						VGA_CLK,
+	input			[7:0]		VGA_R_IN,
+	input			[7:0]		VGA_G_IN,
+	input			[7:0]		VGA_B_IN,
+
+	output reg		[7:0]		VGA_R_OUT,
+	output reg		[7:0]		VGA_G_OUT,
+	output reg		[7:0]		VGA_B_OUT
+);
+
+always @(posedge VGA_CLK) begin
+	if (Enabled) begin
+		VGA_R_OUT <= VGA_R_IN;
+		VGA_G_OUT <= VGA_G_IN;
+		VGA_B_OUT <= VGA_B_IN;
+	end
+end
+
+endmodule

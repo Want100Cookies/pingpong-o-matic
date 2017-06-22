@@ -13,7 +13,6 @@ module BallDetection (
 	output [ 7:0] B_OUT    ,
 	output [12:0] debug
 );
-	`include "V/VGA_Param.h"
 
 	parameter MARGIN      = 1;
 	parameter FONT_WIDTH  = 3;

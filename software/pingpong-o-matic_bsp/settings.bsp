@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>20-jun-2017 12:23:01</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1497954181131</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>22-jun-2017 8:49:13</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1498114153459</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\Wisse\Documents\Quartus\pingpong-o-matic\software\pingpong-o-matic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\DE2_115_QSYS.sopcinfo</SopcDesignFile>

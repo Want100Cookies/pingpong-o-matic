@@ -1,3 +1,5 @@
+`include "V/VGA_Param.h"
+
 module NiosII (
 	//////////// CLOCK //////////
 	input         CLOCK2_50     ,
@@ -151,7 +153,7 @@ module NiosII (
 	inout         CAMERA_I2C_SCL,
 	inout         CAMERA_I2C_SDA,
 	output        CAMERA_PWDN_n ,
-	output        MIPI_CS_n     ,
+	output        CS_n     ,
 	inout         MIPI_I2C_SCL  ,
 	inout         MIPI_I2C_SDA  ,
 	output        MIPI_MCLK     ,
@@ -179,17 +181,23 @@ wire	[6:0]		score_b;
 
 
 // FrameBuffer
-wire [7:0] R_RESULT;
-wire [7:0] B_RESULT;
-wire [7:0] G_RESULT;
+wire [7:0] R_RESULT_FREEZE;
+wire [7:0] G_RESULT_FREEZE;
+wire [7:0] B_RESULT_FREEZE;
 
-wire [7:0] R_RESULT1;
-wire [7:0] B_RESULT1;
-wire [7:0] G_RESULT1;
+wire [7:0] R_RESULT_FOCUS;
+wire [7:0] G_RESULT_FOCUS;
+wire [7:0] B_RESULT_FOCUS;
 
+wire [7:0] R_RESULT_DETECTION;
+wire [7:0] G_RESULT_DETECTION;
+wire [7:0] B_RESULT_DETECTION;
+
+/*
 wire        FRAMEBUFFER_CLK ;
 wire [18:0] FRAMEBUFFER_ADDR;
 wire [23:0] FRAMEBUFFER_DATA;
+*/
 
 //=======================================================
 //  Structural coding
@@ -226,9 +234,9 @@ ScoreDisplay ScoreDisplay_inst (
 	.ScoreB		(score_b),
 	.Enabled		(SW[17]),
 	.VGA_CLK		(VGA_CLK),
-	.VGA_R_IN	(R_RESULT1),
-	.VGA_G_IN	(G_RESULT1),
-	.VGA_B_IN	(B_RESULT1),
+	.VGA_R_IN	(R_RESULT_DETECTION),
+	.VGA_G_IN	(G_RESULT_DETECTION),
+	.VGA_B_IN	(B_RESULT_DETECTION),
 	.H_CNT		(VGA_H_CNT),
 	.V_CNT		(VGA_V_CNT),
 	.VGA_R_OUT	(VGA_R),
@@ -245,13 +253,13 @@ BallDetection BallDetection_inst (
 	.VGA_HS   (VGA_HS         ),
 	.VGA_VS   (VGA_VS         ),
 	
-	.R_IN     (R_RESULT       ),
-	.G_IN     (G_RESULT       ),
-	.B_IN     (B_RESULT       ),
+	.R_IN     (R_RESULT_FREEZE),
+	.G_IN     (G_RESULT_FREEZE),
+	.B_IN     (B_RESULT_FREEZE),
 	
-	.R_OUT    (R_RESULT1      ),
-	.G_OUT    (G_RESULT1      ),
-	.B_OUT    (B_RESULT1      ),
+	.R_OUT    (R_RESULT_DETECTION),
+	.G_OUT    (G_RESULT_DETECTION),
+	.B_OUT    (B_RESULT_DETECTION),
 	.debug    (sevseg_2_binary)
 );
 
@@ -413,7 +421,6 @@ AUTO_FOCUS_ON vd (
 	.AUTO_FOC   (AUTO_FOC   )
 );
 
-
 //------AOTO FOCUS ADJ  --
 FOCUS_ADJ adl (
 	.CLK_50        (CLOCK2_50        ),
@@ -431,9 +438,9 @@ FOCUS_ADJ adl (
 	.iR            (R_AUTO           ),
 	.iG            (G_AUTO           ),
 	.iB            (B_AUTO           ),
-	.oR            (R_RESULT         ),
-	.oG            (G_RESULT         ),
-	.oB            (B_RESULT         ),
+	.oR            (R_RESULT_FOCUS   ),
+	.oG            (G_RESULT_FOCUS   ),
+	.oB            (B_RESULT_FOCUS   ),
 	
 	.READY         (READY            ),
 	.SCL           (CAMERA_I2C_SCL_AF),

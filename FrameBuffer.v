@@ -1,8 +1,3 @@
-`include "V/VGA_Param.h"
-
-parameter DATA_WIDTH = 2;
-parameter ADDR_WIDTH = 2;
-
 module FrameBuffer(
 	input						VGA_CLK,
 	input			[7:0]		VGA_R_IN,
@@ -19,6 +14,9 @@ module FrameBuffer(
 	output reg		[7:0]		VGA_G_OUT,
 	output reg		[7:0]		VGA_B_OUT
 );
+
+parameter DATA_WIDTH = 2;
+parameter ADDR_WIDTH = 2;
 
 /*
 reg	[18:0]	read_addr;
