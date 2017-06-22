@@ -6,12 +6,11 @@ module BallDetection (
 	input  [ 7:0] B_IN     ,
 	input  [12:0] VGA_V_CNT,
 	input  [12:0] VGA_H_CNT,
-	input         VGA_HS   ,
-	input         VGA_VS   ,
 	output [ 7:0] R_OUT    ,
 	output [ 7:0] G_OUT    ,
 	output [ 7:0] B_OUT    ,
-	output [12:0] debug
+	output [5:0] BALL_X,
+	output [5:0] BALL_Y
 );
 
 	parameter MARGIN      = 1;
@@ -61,6 +60,9 @@ module BallDetection (
 	byte unsigned max_count_per_row[rows]; // Store the max green count per row
 	byte unsigned max_x_per_row[rows]; // Store the x of the max green per row
 
+	// The max x/y/count so far in for loops for getting the max of the array above
+	shortint unsigned max_x, max_y, max_count = 0;
+
 	// Current x/y
 	shortint unsigned x, y;
 
@@ -69,9 +71,6 @@ module BallDetection (
 	shortint unsigned prev_y_grid = rows; // Previous y on the grid
 	// (default = imposible so first clock tick the array is reset)
 
-	// Definitive x/y of the ball
-	shortint unsigned x_ball = 0, y_ball = 0;
-
 	// HSL values
 	shortint unsigned hue, lightness, saturation;
 
@@ -79,8 +78,7 @@ module BallDetection (
 	shortint unsigned max, min, delta, R, G, B;
 
 	always @(posedge CLK) begin
-		if (~ENABLE ||
-			VGA_H_CNT < X_START || (VGA_H_CNT - X_START) > VGA_WIDTH ||
+		if (VGA_H_CNT < X_START || (VGA_H_CNT - X_START) > VGA_WIDTH ||
 			VGA_V_CNT < Y_START || (VGA_V_CNT - Y_START) > VGA_HEIGHT) begin
 			R_OUT <= R_IN;
 			G_OUT <= G_IN;
@@ -137,21 +135,16 @@ module BallDetection (
 				end
 			end
 
-			R_OUT <= 0;
-			G_OUT <= 0;
-			B_OUT <= 0;
+			R_OUT <= R_IN;
+			G_OUT <= G_IN;
+			B_OUT <= B_IN;
 
-			if(x % block_size == 0 && y % block_size == 0) begin
-				// Show the points of the grid
-				R_OUT <= 0;
-				G_OUT <= 0;
-				B_OUT <= 255;
-			end else if(y % block_size <= FONT_HEIGHT && x_grid > 0 && x_grid < cols - 1) begin
+			if(ENABLE && y % block_size < FONT_HEIGHT && x_grid > 0 && x_grid < cols - 1) begin
 				shortint unsigned x_tgt, block_x, block_y, dig, x_pos, y_pos;
 
 				// Calculate the start x/y of the block
 				block_x = x_grid * block_size + 1;
-				block_y = y_grid * block_size + 1;
+				block_y = y_grid * block_size;
 
 				for (int i = 0; i < 3; i++) begin
 					x_tgt = block_x + i * (FONT_WIDTH + MARGIN);
@@ -162,9 +155,9 @@ module BallDetection (
 						y_pos = (y - block_y);
 
 						case (i)
-							0 : dig = row[x_grid + y_grid * cols - 1] % 1000 / 100;
-							1 : dig = row[x_grid + y_grid * cols - 1] % 100 / 10;
-							2 : dig = row[x_grid + y_grid * cols - 1] % 10;
+							0 : dig = row[x_grid] % 1000 / 100;
+							1 : dig = row[x_grid] % 100 / 10;
+							2 : dig = row[x_grid] % 10;
 						endcase
 
 						if (font_pixel(dig, FONT_WIDTH - 1 - x_pos, FONT_HEIGHT - 1 - y_pos)) begin
@@ -174,15 +167,19 @@ module BallDetection (
 						end
 					end
 				end
-			end else if(x_ball == x_grid && y_ball == y_grid) begin
+			end else if(BALL_X == x_grid && BALL_Y == y_grid) begin
 				// Show the hotbox
-				R_OUT <= 255;
-				G_OUT <= 0;
-				B_OUT <= 0;
-			end else if(hue > 100 && hue < 140) begin
+				R_OUT <= R_IN - 255;
+				G_OUT <= G_IN - 255;
+				B_OUT <= B_IN - 255;
+			end else if(ENABLE && hue > 100 && hue < 140) begin
 				// Show all the greens with hue 100 > hue < 140
 				R_OUT <= 0;
 				G_OUT <= 255;
+				B_OUT <= 0;
+			end else if(ENABLE) begin
+				R_OUT <= 0;
+				G_OUT <= 0;
 				B_OUT <= 0;
 			end
 
@@ -190,7 +187,7 @@ module BallDetection (
 			// If this pixel is the last of the row
 			// (x == max of screen and y == on last pixel of row)
 			if(x == VGA_WIDTH - 1 && y % block_size == block_size - 1) begin
-				shortint unsigned max_x, max_count = 0;
+				max_count = 0;
 
 				// For every value in the row
 				for (int for_x = 0; for_x < cols; for_x++) begin
@@ -209,7 +206,6 @@ module BallDetection (
 
 				// On the last row
 				if(y_grid == rows - 1) begin
-					shortint unsigned max_y;
 					max_count = 0;
 
 					for (int for_y = 0; for_y < rows; for_y++) begin
@@ -221,10 +217,8 @@ module BallDetection (
 					end
 
 					// Set the new hotbox for the ball
-					x_ball = max_x;
-					y_ball = max_y;
-
-					debug      <= max_count;
+					BALL_X = max_x;
+					BALL_Y = max_y;
 				end
 			end
 		end

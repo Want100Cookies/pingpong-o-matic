@@ -86,11 +86,38 @@ void setcolor(int x, int y, int c)
 }
 */
 
+struct Coordinate {
+	int x;
+	int y;
+	char up; // Is the coordinate going up? 1/0
+	char right; // Is the coordinate going right? 1/0
+};
+
+void stack_push(struct Coordinate stack[6], struct Coordinate c) {
+	int i = 5;
+	while (i > 0) {
+		stack[i] = stack[i--];
+	}
+
+	stack[0] = c;
+}
+
+void stack_print(struct Coordinate stack[6]) {
+	for (int i = 0; i < 6; i++) {
+		printf("#%d %dx%d | ", i, stack[i].x, stack[i].y);
+	}
+
+	printf("\n");
+}
+
 int main() {
 	lcd_init();
 	test_lcd();
 
-	printf("Starting camera capture...\n");
+	printf("Starting Nios II microprocessor...\n");
+
+	IOWR_ALTERA_AVALON_PIO_DATA(SCORE_A_BASE, 66);
+	IOWR_ALTERA_AVALON_PIO_DATA(SCORE_B_BASE, 66);
 //	int count = 0;
 //	int count2 = 0;
 //	int count3 = 0;
@@ -108,13 +135,37 @@ int main() {
 	*/
 
 //	int delay;
+	struct Coordinate current;
+	struct Coordinate stack[6];
+
+	for (int i = 0; i < 6; i++) {
+		stack[i].x = 0;
+		stack[i].y = 0;
+	}
+
 	while (1) {
-		for(int i = 0; i < 100; i++)
-		{
-			IOWR_ALTERA_AVALON_PIO_DATA(SCORE_A_BASE, i);
-			IOWR_ALTERA_AVALON_PIO_DATA(SCORE_B_BASE, 99 - i);
-			usleep(100000);
+		current.x = IORD_ALTERA_AVALON_PIO_DATA(BALL_X_BASE);
+		current.y = IORD_ALTERA_AVALON_PIO_DATA(BALL_Y_BASE);
+
+		if (current.x != stack[0].x && current.y != stack[0].y) {
+			stack_push(&stack, current);
+
+			stack[0].up = stack[0].x > stack[1].x;
+			stack[0].right = stack[0].y > stack[1].y;
+
+			int up = 0;
+			int right = 0;
+
+			for (int i = 0; i < 6; i++) {
+				up = up + stack[i].up;
+				right = right + stack[i].right;
+			}
+
+			if (up == 3 && right == 3) {
+				printf("Bounce\n");
+			}
 		}
+
 
 		/*
 		for(int i = 0; i < 4; i++)

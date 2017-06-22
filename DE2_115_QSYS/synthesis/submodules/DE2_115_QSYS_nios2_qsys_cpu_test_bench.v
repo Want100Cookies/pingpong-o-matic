@@ -70,7 +70,7 @@ module DE2_115_QSYS_nios2_qsys_cpu_test_bench (
   input   [ 31: 0] W_wr_data;
   input   [ 31: 0] av_ld_data_aligned_unfiltered;
   input            clk;
-  input   [ 19: 0] d_address;
+  input   [ 18: 0] d_address;
   input   [  3: 0] d_byteenable;
   input            d_read;
   input            d_write;

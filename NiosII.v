@@ -179,6 +179,9 @@ wire [15:0] sevseg_2_binary;
 wire	[6:0]		score_a;
 wire	[6:0]		score_b;
 
+// Ball coördinates
+wire [5:0] BALL_X;
+wire [5:0] BALL_Y;
 
 // FrameBuffer
 wire [7:0] R_RESULT_FREEZE;
@@ -250,17 +253,16 @@ BallDetection BallDetection_inst (
 	
 	.VGA_V_CNT(VGA_V_CNT      ),
 	.VGA_H_CNT(VGA_H_CNT      ),
-	.VGA_HS   (VGA_HS         ),
-	.VGA_VS   (VGA_VS         ),
 	
 	.R_IN     (R_RESULT_FREEZE),
 	.G_IN     (G_RESULT_FREEZE),
 	.B_IN     (B_RESULT_FREEZE),
 	
-	.R_OUT    (R_RESULT_DETECTION),
-	.G_OUT    (G_RESULT_DETECTION),
+	.BALL_Y   (BALL_Y),
+	.BALL_X   (BALL_X),
 	.B_OUT    (B_RESULT_DETECTION),
-	.debug    (sevseg_2_binary)
+	.G_OUT    (G_RESULT_DETECTION),
+	.R_OUT    (R_RESULT_DETECTION),
 );
 
 /*
@@ -281,31 +283,30 @@ FrameBuffer FrameBuffer_inst (
 */
 
 DE2_115_QSYS DE2_115_QSYS_inst (
-	.clk_clk                                    (CLOCK2_50       ), // clk.clk
-	.reset_reset_n                              (1'b1            ), // reset.reset_n
+	.clk_clk                            (CLOCK2_50      ), // clk.clk
+	.reset_reset_n                      (1'b1           ), // reset.reset_n
 	
-	.key_external_connection_export             (KEY             ), // key_external_connection.export
-	.sw_external_connection_export              (SW              ), // sw_external_connection.export
+	.key_external_connection_export     (KEY            ), // key_external_connection.export
+	.sw_external_connection_export      (SW             ), // sw_external_connection.export
 	
-	.ledg_external_connection_export            (LEDG            ), //         ledg_external_connection.export
-	.ledr_external_connection_export            (LEDR            ), //         ledr_external_connection.export
+	.ledg_external_connection_export    (LEDG           ), //         ledg_external_connection.export
+	.ledr_external_connection_export    (LEDR           ), //         ledr_external_connection.export
 	
 	
-	.sevseg_0_external_connection_export        (sevseg_0_binary ),
-	.sevseg_1_external_connection_export        (sevseg_1_binary ),
-	.sevseg_2_external_connection_export        (                ),
+	.sevseg_0_external_connection_export(sevseg_0_binary),
+	.sevseg_1_external_connection_export(sevseg_1_binary),
+	.sevseg_2_external_connection_export(               ),
 	
-	.lcd_external_connection_RS                 (LCD_RS          ), //          lcd_external_connection.RS
-	.lcd_external_connection_RW                 (LCD_RW          ), //                                 .RW
-	.lcd_external_connection_data               (LCD_DATA        ), //                                 .data
-	.lcd_external_connection_E                  (LCD_EN          ), //                                 .E
+	.lcd_external_connection_RS         (LCD_RS         ), //          lcd_external_connection.RS
+	.lcd_external_connection_RW         (LCD_RW         ), //                                 .RW
+	.lcd_external_connection_data       (LCD_DATA       ), //                                 .data
+	.lcd_external_connection_E          (LCD_EN         ), //                                 .E
 	
-	//.framebuffer_addr_external_connection_export(FRAMEBUFFER_ADDR), // framebuffer_addr_external_connection.export
-	//.framebuffer_clk_external_connection_export (FRAMEBUFFER_CLK ), //  framebuffer_clk_external_connection.export
-	//.framebuffer_data_external_connection_export(FRAMEBUFFER_DATA),  // framebuffer_data_external_connection.export
-
-	.score_a_external_connection_export  			(score_a),  //  score_a_external_connection.export
-	.score_b_external_connection_export  			(score_b)   //  score_b_external_connection.export
+	.score_a_external_connection_export (score_a        ), //  score_a_external_connection.export
+	.score_b_external_connection_export (score_b        ), //  score_b_external_connection.export
+	
+	.ball_x_external_connection_export  (BALL_X         ), //   ball_x_external_connection.export
+	.ball_y_external_connection_export  (BALL_Y         )  //   ball_y_external_connection.export
 );
 
 // CAMERA SHIZZLE

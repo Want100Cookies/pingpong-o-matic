@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>22-jun-2017 8:49:13</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1498114153459</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>C:\Users\Wisse\Documents\Quartus\pingpong-o-matic\software\pingpong-o-matic_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>22-jun-2017 10:41:41</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1498120901138</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>C:\Users\pasca\Code\pingpong-o-matic\software\pingpong-o-matic_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\DE2_115_QSYS.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -899,86 +899,98 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <MemoryMap>
-                <slaveDescriptor>timer</slaveDescriptor>
-                <addressRange>0x00000000 - 0x0000001F</addressRange>
-                <addressSpan>32</addressSpan>
-                <attributes>timer</attributes>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>onchip_memory2</slaveDescriptor>
                 <addressRange>0x00020000 - 0x0003869F</addressRange>
                 <addressSpan>100000</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>key</slaveDescriptor>
-                <addressRange>0x000410C0 - 0x000410CF</addressRange>
+                <slaveDescriptor>timer</slaveDescriptor>
+                <addressRange>0x00041000 - 0x0004101F</addressRange>
+                <addressSpan>32</addressSpan>
+                <attributes>timer</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>ball_y</slaveDescriptor>
+                <addressRange>0x00041020 - 0x0004102F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sw</slaveDescriptor>
-                <addressRange>0x000410D0 - 0x000410DF</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>ledg</slaveDescriptor>
-                <addressRange>0x000410E0 - 0x000410EF</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>sysid_qsys</slaveDescriptor>
-                <addressRange>0x00041100 - 0x00041107</addressRange>
-                <addressSpan>8</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>sevseg_0</slaveDescriptor>
-                <addressRange>0x000411A0 - 0x000411AF</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>sevseg_1</slaveDescriptor>
-                <addressRange>0x000411B0 - 0x000411BF</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>sevseg_2</slaveDescriptor>
-                <addressRange>0x000411C0 - 0x000411CF</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>lcd_0</slaveDescriptor>
-                <addressRange>0x000411D0 - 0x000411DF</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes>printable</attributes>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>ledr</slaveDescriptor>
-                <addressRange>0x000411E0 - 0x000411EF</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>score_a</slaveDescriptor>
-                <addressRange>0x000411F0 - 0x000411FF</addressRange>
+                <slaveDescriptor>ball_x</slaveDescriptor>
+                <addressRange>0x00041030 - 0x0004103F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>score_b</slaveDescriptor>
-                <addressRange>0x00041200 - 0x0004120F</addressRange>
+                <addressRange>0x00041040 - 0x0004104F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>score_a</slaveDescriptor>
+                <addressRange>0x00041050 - 0x0004105F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>ledr</slaveDescriptor>
+                <addressRange>0x00041060 - 0x0004106F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sevseg_2</slaveDescriptor>
+                <addressRange>0x00041070 - 0x0004107F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sevseg_1</slaveDescriptor>
+                <addressRange>0x00041080 - 0x0004108F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sevseg_0</slaveDescriptor>
+                <addressRange>0x00041090 - 0x0004109F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>key</slaveDescriptor>
+                <addressRange>0x000410A0 - 0x000410AF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sw</slaveDescriptor>
+                <addressRange>0x000410B0 - 0x000410BF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>ledg</slaveDescriptor>
+                <addressRange>0x000410C0 - 0x000410CF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>lcd_0</slaveDescriptor>
+                <addressRange>0x000410D0 - 0x000410DF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes>printable</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sysid_qsys</slaveDescriptor>
+                <addressRange>0x000410E0 - 0x000410E7</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x00081108 - 0x0008110F</addressRange>
+                <addressRange>0x000410E8 - 0x000410EF</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

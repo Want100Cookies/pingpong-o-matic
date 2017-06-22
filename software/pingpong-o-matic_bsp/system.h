@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_qsys' in SOPC Builder design 'DE2_115_QSYS'
  * SOPC Builder design path: ../../DE2_115_QSYS.sopcinfo
  *
- * Generated: Thu Jun 22 08:49:14 CEST 2017
+ * Generated: Thu Jun 22 10:41:41 CEST 2017
  */
 
 /*
@@ -68,7 +68,7 @@
 #define ALT_CPU_CPU_ID_SIZE 1
 #define ALT_CPU_CPU_ID_VALUE 0x00000000
 #define ALT_CPU_CPU_IMPLEMENTATION "tiny"
-#define ALT_CPU_DATA_ADDR_WIDTH 0x14
+#define ALT_CPU_DATA_ADDR_WIDTH 0x13
 #define ALT_CPU_DCACHE_LINE_SIZE 0
 #define ALT_CPU_DCACHE_LINE_SIZE_LOG2 0
 #define ALT_CPU_DCACHE_SIZE 0
@@ -105,7 +105,7 @@
 #define NIOS2_CPU_ID_SIZE 1
 #define NIOS2_CPU_ID_VALUE 0x00000000
 #define NIOS2_CPU_IMPLEMENTATION "tiny"
-#define NIOS2_DATA_ADDR_WIDTH 0x14
+#define NIOS2_DATA_ADDR_WIDTH 0x13
 #define NIOS2_DCACHE_LINE_SIZE 0
 #define NIOS2_DCACHE_LINE_SIZE_LOG2 0
 #define NIOS2_DCACHE_SIZE 0
@@ -158,24 +158,78 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart"
-#define ALT_STDERR_BASE 0x81108
+#define ALT_STDERR_BASE 0x410e8
 #define ALT_STDERR_DEV jtag_uart
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart"
-#define ALT_STDIN_BASE 0x81108
+#define ALT_STDIN_BASE 0x410e8
 #define ALT_STDIN_DEV jtag_uart
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart"
-#define ALT_STDOUT_BASE 0x81108
+#define ALT_STDOUT_BASE 0x410e8
 #define ALT_STDOUT_DEV jtag_uart
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
 #define ALT_SYSTEM_NAME "DE2_115_QSYS"
+
+
+/*
+ * ball_x configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_ball_x altera_avalon_pio
+#define BALL_X_BASE 0x41030
+#define BALL_X_BIT_CLEARING_EDGE_REGISTER 0
+#define BALL_X_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define BALL_X_CAPTURE 0
+#define BALL_X_DATA_WIDTH 6
+#define BALL_X_DO_TEST_BENCH_WIRING 0
+#define BALL_X_DRIVEN_SIM_VALUE 0
+#define BALL_X_EDGE_TYPE "NONE"
+#define BALL_X_FREQ 50000000
+#define BALL_X_HAS_IN 1
+#define BALL_X_HAS_OUT 0
+#define BALL_X_HAS_TRI 0
+#define BALL_X_IRQ -1
+#define BALL_X_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define BALL_X_IRQ_TYPE "NONE"
+#define BALL_X_NAME "/dev/ball_x"
+#define BALL_X_RESET_VALUE 0
+#define BALL_X_SPAN 16
+#define BALL_X_TYPE "altera_avalon_pio"
+
+
+/*
+ * ball_y configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_ball_y altera_avalon_pio
+#define BALL_Y_BASE 0x41020
+#define BALL_Y_BIT_CLEARING_EDGE_REGISTER 0
+#define BALL_Y_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define BALL_Y_CAPTURE 0
+#define BALL_Y_DATA_WIDTH 6
+#define BALL_Y_DO_TEST_BENCH_WIRING 0
+#define BALL_Y_DRIVEN_SIM_VALUE 0
+#define BALL_Y_EDGE_TYPE "NONE"
+#define BALL_Y_FREQ 50000000
+#define BALL_Y_HAS_IN 1
+#define BALL_Y_HAS_OUT 0
+#define BALL_Y_HAS_TRI 0
+#define BALL_Y_IRQ -1
+#define BALL_Y_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define BALL_Y_IRQ_TYPE "NONE"
+#define BALL_Y_NAME "/dev/ball_y"
+#define BALL_Y_RESET_VALUE 0
+#define BALL_Y_SPAN 16
+#define BALL_Y_TYPE "altera_avalon_pio"
 
 
 /*
@@ -195,7 +249,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart altera_avalon_jtag_uart
-#define JTAG_UART_BASE 0x81108
+#define JTAG_UART_BASE 0x410e8
 #define JTAG_UART_IRQ 0
 #define JTAG_UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_NAME "/dev/jtag_uart"
@@ -213,7 +267,7 @@
  */
 
 #define ALT_MODULE_CLASS_key altera_avalon_pio
-#define KEY_BASE 0x410c0
+#define KEY_BASE 0x410a0
 #define KEY_BIT_CLEARING_EDGE_REGISTER 0
 #define KEY_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define KEY_CAPTURE 0
@@ -240,7 +294,7 @@
  */
 
 #define ALT_MODULE_CLASS_lcd_0 altera_avalon_lcd_16207
-#define LCD_0_BASE 0x411d0
+#define LCD_0_BASE 0x410d0
 #define LCD_0_IRQ -1
 #define LCD_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define LCD_0_NAME "/dev/lcd_0"
@@ -254,7 +308,7 @@
  */
 
 #define ALT_MODULE_CLASS_ledg altera_avalon_pio
-#define LEDG_BASE 0x410e0
+#define LEDG_BASE 0x410c0
 #define LEDG_BIT_CLEARING_EDGE_REGISTER 0
 #define LEDG_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LEDG_CAPTURE 0
@@ -281,7 +335,7 @@
  */
 
 #define ALT_MODULE_CLASS_ledr altera_avalon_pio
-#define LEDR_BASE 0x411e0
+#define LEDR_BASE 0x41060
 #define LEDR_BIT_CLEARING_EDGE_REGISTER 0
 #define LEDR_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LEDR_CAPTURE 0
@@ -337,7 +391,7 @@
  */
 
 #define ALT_MODULE_CLASS_score_a altera_avalon_pio
-#define SCORE_A_BASE 0x411f0
+#define SCORE_A_BASE 0x41050
 #define SCORE_A_BIT_CLEARING_EDGE_REGISTER 0
 #define SCORE_A_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SCORE_A_CAPTURE 0
@@ -364,7 +418,7 @@
  */
 
 #define ALT_MODULE_CLASS_score_b altera_avalon_pio
-#define SCORE_B_BASE 0x41200
+#define SCORE_B_BASE 0x41040
 #define SCORE_B_BIT_CLEARING_EDGE_REGISTER 0
 #define SCORE_B_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SCORE_B_CAPTURE 0
@@ -391,7 +445,7 @@
  */
 
 #define ALT_MODULE_CLASS_sevseg_0 altera_avalon_pio
-#define SEVSEG_0_BASE 0x411a0
+#define SEVSEG_0_BASE 0x41090
 #define SEVSEG_0_BIT_CLEARING_EDGE_REGISTER 0
 #define SEVSEG_0_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SEVSEG_0_CAPTURE 0
@@ -418,7 +472,7 @@
  */
 
 #define ALT_MODULE_CLASS_sevseg_1 altera_avalon_pio
-#define SEVSEG_1_BASE 0x411b0
+#define SEVSEG_1_BASE 0x41080
 #define SEVSEG_1_BIT_CLEARING_EDGE_REGISTER 0
 #define SEVSEG_1_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SEVSEG_1_CAPTURE 0
@@ -445,7 +499,7 @@
  */
 
 #define ALT_MODULE_CLASS_sevseg_2 altera_avalon_pio
-#define SEVSEG_2_BASE 0x411c0
+#define SEVSEG_2_BASE 0x41070
 #define SEVSEG_2_BIT_CLEARING_EDGE_REGISTER 0
 #define SEVSEG_2_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SEVSEG_2_CAPTURE 0
@@ -472,7 +526,7 @@
  */
 
 #define ALT_MODULE_CLASS_sw altera_avalon_pio
-#define SW_BASE 0x410d0
+#define SW_BASE 0x410b0
 #define SW_BIT_CLEARING_EDGE_REGISTER 0
 #define SW_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SW_CAPTURE 0
@@ -499,13 +553,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid_qsys altera_avalon_sysid_qsys
-#define SYSID_QSYS_BASE 0x41100
+#define SYSID_QSYS_BASE 0x410e0
 #define SYSID_QSYS_ID 0
 #define SYSID_QSYS_IRQ -1
 #define SYSID_QSYS_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_NAME "/dev/sysid_qsys"
 #define SYSID_QSYS_SPAN 8
-#define SYSID_QSYS_TIMESTAMP 1498057371
+#define SYSID_QSYS_TIMESTAMP 1498120595
 #define SYSID_QSYS_TYPE "altera_avalon_sysid_qsys"
 
 
@@ -516,7 +570,7 @@
 
 #define ALT_MODULE_CLASS_timer altera_avalon_timer
 #define TIMER_ALWAYS_RUN 0
-#define TIMER_BASE 0x0
+#define TIMER_BASE 0x41000
 #define TIMER_COUNTER_SIZE 32
 #define TIMER_FIXED_PERIOD 0
 #define TIMER_FREQ 50000000

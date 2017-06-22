@@ -1,4 +1,4 @@
-// (C) 2001-2016 Intel Corporation. All rights reserved.
+// (C) 2001-2017 Intel Corporation. All rights reserved.
 // Your use of Intel Corporation's design tools, logic functions and other 
 // software and tools, and its AMPP partner logic functions, and any output 
 // files any of the foregoing (including device programming or simulation 
@@ -24,9 +24,9 @@
 // agreement for further details.
 
 
-// $Id: //acds/rel/16.1/ip/merlin/altera_merlin_multiplexer/altera_merlin_multiplexer.sv.terp#1 $
+// $Id: //acds/rel/17.0std/ip/merlin/altera_merlin_multiplexer/altera_merlin_multiplexer.sv.terp#1 $
 // $Revision: #1 $
-// $Date: 2016/08/07 $
+// $Date: 2017/01/22 $
 // $Author: swbranch $
 
 // ------------------------------------------
@@ -43,9 +43,9 @@
 //   ARBITRATION_SHARES:  1 1
 //   ARBITRATION_SCHEME   "round-robin"
 //   PIPELINE_ARB:        1
-//   PKT_TRANS_LOCK:      60 (arbitration locking enabled)
-//   ST_DATA_W:           98
-//   ST_CHANNEL_W:        15
+//   PKT_TRANS_LOCK:      59 (arbitration locking enabled)
+//   ST_DATA_W:           99
+//   ST_CHANNEL_W:        17
 // ------------------------------------------
 
 module DE2_115_QSYS_mm_interconnect_0_cmd_mux_003
@@ -54,15 +54,15 @@ module DE2_115_QSYS_mm_interconnect_0_cmd_mux_003
     // Sinks
     // ----------------------
     input                       sink0_valid,
-    input [98-1   : 0]  sink0_data,
-    input [15-1: 0]  sink0_channel,
+    input [99-1   : 0]  sink0_data,
+    input [17-1: 0]  sink0_channel,
     input                       sink0_startofpacket,
     input                       sink0_endofpacket,
     output                      sink0_ready,
 
     input                       sink1_valid,
-    input [98-1   : 0]  sink1_data,
-    input [15-1: 0]  sink1_channel,
+    input [99-1   : 0]  sink1_data,
+    input [17-1: 0]  sink1_channel,
     input                       sink1_startofpacket,
     input                       sink1_endofpacket,
     output                      sink1_ready,
@@ -72,8 +72,8 @@ module DE2_115_QSYS_mm_interconnect_0_cmd_mux_003
     // Source
     // ----------------------
     output                      src_valid,
-    output [98-1    : 0] src_data,
-    output [15-1 : 0] src_channel,
+    output [99-1    : 0] src_data,
+    output [17-1 : 0] src_channel,
     output                      src_startofpacket,
     output                      src_endofpacket,
     input                       src_ready,
@@ -84,13 +84,13 @@ module DE2_115_QSYS_mm_interconnect_0_cmd_mux_003
     input clk,
     input reset
 );
-    localparam PAYLOAD_W        = 98 + 15 + 2;
+    localparam PAYLOAD_W        = 99 + 17 + 2;
     localparam NUM_INPUTS       = 2;
     localparam SHARE_COUNTER_W  = 1;
     localparam PIPELINE_ARB     = 1;
-    localparam ST_DATA_W        = 98;
-    localparam ST_CHANNEL_W     = 15;
-    localparam PKT_TRANS_LOCK   = 60;
+    localparam ST_DATA_W        = 99;
+    localparam ST_CHANNEL_W     = 17;
+    localparam PKT_TRANS_LOCK   = 59;
 
     // ------------------------------------------
     // Signals
@@ -122,8 +122,8 @@ module DE2_115_QSYS_mm_interconnect_0_cmd_mux_003
     // ------------------------------------------
     reg [NUM_INPUTS - 1 : 0] lock;
     always @* begin
-      lock[0] = sink0_data[60];
-      lock[1] = sink1_data[60];
+      lock[0] = sink0_data[59];
+      lock[1] = sink1_data[59];
     end
     reg [NUM_INPUTS - 1 : 0] locked = '0;
     always @(posedge clk or posedge reset) begin

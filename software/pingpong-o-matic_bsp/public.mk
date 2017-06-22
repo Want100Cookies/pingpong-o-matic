@@ -77,12 +77,12 @@ ALT_CPPFLAGS += -pipe
 
 # This following VERSION comment indicates the version of the tool used to 
 # generate this makefile. A makefile variable is provided for VERSION as well. 
-# ACDS_VERSION: 16.1
-ACDS_VERSION := 16.1
+# ACDS_VERSION: 17.0
+ACDS_VERSION := 17.0
 
 # This following BUILD_NUMBER comment indicates the build number of the tool 
 # used to generate this makefile. 
-# BUILD_NUMBER: 196
+# BUILD_NUMBER: 595
 
 # Qsys--generated SOPCINFO file. Required for resolving node instance ID's with 
 # design component names. 
@@ -152,14 +152,14 @@ SOPC_SYSID_FLAG += --id=0
 ELF_PATCH_FLAG  += --id 0
 
 # The SOPC System ID Base Address 
-# setting SOPC_SYSID_BASE_ADDRESS is 0x41100
-SOPC_SYSID_FLAG += --sidp=0x41100
-ELF_PATCH_FLAG  += --sidp 0x41100
+# setting SOPC_SYSID_BASE_ADDRESS is 0x410e0
+SOPC_SYSID_FLAG += --sidp=0x410e0
+ELF_PATCH_FLAG  += --sidp 0x410e0
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1498057371
-SOPC_SYSID_FLAG += --timestamp=1498057371
-ELF_PATCH_FLAG  += --timestamp 1498057371
+# setting SOPC_TIMESTAMP is 1498120595
+SOPC_SYSID_FLAG += --timestamp=1498120595
+ELF_PATCH_FLAG  += --timestamp 1498120595
 
 # Enable JTAG UART driver to recover when host is inactive causing buffer to 
 # full without returning error. Printf will not fail with this recovery. none 
