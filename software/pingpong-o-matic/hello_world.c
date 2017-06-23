@@ -9,6 +9,13 @@
 #define LCD_WR_DATA_REG 2
 #define LCD_RD_DATA_REG 3
 
+#define COLS 40;
+#define ROWS 30;
+
+#define STACK_SIZE 12
+#define SERVE_HEIGHT 10
+#define TIMEOUT_TIME 100
+
 void lcd_init(void) {
 	usleep(15000); /* Wait for more than 15 ms before init */
 	/* Set function code four times -- 8-bit, 2 line, 5x7 mode */
@@ -76,16 +83,6 @@ alt_u32 test_lcd(void) {
 	return (0);
 }
 
-/*
-void setcolor(int x, int y, int c)
-{
-	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
-	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, x * y * 640);
-	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE, c);
-	IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
-}
-*/
-
 struct Coordinate {
 	int x;
 	int y;
@@ -94,56 +91,55 @@ struct Coordinate {
 };
 
 void stack_push(struct Coordinate stack[6], struct Coordinate c) {
-	int i = 5;
+	int i = STACK_SIZE - 1;
 	while (i > 0) {
-		stack[i] = stack[i--];
+		stack[i] = stack[--i];
 	}
 
 	stack[0] = c;
 }
 
 void stack_print(struct Coordinate stack[6]) {
-	for (int i = 0; i < 6; i++) {
-		printf("#%d %dx%d | ", i, stack[i].x, stack[i].y);
+	for (int i = 0; i < STACK_SIZE; i++) {
+		printf("#%d %02dx%02d | ", i, stack[i].x, stack[i].y);
 	}
-
-	printf("\n");
 }
 
+enum State {
+	PRE_SERVE,
+	SERVE,
+	BEFORE_NET,
+	OVER_NET,
+	EXPECTING_HIT,
+	GAME_OVER
+};
+
 int main() {
+	unsigned long int ticks = 0;
 	lcd_init();
 	test_lcd();
 
 	printf("Starting Nios II microprocessor...\n");
 
-	IOWR_ALTERA_AVALON_PIO_DATA(SCORE_A_BASE, 66);
-	IOWR_ALTERA_AVALON_PIO_DATA(SCORE_B_BASE, 66);
-//	int count = 0;
-//	int count2 = 0;
-//	int count3 = 0;
+	unsigned int scoreL = 0;
+	unsigned int scoreR = 0;
 
-	//IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
-
-	/*
-	for(int x = 0; x < 640; x++)
-	{
-		for(int y = 0; y < 480; y++)
-		{
-			setcolor(x, y, 0);
-		}
-	}
-	*/
-
-//	int delay;
 	struct Coordinate current;
-	struct Coordinate stack[6];
+	struct Coordinate stack[STACK_SIZE];
 
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < STACK_SIZE; i++) {
 		stack[i].x = 0;
 		stack[i].y = 0;
 	}
 
+	enum State current_state = PRE_SERVE;
+	char serving_side = 0; // 0 = left, 1 = right
+	char last_hit; // 0 = left, 1 = right
+	unsigned long int last_tick = 0;
+
 	while (1) {
+		ticks++;
+
 		current.x = IORD_ALTERA_AVALON_PIO_DATA(BALL_X_BASE);
 		current.y = IORD_ALTERA_AVALON_PIO_DATA(BALL_Y_BASE);
 
@@ -153,116 +149,90 @@ int main() {
 			stack[0].up = stack[0].x > stack[1].x;
 			stack[0].right = stack[0].y > stack[1].y;
 
-			int up = 0;
-			int right = 0;
+			int up = 0; // # of stack going up
+			int right = 0; // # of stack going right
+			int left_side = 0; // # of stack on left side
 
-			for (int i = 0; i < 6; i++) {
+			for (int i = 0; i < STACK_SIZE; i++) {
 				up = up + stack[i].up;
 				right = right + stack[i].right;
+				left_side = left_side + (stack[i].x > (COLS / 2));
 			}
 
-			if (up == 3 && right == 3) {
+			char bounce = up == STACK_SIZE / 2 && right == STACK_SIZE / 2;
+			char hit = right == STACK_SIZE / 2;
+			char switch_side = left_side == STACK_SIZE / 2;
+
+
+
+			if (bounce) {
 				printf("Bounce\n");
 			}
-		}
 
+			if (hit) {
+				last_hit = stack[0].x < (COLS / 2);
+				printf("Hit by ");
+				printf(last_hit ? "right" : "left");
+				printf("\n");
+			}
 
-		/*
-		for(int i = 0; i < 4; i++)
-		{
-			printf("%d\n",i);
-			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
-			//usleep(10000);
-			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, i);
-			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE, i == 0 ? 1 : 0);
-			IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
-			usleep(1000000);
-		}
-		*/
+			// GOOD STATE MACHINE ACTIONS
+			if (current_state == PRE_SERVE && stack[0].x < SERVE_HEIGHT) {
+				current_state = SERVE;
+				last_tick = ticks;
+				printf("Do serve\n");
 
-//		IOWR_ALTERA_AVALON_PIO_DATA(LEDR_BASE, 7 << count);
-//		IOWR_ALTERA_AVALON_PIO_DATA(LEDG_BASE, 0b111111111);
-//
-//
-//		delay = 0;
-//		while (delay < 100000) {
-//			delay++;
-//		}
-//		count = (count + 1) % 17;
-//
-//		count2 = (count2 + 1) % 10000;
-//		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_2_BASE, count2);
-//
-//		count3 = (count3 + 1) % 100;
-//		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_0_BASE, count3);
-//		IOWR_ALTERA_AVALON_PIO_DATA(SEVSEG_1_BASE, 99 - count3);
+			} else if (current_state == SERVE && bounce) {
+				current_state = BEFORE_NET;
+				last_tick = ticks;
+				printf("Before net\n");
 
-		/*
-		for(int x = 200; x < 250; x++)
-		{
-			//printf("%d\n",x);
-			for(int y = 200; y < 250; y++)
-			{
-				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
-				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, x * y * 640);
-				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE,1);
-				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
-				usleep(5000);
+			} else if (current_state == BEFORE_NET && switch_side) {
+				current_state = OVER_NET;
+				last_tick = ticks;
+				printf("Over net\n");
+
+			} else if (current_state == OVER_NET && bounce) {
+				current_state = EXPECTING_HIT;
+				last_tick = ticks;
+				printf("Expecting hit\n");
+
+			} else if (current_state == EXPECTING_HIT && hit) {
+				current_state = BEFORE_NET;
+				last_tick = ticks;
+				printf("Before net\n");
+
+			// BAD STATE MACHINE ACTIONS
+			} else if (ticks - last_tick > TIMEOUT_TIME) {
+				current_state = PRE_SERVE;
+				printf("TIMEOUT\n");
+				scoreR++;
+				scoreL++;
+
+			} else if (current_state == BEFORE_NET && bounce) {
+				current_state = PRE_SERVE;
+				printf("Bounce before net\n");
+				scoreR++;
+				scoreL++;
+
+			} else if (current_state == OVER_NET && hit) {
+				current_state = PRE_SERVE;
+				printf("Hit before bounce\n");
+				scoreR++;
+				scoreL++;
+
+			} else if (current_state == EXPECTING_HIT && bounce) {
+				current_state = PRE_SERVE;
+				printf("Bounce before hit\n");
+				scoreR++;
+				scoreL++;
 
 			}
+
+
+			IOWR_ALTERA_AVALON_PIO_DATA(SCORE_A_BASE, scoreL);
+			IOWR_ALTERA_AVALON_PIO_DATA(SCORE_B_BASE, scoreR);
 		}
-
-		usleep(1000000);
-
-		for(int x = 200; x < 250; x++)
-		{
-			//printf("%d\n",x);
-			for(int y = 200; y < 250; y++)
-			{
-				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 0);
-				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_ADDR_BASE, x * y * 640);
-				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_DATA_BASE, 0);
-				IOWR_ALTERA_AVALON_PIO_DATA(FRAMEBUFFER_CLK_BASE, 1);
-				//usleep(50);
-
-			}
-		}
-
-		usleep(1000000);
-		*/
-
-		/*
-		const int x = 0;
-		const int y = 0;
-
-		setcolor(x, y, 1);
-		usleep(1000000);
-		setcolor(x, y, 0);
-		*/
-
-		/*
-		printf("1\n");
-
-		for(int x = 0; x < 640; x++)
-		{
-			for(int y = 0; y < 480; y++)
-			{
-				setcolor(x, y, 1);
-			}
-		}
-
-		//usleep(100000);
-		printf("2\n");
-
-		for(int x = 0; x < 640; x++)
-		{
-			for(int y = 0; y < 480; y++)
-			{
-				setcolor(x, y, 0);
-			}
-		}
-		*/
-		//usleep(100000);
 	}
 
 	return 0;

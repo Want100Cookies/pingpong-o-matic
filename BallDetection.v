@@ -1,6 +1,8 @@
 module BallDetection (
 	input         CLK      ,
-	input         ENABLE   ,
+	input         ENABLE1  ,
+	input         ENABLE2  ,
+	input         ENABLE3  ,
 	input  [ 7:0] R_IN     ,
 	input  [ 7:0] G_IN     ,
 	input  [ 7:0] B_IN     ,
@@ -9,8 +11,8 @@ module BallDetection (
 	output [ 7:0] R_OUT    ,
 	output [ 7:0] G_OUT    ,
 	output [ 7:0] B_OUT    ,
-	output [5:0] BALL_X,
-	output [5:0] BALL_Y
+	output [ 5:0] BALL_X   ,
+	output [ 5:0] BALL_Y
 );
 
 	parameter MARGIN      = 1;
@@ -56,9 +58,9 @@ module BallDetection (
 	parameter cols       = 40;
 	parameter block_size = 16; // 640/40=16 480/30=16 so block_size = 16x16
 
-	byte unsigned row[cols]; // Store the count of green pixels of a single row
+	byte unsigned row              [cols]; // Store the count of green pixels of a single row
 	byte unsigned max_count_per_row[rows]; // Store the max green count per row
-	byte unsigned max_x_per_row[rows]; // Store the x of the max green per row
+	byte unsigned max_x_per_row    [rows]; // Store the x of the max green per row
 
 	// The max x/y/count so far in for loops for getting the max of the array above
 	shortint unsigned max_x, max_y, max_count = 0;
@@ -76,6 +78,9 @@ module BallDetection (
 
 	// HSL tmp values
 	shortint unsigned max, min, delta, R, G, B;
+
+	// Is the current pixel green or not
+	reg is_green = 0;
 
 	always @(posedge CLK) begin
 		if (VGA_H_CNT < X_START || (VGA_H_CNT - X_START) > VGA_WIDTH ||
@@ -126,20 +131,22 @@ module BallDetection (
 			if (hue > 360) hue = hue - 360;
 			if (hue < 0) hue = hue + 360;
 
+			is_green = hue > 100 && hue < 140 &&
+				saturation > 20;
+			// lightness > 10 && lightness < 90;
+
 			// If hue is green
-			if (hue > 100 && hue < 140) begin
-				// And value is still valid
-				if(row[x_grid] < 255) begin
-					// Increase by one
-					row[x_grid]++;
-				end
+			// And value is still valid
+			if (is_green && row[x_grid] < 255) begin
+				// Increase by one
+				row[x_grid]++;
 			end
 
-			R_OUT <= R_IN;
-			G_OUT <= G_IN;
-			B_OUT <= B_IN;
+			R_OUT <= 0;
+			G_OUT <= 0;
+			B_OUT <= 0;
 
-			if(ENABLE && y % block_size < FONT_HEIGHT && x_grid > 0 && x_grid < cols - 1) begin
+			if(ENABLE1 && y % block_size < FONT_HEIGHT && x_grid > 0 && x_grid < cols - 1) begin
 				shortint unsigned x_tgt, block_x, block_y, dig, x_pos, y_pos;
 
 				// Calculate the start x/y of the block
@@ -169,21 +176,21 @@ module BallDetection (
 				end
 			end else if(BALL_X == x_grid && BALL_Y == y_grid) begin
 				// Show the hotbox
-				R_OUT <= R_IN - 255;
-				G_OUT <= G_IN - 255;
-				B_OUT <= B_IN - 255;
-			end else if(ENABLE && hue > 100 && hue < 140) begin
+				R_OUT <= 255;
+				G_OUT <= 0;
+				B_OUT <= 0;
+			end else if(ENABLE2 && is_green) begin
 				// Show all the greens with hue 100 > hue < 140
 				R_OUT <= 0;
 				G_OUT <= 255;
 				B_OUT <= 0;
-			end else if(ENABLE) begin
-				R_OUT <= 0;
-				G_OUT <= 0;
-				B_OUT <= 0;
+			end else if(~ENABLE3) begin
+				R_OUT <= R_IN;
+				G_OUT <= G_IN;
+				B_OUT <= B_IN;
 			end
 
-			
+
 			// If this pixel is the last of the row
 			// (x == max of screen and y == on last pixel of row)
 			if(x == VGA_WIDTH - 1 && y % block_size == block_size - 1) begin
@@ -192,7 +199,8 @@ module BallDetection (
 				// For every value in the row
 				for (int for_x = 0; for_x < cols; for_x++) begin
 					// If it's bigger than the previous found one
-					if(row[for_x] > max_count) begin
+					if(row[for_x] > max_count &&
+						row[for_x] > (block_size * block_size / 2)) begin
 						// Store it
 						max_count = row[for_x];
 						max_x     = for_x;
@@ -202,7 +210,7 @@ module BallDetection (
 				end
 
 				max_count_per_row[y_grid] = max_count;
-				max_x_per_row[y_grid] = max_x;
+				max_x_per_row[y_grid]     = max_x;
 
 				// On the last row
 				if(y_grid == rows - 1) begin
@@ -211,8 +219,8 @@ module BallDetection (
 					for (int for_y = 0; for_y < rows; for_y++) begin
 						if(max_count_per_row[for_y] > max_count) begin
 							max_count = max_count_per_row[for_y];
-							max_y = for_y;
-							max_x = max_x_per_row[for_y];
+							max_y     = for_y;
+							max_x     = max_x_per_row[for_y];
 						end
 					end
 

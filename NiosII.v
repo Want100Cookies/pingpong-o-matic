@@ -153,7 +153,7 @@ module NiosII (
 	inout         CAMERA_I2C_SCL,
 	inout         CAMERA_I2C_SDA,
 	output        CAMERA_PWDN_n ,
-	output        CS_n     ,
+	output        MIPI_CS_n     ,
 	inout         MIPI_I2C_SCL  ,
 	inout         MIPI_I2C_SDA  ,
 	output        MIPI_MCLK     ,
@@ -184,10 +184,6 @@ wire [5:0] BALL_X;
 wire [5:0] BALL_Y;
 
 // FrameBuffer
-wire [7:0] R_RESULT_FREEZE;
-wire [7:0] G_RESULT_FREEZE;
-wire [7:0] B_RESULT_FREEZE;
-
 wire [7:0] R_RESULT_FOCUS;
 wire [7:0] G_RESULT_FOCUS;
 wire [7:0] B_RESULT_FOCUS;
@@ -249,14 +245,17 @@ ScoreDisplay ScoreDisplay_inst (
 
 BallDetection BallDetection_inst (
 	.CLK      (VGA_CLK        ),
-	.ENABLE   (SW[16]          ),
+	.ENABLE1   (SW[16]          ),
+	.ENABLE2   (SW[15]          ),
+	.ENABLE3   (SW[14]          ),
+
 	
 	.VGA_V_CNT(VGA_V_CNT      ),
 	.VGA_H_CNT(VGA_H_CNT      ),
 	
-	.R_IN     (R_RESULT_FREEZE),
-	.G_IN     (G_RESULT_FREEZE),
-	.B_IN     (B_RESULT_FREEZE),
+	.R_IN     (R_RESULT_FOCUS),
+	.G_IN     (G_RESULT_FOCUS),
+	.B_IN     (B_RESULT_FOCUS),
 	
 	.BALL_Y   (BALL_Y),
 	.BALL_X   (BALL_X),
